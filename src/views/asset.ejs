@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>KPcoin</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="../css/styles.css" rel="stylesheet">
+        
+	</head>
+	<body>
+    
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="<%=navSignedOut[0].Link%>"><%=navSignedOut[0].Title%></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
+                        <%}
+            } else {
+          for(var i=2; i<navSignedIn.length;i++){%>
+                <li><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
+                <%}
+                }%>
+          
+          
+      <!--    <li><a href="#">Blog</a></li>
+        <li><a href="#contact">Contact</a></li> -->
+          
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (!user) {%>
+        <li><a href="<%=navSignedOut[1].Link%>"><%=navSignedOut[1].Title%></a></li>  
+           <%} else {%>
+                <li><a href="<%=navSignedIn[1].Link%>"><%=navSignedIn[1].Title%></a></li>  
+                <%}%>
+          
+        <!-- <li><a href="#about">Sign in</a></li> -->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div class="container">
+  
+  <div class="text-center">
+    <h1><%asset[0].name%></h1>
+      <p class="lead" align="left">Click "Buy" below if you want to exchange KPcoins for the full version of this digital asset.</p>
+  
+        </br>
+    
+            <% var walletObj = JSON.parse(wallet) %>
+            <% var balance = walletObj.state.confirmed %>
+  </div>
+
+            
+                        <div class="row">
+                            <br>
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <a class="story-title" href="#"><img alt="" src="../<%=asset[0].thumbpath%>" style="width:100px;height:100px" class="img-circle"></a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <h3><%=asset[0].name%></h3>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h4><span class="label label-default"><%=asset[0].shortdesc%></span></h4>
+                                        <h4> 
+                                             </br>
+                                            <h4> Price: <%=asset[0].price%> </h4>
+                                         </br>
+                                            <form action="/transaction-result?assetid=<%=asset[0].id%>&balance=<%-balance%>&price=<%-asset[0].price%>&assetname=<%=asset[0].name%>&assettb=<%=asset[0].thumbpath%>" method="post">
+                                            
+                                            <button type="submit" class="btn btn-warning btn-lg">Buy!</button>
+                                                </br>
+                                                </br>
+                                                 Your current balance is: <%-balance%>
+                                            <% if (balancemessage.length > 0) { %>
+                                                </br>
+                                                </br>
+                                                <div class="alert alert-danger form-group">
+                                                    <%= balancemessage %>
+                                                </div>
+                                                <% } %>
+                                        </form>
+
+                                            
+                                            
+                                            
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                        <hr>
+                    
+
+  
+</div><!-- /.container -->
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+	</body>
+</html>

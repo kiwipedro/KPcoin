@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>    
+    <script type="text/javascript">
+        var socket;
+
+        function onload() {
+            socket = io.connect();
+            socket.on('broadcast', function(data) {
+                document.getElementById("broadcast").innerHTML = data;
+            });
+        };
+
+    </script>
+
+
+<style>
+
+th, td {
+    text-align: center;
+}
+</style>
+
+</head>
+
+<body onload="onload()">
+    
+
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+                <a class="navbar-brand" href="<%=navSignedIn[0].Link%>">
+                    <%=navSignedIn[0].Title%>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <% for(var i=2; i<navSignedIn.length;i++){%>
+                        <li>
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}%>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="<%=navSignedIn[1].Link%>">
+                            <%=navSignedIn[1].Title%>
+                                </br>
+                        </a>
+                    </li>
+                    <!-- <li><a href="#about">Sign in</a></li> -->
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="text-center">
+            <h1>Your wallet page</h1>
+            <% var userEmail = user.email %>
+                <p class="lead" align="left">
+                    </br> You are logged in as
+                    <%- userEmail %>
+                </p>
+                </br>
+
+                Wallet info:
+                <% var walletObj = JSON.parse(wallet) %>
+                    <% var receiveAddress = walletObj.account.receiveAddress %>
+                        <% var balance = walletObj.state.confirmed %>
+                            <% var numberOfTx = walletObj.state.tx %>
+
+                                <br> Your balance is:
+                                <%-balance%>
+                                    </p>
+                                    <br>
+
+<h2 id=tables-hover-rows>Transaction History:</h2>
+
+<!--
+<ul class="list-group">  
+  <% currList.forEach( function(currList) { %>
+      <li class="list-group-item"><%= currList %></li>
+  <% }) %>
+</ul>
+-->
+                            
+                                    
+                                    <div class=bs-example data-example-id=hoverable-table>
+                                      
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Inv</th>
+                                                    <th>Digital Asset Name</th>
+                                                    <th>Date/Time Purchased</th>
+                                                    <th>Price</th>
+                                                    <th>Details</th>
+                                                </tr>
+                                            </thead>
+                                           <% currList.forEach(function(currList){%>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><%=currList.txHistid%></th>
+                                                    <td><%=currList.name%></td>
+                                                    <td><%=currList.txdate%></td>
+                                                    <td><%=currList.price%></td>
+                                                    <td><a href="/transaction-detail?txhash=<%=currList.txhash%>">Transaction Detail</a></td>
+                                                </tr>
+                                            </tbody>
+                                              <% }); %>
+                                        </table>
+                                        
+                                    </div>
+
+<% if (pageCount > 1) { %>  
+<ul class="pagination">  
+  <% if (currentPage > 1) { %>
+      <li><a href="/mywallet?page=1">&laquo;</a></li>
+  <% } %>
+  <% var i = 1;
+  if (currentPage > 5) {
+  i = +currentPage - 4;
+  } %>
+  <% if (i !== 1) { %>
+      <li class="disabled"><a href="#">...</a></li>
+  <% } %>
+  <% for (i; i<=pageCount; i++) { %>
+    <% if (currentPage == i) { %>
+        <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+    <% } else { %>
+        <li><a href="/mywallet?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if (i == (+currentPage + 4)) { %>
+        <li class="disabled"><a href="#">...</a></li>
+    <% break; } %>
+  <% } %>
+  <% if (currentPage != pageCount) { %>
+      <li><a href="/mywallet?page=<%= pageCount %>">&raquo;</a></li>
+  <% } %>
+</ul>  
+<% } %>
+                                    
+
+    
+
+    
+  </div>
+  
+</div><!-- /.container -->
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+	</body>
+</html>
