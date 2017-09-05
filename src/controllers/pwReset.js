@@ -40,7 +40,7 @@ var sendResetToken = function (email) {
                 if (err) {
                     console.log('err on pw reset sql execute ' + err);
                 } else {
-                    var webaddress = 'http://localhost:5000/new-password?email=';
+                    var webaddress = config.siteaddress + '/new-password?email=';
                     readHTMLFile('src/templates/password-reset.ejs', function (err, html) {
                         var template = ejs.compile(html);
                         var replacements = {

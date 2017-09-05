@@ -1,5 +1,6 @@
 var express = require('express');
 const { config } = require('./util');
+const { configDB } = require('./util');
 var app = express();
 var server = require('http').createServer(app);
 var sql = require('mssql');
@@ -9,7 +10,6 @@ var flash = require('connect-flash');
 var passport = require('passport');
 var session = require('express-session');
 var MSSQLStore = require('connect-mssql')(session);
-var configDB = require('./src/config/database');
 var nav = require('./src/controllers/navControllers');
 var morgan = require('morgan');
 var port = config.port;

@@ -12,7 +12,7 @@
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
     <link href="css/styles.css" rel="stylesheet">
-    <script src="/socket.io/socket.io.js"></script>    
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
         var socket;
 
@@ -26,17 +26,18 @@
     </script>
 
 
-<style>
+    <style>
+        th,
+        td {
+            text-align: center;
+        }
 
-th, td {
-    text-align: center;
-}
-</style>
+    </style>
 
 </head>
 
 <body onload="onload()">
-    
+
 
     <div class="navbar navbar-default navbar-static-top">
         <div class="container">
@@ -77,103 +78,116 @@ th, td {
     </div>
 
     <div class="container">
+        <% var walletObj = JSON.parse(wallet) %>
+        <% var receiveAddress = walletObj.account.receiveAddress %>
+        <% var balance = walletObj.state.confirmed %>
+        <% var numberOfTx = walletObj.state.tx %>
 
-        <div class="text-center">
-            <h1>Your wallet page</h1>
-            <% var userEmail = user.email %>
-                <p class="lead" align="left">
-                    </br> You are logged in as
-                    <%- userEmail %>
-                </p>
-                </br>
+                        <div class="text-center">
+                            <h3>Wallet page for <%=user.email%></h3>
+                                <br>
+                                <h4> Your balance is:
+                                    <%=balance/100000000%> KPcoins
+                                </h4>
+                                <br>
+                                <h4 style="text-align: left">Wallet Details:</h4>
+                                
+                                <pre style="word-wrap: break-word; white-space: pre-wrap;text-align: left">
+                                <%=wallet%>
+                                </pre>
 
-                Wallet info:
-                <% var walletObj = JSON.parse(wallet) %>
-                    <% var receiveAddress = walletObj.account.receiveAddress %>
-                        <% var balance = walletObj.state.confirmed %>
-                            <% var numberOfTx = walletObj.state.tx %>
 
-                                <br> Your balance is:
-                                <%-balance%>
-                                    </p>
-                                    <br>
+                                <h2 id=tables-hover-rows>Transaction History:</h2>
 
-<h2 id=tables-hover-rows>Transaction History:</h2>
-
-<!--
+                                <!--
 <ul class="list-group">  
   <% currList.forEach( function(currList) { %>
       <li class="list-group-item"><%= currList %></li>
   <% }) %>
 </ul>
 -->
-                            
-                                    
-                                    <div class=bs-example data-example-id=hoverable-table>
-                                      
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Inv</th>
-                                                    <th>Digital Asset Name</th>
-                                                    <th>Date/Time Purchased</th>
-                                                    <th>Price</th>
-                                                    <th>Details</th>
-                                                </tr>
-                                            </thead>
-                                           <% currList.forEach(function(currList){%>
+
+
+                                <div class=bs-example data-example-id=hoverable-table>
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Inv</th>
+                                                <th>Digital Asset Name</th>
+                                                <th>Date/Time Purchased</th>
+                                                <th>Price</th>
+                                                <th>Details</th>
+                                            </tr>
+                                        </thead>
+                                        <% currList.forEach(function(currList){%>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row"><%=currList.txHistid%></th>
-                                                    <td><%=currList.name%></td>
-                                                    <td><%=currList.txdate%></td>
-                                                    <td><%=currList.price%></td>
+                                                    <th scope="row">
+                                                        <%=currList.txHistid%>
+                                                    </th>
+                                                    <td>
+                                                        <%=currList.name%>
+                                                    </td>
+                                                    <td>
+                                                        <%=currList.txdate%>
+                                                    </td>
+                                                    <td>
+                                                        <%=currList.price%>
+                                                    </td>
                                                     <td><a href="/transaction-detail?txhash=<%=currList.txhash%>">Transaction Detail</a></td>
                                                 </tr>
                                             </tbody>
-                                              <% }); %>
-                                        </table>
-                                        
-                                    </div>
+                                            <% }); %>
+                                    </table>
 
-<% if (pageCount > 1) { %>  
-<ul class="pagination">  
-  <% if (currentPage > 1) { %>
-      <li><a href="/mywallet?page=1">&laquo;</a></li>
-  <% } %>
-  <% var i = 1;
+                                </div>
+
+                                <% if (pageCount > 1) { %>
+                                    <ul class="pagination">
+                                        <% if (currentPage > 1) { %>
+                                            <li><a href="/mywallet?page=1">&laquo;</a></li>
+                                            <% } %>
+                                                <% var i = 1;
   if (currentPage > 5) {
   i = +currentPage - 4;
   } %>
-  <% if (i !== 1) { %>
-      <li class="disabled"><a href="#">...</a></li>
-  <% } %>
-  <% for (i; i<=pageCount; i++) { %>
-    <% if (currentPage == i) { %>
-        <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
-    <% } else { %>
-        <li><a href="/mywallet?page=<%= i %>"><%= i %></a></li>
-    <% } %>
-    <% if (i == (+currentPage + 4)) { %>
-        <li class="disabled"><a href="#">...</a></li>
-    <% break; } %>
-  <% } %>
-  <% if (currentPage != pageCount) { %>
-      <li><a href="/mywallet?page=<%= pageCount %>">&raquo;</a></li>
-  <% } %>
-</ul>  
-<% } %>
-                                    
+                                                    <% if (i !== 1) { %>
+                                                        <li class="disabled"><a href="#">...</a></li>
+                                                        <% } %>
+                                                            <% for (i; i<=pageCount; i++) { %>
+                                                                <% if (currentPage == i) { %>
+                                                                    <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span>
+                                                                    </li>
+                                                                    <% } else { %>
+                                                                        <li>
+                                                                            <a href="/mywallet?page=<%= i %>">
+                                                                                <%= i %>
+                                                                            </a>
+                                                                        </li>
+                                                                        <% } %>
+                                                                            <% if (i == (+currentPage + 4)) { %>
+                                                                                <li class="disabled"><a href="#">...</a></li>
+                                                                                <% break; } %>
+                                                                                    <% } %>
+                                                                                        <% if (currentPage != pageCount) { %>
+                                                                                            <li><a href="/mywallet?page=<%= pageCount %>">&raquo;</a></li>
+                                                                                            <% } %>
+                                    </ul>
+                                    <% } %>
 
-    
 
-    
-  </div>
-  
-</div><!-- /.container -->
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 
-	</body>
+
+
+                        </div>
+
+    </div>
+    <!-- /.container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
 </html>

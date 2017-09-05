@@ -9,7 +9,7 @@ const ejs = require('ejs');
 
 var sendEmailConfirm = function (email, emailtoken) {
 
-        var webaddress = 'http://localhost:5000/confirm-email?email=';
+        var webaddress = config.siteaddress + '/confirm-email?email=';
 
         readHTMLFile('src/templates/email-confirm.ejs', function (err, html) {
                     var template = ejs.compile(html);
