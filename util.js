@@ -18,17 +18,6 @@ const config = {
 //    };
 
 
-//const configDB = {
-//        user: 'peter',
-//        password: 'p3t3rPwd01',
-//        server: 'mtmssqlwe.database.windows.net',
-//        database: 'wedb1',
-//        connectionTimeout: 50000,
-//        port: 1433, 
-//        options: {
-//            encrypt: true
-//        }
-//    };
 
 var configDB = {
     user: 'kpc.sql',
