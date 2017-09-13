@@ -1,5 +1,5 @@
 var request = require('request');
-var verificationUrl = 'http://x:M60yC87vmul6PPp3fqw7RFZ9shcE8zRO@35.197.193.32:48445';
+const {config} = require('../../util.js');
 var sql = require('mssql');
 
 
@@ -7,14 +7,14 @@ function createNewWallet (id) {
 
     var options = {
         method: 'PUT',
-        url: verificationUrl + '/wallet/' + id,
+        url: config.vURL + '/wallet/' + id,
         body: {
             'type': 'pubkeyhash'
         },
         json: true
     };
     
-    console.log ('***wallet command is ' + verificationUrl + '/wallet/' + id);
+    console.log ('***wallet command is ' + config.vURL + '/wallet/' + id);
     request(options, function check(err, res, body) {
 
         if (err) {
@@ -46,7 +46,7 @@ function viewWallet (id) {
     var str = '';
     var options = {
         method: 'GET',
-        url: verificationUrl + '/wallet/' + id,
+        url: config.vURL + '/wallet/' + id,
         json: true
     };
    
