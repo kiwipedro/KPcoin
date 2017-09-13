@@ -353,7 +353,7 @@ module.exports = function (app, passport) {
 
                 });
             });
-        }, 350);
+        }, 400);
     });
 
 
@@ -472,6 +472,14 @@ module.exports = function (app, passport) {
         var assettb = req.query.assettb;
         var str = '';
         console.log('asset info: ' + assetname + ' ' + assetid + ' ' + balance + ' ' + assetprice + ' ' + assettb);
+        if (balance < assetprice) {
+                res.render('transaction-result', {
+                        user: req.user,
+                        balancemessage: 'Funding error',
+                        navSignedOut: navOptions.navSignedOut,
+                        navSignedIn: navOptions.navSignedIn
+                    });
+        } else {
         if (req.user) {
 
             var options = {
@@ -530,6 +538,7 @@ module.exports = function (app, passport) {
                     });
                     sendAsset(assetid, assetname, req.user.email);
                 });
+        }
         }
     });
 
