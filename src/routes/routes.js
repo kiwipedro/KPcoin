@@ -361,10 +361,10 @@ module.exports = function (app, passport) {
         var hash = req.query.txhash;
         var id = req.user.id;
         viewTxDetail(id, hash, function (err, detailArray) {
-            detailArray = detailArray.substr(9,detailArray.length);
-            res.render('transaction-detail.ejs',{
+            detailArray = detailArray.substr(9, detailArray.length);
+            res.render('transaction-detail.ejs', {
                 txdetails: detailArray,
-                 navSignedIn: navOptions.navSignedIn
+                navSignedIn: navOptions.navSignedIn
             });
 
         });
@@ -473,72 +473,72 @@ module.exports = function (app, passport) {
         var str = '';
         console.log('asset info: ' + assetname + ' ' + assetid + ' ' + balance + ' ' + assetprice + ' ' + assettb);
         if (balance < assetprice) {
-                res.render('transaction-result', {
-                        user: req.user,
-                        balancemessage: 'Funding error',
-                        navSignedOut: navOptions.navSignedOut,
-                        navSignedIn: navOptions.navSignedIn
-                    });
+            res.render('transaction-result', {
+                user: req.user,
+                balancemessage: 'Funding error',
+                navSignedOut: navOptions.navSignedOut,
+                navSignedIn: navOptions.navSignedIn
+            });
         } else {
-        if (req.user) {
+            if (req.user) {
 
-            var options = {
-                method: 'POST',
-                url: config.vURL + '/wallet/' + req.user.id + '/send',
-                body: {
-                    'outputs': [{
-                        'value': assetprice,
-                        'address': config.vendorAddress
+                var options = {
+                    method: 'POST',
+                    url: config.vURL + '/wallet/' + req.user.id + '/send',
+                    body: {
+                        'outputs': [{
+                            'value': assetprice,
+                            'address': config.vendorAddress
                                             }]
-                },
-                json: true
-            };
+                    },
+                    json: true
+                };
 
-            request(options, function check(err, res, body) {
-                    if (err) {
-                        console.log(err);
-                        return (err);
-                    }
-                })
-                .on('data', function (chunk) {
-                    str += chunk;
-                })
-                .on('end', function () {
-                    var txObj = JSON.parse(str);
-                    var txhash = txObj.hash;
-                    var txdate = txObj.date;
-                    var ps = new sql.PreparedStatement();
-                    ps.input('userid', sql.Int());
-                    ps.input('txhash', sql.VarChar('max'));
-                    ps.input('assetid', sql.Int());
-                    ps.input('txdate', sql.VarChar('max'));
-                    ps.prepare('insert into txhistory (userid, txhash, assetid, txdate) values (@userid, @txhash, @assetid, @txdate)', function (err) {
-                        ps.execute({
-                            userid: req.user.id,
-                            txhash: txhash,
-                            assetid: assetid,
-                            txdate: txdate
-                        }, function (err, result) {
-                            ps.unprepare();
-                            if (err) {
-                                console.log('error loading into txhistory ' + err);
-                            } else {
-                                console.log('loaded into tx history ' + result);
-                            }
+                request(options, function check(err, res, body) {
+                        if (err) {
+                            console.log(err);
+                            return (err);
+                        }
+                    })
+                    .on('data', function (chunk) {
+                        str += chunk;
+                    })
+                    .on('end', function () {
+                        var txObj = JSON.parse(str);
+                        var txhash = txObj.hash;
+                        var txdate = txObj.date;
+                        var ps = new sql.PreparedStatement();
+                        ps.input('userid', sql.Int());
+                        ps.input('txhash', sql.VarChar('max'));
+                        ps.input('assetid', sql.Int());
+                        ps.input('txdate', sql.VarChar('max'));
+                        ps.prepare('insert into txhistory (userid, txhash, assetid, txdate) values (@userid, @txhash, @assetid, @txdate)', function (err) {
+                            ps.execute({
+                                userid: req.user.id,
+                                txhash: txhash,
+                                assetid: assetid,
+                                txdate: txdate
+                            }, function (err, result) {
+                                ps.unprepare();
+                                if (err) {
+                                    console.log('error loading into txhistory ' + err);
+                                } else {
+                                    console.log('loaded into tx history ' + result);
+                                }
+                            });
                         });
+                        res.render('transaction-result', {
+                            assetname: assetname,
+                            assettb: assettb,
+                            user: req.user,
+                            tx: str,
+                            balancemessage: '',
+                            navSignedOut: navOptions.navSignedOut,
+                            navSignedIn: navOptions.navSignedIn
+                        });
+                        sendAsset(assetid, assetname, req.user.email);
                     });
-                    res.render('transaction-result', {
-                        assetname: assetname,
-                        assettb: assettb,
-                        user: req.user,
-                        tx: str,
-                        balancemessage: '',
-                        navSignedOut: navOptions.navSignedOut,
-                        navSignedIn: navOptions.navSignedIn
-                    });
-                    sendAsset(assetid, assetname, req.user.email);
-                });
-        }
+            }
         }
     });
 
@@ -554,6 +554,29 @@ module.exports = function (app, passport) {
     });
     //};
 
+    app.get('/terms-of-use', function (req, res) {
+        res.render('terms-of-use.ejs', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
+
+    app.get('/privacy-cookie-policy', function (req, res) {
+        res.render('privacy-cookie-policy.ejs', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
+
+    app.get('/acceptable-use', function (req, res) {
+        res.render('acceptable-use.ejs', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
 
 
     // route middleware to make sure a user is logged in
