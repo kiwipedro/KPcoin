@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>KPcoin</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+        
+	</head>
+	<body>
+    
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+        <a class="navbar-brand" href="<%=navSignedOut[0].Link%>"><%=navSignedOut[0].Title%></a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
+                        <%}
+            } else {
+          for(var i=2; i<navSignedIn.length;i++){%>
+                <li><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
+                <%}
+                }%>
+          
+          
+      <!--    <li><a href="#">Blog</a></li>
+        <li><a href="#contact">Contact</a></li> -->
+          
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if (!user) {%>
+        <li><a href="<%=navSignedOut[1].Link%>"><%=navSignedOut[1].Title%></a></li>  
+           <%} else {%>
+                <li><a href="<%=navSignedIn[1].Link%>"><%=navSignedIn[1].Title%></a></li>  
+                <%}%>
+          
+        <!-- <li><a href="#about">Sign in</a></li> -->
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div class="container">
+  
+  <div class="text-center">
+    <h1>Privacy and Cookie Policy</h1>
+       <div class="text-left">
+    <p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">myAxis Ltd (‘we’, ‘us’ or ‘our’) are committed to protecting and respecting your privacy. If you have any concerns or queries please contact us on&nbsp;</font><img src="data:image/png;base64,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" data-filename="email-image.png" style="width: 138px;"></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">When you visit our website www.kpcoin.xyz we may collect information about your computer including your IP address, operating system and browser type, for system administration. This is statistical data about our users’ browsing actions and patterns and we do not use it to identify any individual.&nbsp; We may also collect details of your visits to our site including, but not limited to, traffic data, location data and other communication data and the resources that you access.&nbsp; We use this to ensure that content from our site is presented in the most effective manner for you.</font></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">When you register on our website www.kpcoin.xyz we collect your&nbsp;</font>email address and&nbsp;<span style="font-family: Arial;">password.&nbsp;&nbsp;</span><font face="Arial">Where you have a password which enables you to access certain parts of our site, you are responsible for keeping this password confidential. We ask you not to share your password with anyone.&nbsp; The transmission of information via the internet is not completely secure. Although we will do our best to protect your personal data, we cannot guarantee the security of your data transmitted to our site; any transmission is at your own risk. Once we have received your information, we will use strict procedures and security features to try to prevent unauthorised access.</font></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">We also capture the number of times you have logged in and store the data about your transactions you've made in the KPcoin marketplace.&nbsp;&nbsp;</span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">Your data will be processed through or stored on equipment hosted in the United Kingdom or the European Union.</span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">For the avoidance of doubt we act as a both a data controller and data processor as defined in the Data Protection Act (1998). The Act gives you the right to access information held about you.&nbsp;You can also request access to your information through a data subject access request. A data subject access request will need to be made in writing (email) and you will need to confirm your identity and provide us with a description of the information you require.&nbsp; If we do hold personal information about you we will give you a description of the personal information, tell you why we are holding it, tell you who it could be disclosed to; and, where possible, let you have a copy of the information in an intelligible form.<span style="font-family: Arial;"><br></span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">We will not disclose your email address or any other information about your activity on this website to any third party.&nbsp; If this changes for any reason, you will be notified via the email address you have registered to use and have the option to opt out of any such change in policy.</span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">Our site may contain links.&nbsp; If you follow a link to an external website, these websites have their own privacy policies and we do not accept any responsibility or liability for these websites.&nbsp; Please check the privacy policy before you submit any personal data to external websites.</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">You can request access to your information through a data subject access request.&nbsp; Any data subject access request may be subject to a fee of £10 to meet our costs in providing you with details of the information we hold about you.&nbsp; A data subject access request will need to be made in writing and you will need to confirm your identity and provide us with a description of the information you require.&nbsp; If we do hold personal information about you we will give you a description of the personal information, tell you why we are holding it, tell you who it could be disclosed to; and, where possible, let you have a copy of the information in an intelligible form.</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">Our website uses cookies to distinguish you from other users of our website. This helps us to provide you with a good user experience when you browse our website and also allows us to improve our site. The details of cookies used:</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><b>Cookie name</b>: connect.sid<br><b>Description</b>: Used by the Express web server module for identifying the user who is currently logged in<br><b>Sent for</b>: Any kind of connection<br><b>Accessible to script</b>: No (HttpOnly)<br><b>Expires</b>: When the browsing session ends</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><b>Cookie name</b>: io<br><b>Description</b>: Used by the socket.io module for identifying the user who is currently logged in<br><b>Sent for</b>: Any kind of connection<br><b>Accessible to script</b>: No (HttpOnly)<br><b>Expires</b>: When the browsing session ends</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">We may update or amend this Privacy and Cookie Policy from time to time to comply with law or to meet changing business requirements.&nbsp; Any changes we may make to our privacy policy in the future will be posted on this page.&nbsp; Please check back frequently to see any update or changes to our privacy policy.&nbsp; This Privacy Policy was last updated in September 2017.<br></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;"><br></span></p>
+      </div>
+      
+  </div>
+  
+</div><!-- /.container -->
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+	</body>
+</html>
