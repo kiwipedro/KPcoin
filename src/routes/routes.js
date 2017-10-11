@@ -19,7 +19,9 @@ const setNewPassword = require('../controllers/setNewPassword').setNewPassword;
 const getTxHistory = require('../controllers/txhistory');
 const viewWalletDetails = require('../controllers/walletview');
 const viewTxDetail = require('../controllers/txdetail');
-
+const addToTxHistory = require('../services/txhistory-add');
+const generateBlock = require('../services/generateblock');
+const moment = require('moment');
 
 
 
@@ -330,6 +332,7 @@ module.exports = function (app, passport) {
                         console.log('err in getTxHistory');
                     } else {
                         var transactions = txHistArray;
+                        console.log(txHistArray);
                         var txHistArrays = [];
                         var currList = [];
                         //split list into groups
@@ -341,6 +344,7 @@ module.exports = function (app, passport) {
 
                         res.render('mywallet.ejs', {
                             user: req.user,
+                            moment: moment,
                             currentPage: currentPage,
                             currList: currList,
                             pageCount: pageCount,
@@ -465,13 +469,13 @@ module.exports = function (app, passport) {
     });
 
     app.post('/transaction-result', function (req, res) {
-        var balance = req.query.balance;
+        var balance = parseInt(req.query.balance);
         var assetid = req.query.assetid;
-        var assetprice = req.query.price;
+        var assetprice = parseInt(req.query.price);
         var assetname = req.query.assetname;
         var assettb = req.query.assettb;
         var str = '';
-        console.log('asset info: ' + assetname + ' ' + assetid + ' ' + balance + ' ' + assetprice + ' ' + assettb);
+        console.log('asset info: ' + assetname + ' ' + assetid + ' balance is ' + balance + ' assetprice is ' + assetprice + ' ' + assettb);
         if (balance < assetprice) {
             res.render('transaction-result', {
                 user: req.user,
@@ -504,29 +508,10 @@ module.exports = function (app, passport) {
                         str += chunk;
                     })
                     .on('end', function () {
-                        var txObj = JSON.parse(str);
-                        var txhash = txObj.hash;
-                        var txdate = txObj.date;
-                        var ps = new sql.PreparedStatement();
-                        ps.input('userid', sql.Int());
-                        ps.input('txhash', sql.VarChar('max'));
-                        ps.input('assetid', sql.Int());
-                        ps.input('txdate', sql.VarChar('max'));
-                        ps.prepare('insert into txhistory (userid, txhash, assetid, txdate) values (@userid, @txhash, @assetid, @txdate)', function (err) {
-                            ps.execute({
-                                userid: req.user.id,
-                                txhash: txhash,
-                                assetid: assetid,
-                                txdate: txdate
-                            }, function (err, result) {
-                                ps.unprepare();
-                                if (err) {
-                                    console.log('error loading into txhistory ' + err);
-                                } else {
-                                    console.log('loaded into tx history ' + result);
-                                }
-                            });
-                        });
+                    var debitOrCreditFlag = 1; //1 for debit, 0 for credit
+                    addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
+                    generateBlock();
+                    
                         res.render('transaction-result', {
                             assetname: assetname,
                             assettb: assettb,
