@@ -9,7 +9,7 @@ var getTxHistory = function (id, page, cb) {
     const request = new sql.Request();
 
     request.stream = true;
-    request.query('select * from txHistoryAsset where userid = ' + id);
+    request.query('select * from txHistory where userid = ' + id);
     request.on('row', row => {
         resultsArray.push(row);
     });

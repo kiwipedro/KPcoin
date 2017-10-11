@@ -46,9 +46,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.set('views', 'src/views');
 app.set('view engine', 'ejs');
 
-app.get('*', function(req, res){
-    res.redirect('https://kpcoin.xyz' + req.url);
-});
+
 server.listen(port, function(err){
     console.log('running server on port ' + port);
 });

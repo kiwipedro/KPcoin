@@ -3,6 +3,8 @@ const {
     config
 } = require('../../util');
 const request = require('request');
+const addToTxHistory = require('./txhistory-add');
+const generateBlock = require('./generateblock');
 
 
 
@@ -30,7 +32,7 @@ function getReceiveAddress(id) {
                 var toJSONObj = JSON.parse(str);
                 var toStr = JSON.stringify(toJSONObj.account.receiveAddress);
                 var receiveAddress = toStr.replace(/['"]+/g, '');
-                sendGiftCoins(receiveAddress);
+                sendGiftCoins(id,receiveAddress);
             });
     } catch(err) {
         console.log('getting address error' + err);
@@ -38,17 +40,18 @@ function getReceiveAddress(id) {
 }
 
 
-function sendGiftCoins(receiveAddress) {
+function sendGiftCoins(id,receiveAddress) {
     console.log('^*^*^ receiveaddress is ' + receiveAddress);
     try {
-
+        var giftamount = '500000';
+        var assetname = 'Gift Coins';
         var str = '';
         var options = {
             method: 'POST',
             url: config.vURL + '/wallet/primary/send',
             body: {
                 'outputs': [{
-                    'value': '500000',
+                    'value': giftamount,
                     'address': receiveAddress
             }]
             },
@@ -71,34 +74,10 @@ function sendGiftCoins(receiveAddress) {
             .on('end', (res) => {
                 console.log('response was ' + res);
                 console.log('bdoy was ' + str);
-                var genstr = '';
-                var genopts = {
-                    method: 'POST',
-                    url: config.vURL,
-                    body: {
-                        method: 'generate',
-                        params: ['1']
-                    },
-                    json: true
-                };
-                request(genopts, (err, res, body) => {
-                        if (err) {
-                            console.log('error generating ' + err);
-                            console.log('response on generate err was ' + res);
-                            console.log('body on generate err was ' + body);
-                        }
-                    })
-                    .on('data', (chunk) => {
-                        genstr += chunk;
-                    })
-                    .on('response', (res) => {
-                        console.log('resp code on coin generate was ' + JSON.stringify(res.statusCode));                    
-                        })
-                       
-                    .on('end', (res) => {
-                        console.log('coins delievered');
-                        
-                });
+                var debitOrCreditFlag = 0;
+                addToTxHistory(str, id, assetname, giftamount, debitOrCreditFlag);
+                generateBlock();
+       
                     });
 
     } catch (err) {
