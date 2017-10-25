@@ -283,6 +283,12 @@
         margin-right: 2rem;
     }
     
+    @media (max-width 400px) {
+        .copy__aligned-left {
+            width: 320px;
+        }
+    }
+    
     .account-buttons {
         margin: 1rem;
         text-align: left;
