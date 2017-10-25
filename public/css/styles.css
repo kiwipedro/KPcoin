@@ -1,17 +1,643 @@
-
-/*
-  input:required:invalid, input:focus:invalid {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAADj0lEQVRIS7WUbUxbVRjH/+ecvq0ve+ktbENaMpaR4VwC2dxMRFiUxSEjvkyRAg63Ty5xmYmJiX41MfpVSfSDX8wyWl+WCIqwoTFzRgxz7AUGrDo3y6DrCqUtfbn39t57TEtcnIUWDDs3J7nJuc/z+z/P87+H4AEv8oDzY9UBvKnJnLCu7zbsqqyXfX+tLiC67+nXjQ21H+kba8FDU5C6f5letQqiDc96zCfaWoieQp0YgjIRguibeWRVAJH2jknLseZS7veB//k7lDkJ0qWQ2/5Dj5dE6hvLVWjFzEivr+/tnVvp0CNtHX7z0eec/PpIti1aSoM4Euy09/Ycz+Qi82+9yQ3VlUj7biF9Ybxzw7enswfLWWF3h996pMnJh86BJ5LQZI7UtVmv0N/t/ieeRF5uG1tTtamSVGwH9CbEPWdv2z0nnYUAM+72yXWHG0u1wXPgyRRACRK++cvC16er/x2bncHsoWbFupky8pATZEcVoqf6Jx2fn3QtBQm627vsrx5y86Hz0O4GQXUMYV/Ev6m3p+y/MVlA8Oixcn00eMMsGAGTBax2H+a+Grhd7P0sp5IbZds8Je8cbyEXf4USmIZ+g4C4yBAXyu1lH7+fM8N7Lpo+2Pz2Wpv2HtMxMJcLpGo3/O9+4N16dfheP68wk2dL01MtdHQUSjCUVZ6UFUwmUvsfBb5frOL7bDr1ZMMdh0vYqATvgExNQylx4daPP/XHJPUNwWY6VVpXs4tMjEO9GwIYy7Qd4/PSh3vSqRNLtfM+wM2GFx6zjF0eNAUD4ARgRcXQPVGD8KUR2Kt3Qjn/M9TZGYBSUEoxJaaxXUrm/ZdyDi+AdlVYrG4QDVA1EKsN1O6AGgwAspR1S+bRQPBbSnTXq7I3n+NyAGcAy1ajOb6RMWiZSM4XNqULmwM6AozKYmKvLFkL2XnR8gaYoetxg9GdziQmBIQQgLCFd64hoWoYTIutz6uy538BMlVUGM1xB2PgjAFUn3UM5xw6jeNiPJaoUcSC6rNXxVIK+pihr26t9YBqMoHYbCDUACInEYvEMBAOt74CtaD6vIBPoTtwUFjXZ3NuBhWKAIMebCaMwatjiTopuSz1eQGZw4E15kTtnofNWlERKGWI/3ETXw5fa30NWJb6goBOYH/L7m1nbVtKAEXBN98NX3lRSlUVGmzOZZcv4BPgi71Ox0uBqBh4JhYvWUnyghWsNNli3/8N3SlbTE32Cv8AAAAASUVORK5CYII=);
-    background-position: right top;
-    background-repeat: no-repeat;
-    -moz-box-shadow: none;
-  }
-  input:required:valid {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFL0lEQVRYR+2WaUyTdxzHv+1TetkTy6Hi2YnXgCoG3KEG55xz6EIUFjNr8ZgximZvtuzF4itj9soX6EymbhSP4djMMpRs85pDVBwgXUCdIEYrrVTofT29l/+zltVCYeiIL7Z/8qR9evy/n+/v/zseFl7wYr1gffwP8N+IwN6G4oJUuSxtR86J+sScG/MI7KpdWCAQ8M/JZXKBoaen9OD6trp4iDEFiIlvLd4qFUGEyvpK/2OjsbR6270BiDEDiIlrijVSnV4Hu92O/Jx8VJ2sCtgc9pJTOx4yxzEmAPHizd3NMJlMTNQpikJeXh5qa2uDDquz5JsP9Wf/dQAiLuTzz29YrZY0djTC4XAgEokwF1nk1U8H8HvD/brv93aVDAlwqH3DOxarre/TJWd/G02nZJzz+BdK15SKm3RNcLvdA6IxiGAgjI4retj6vM3nD91fPAigomb+mklZWd9abVav10uvOFDW8o8gdtbkF3I41IV169aKdDodI57oPOAPoaPxEVxWGn5v6NSlIw+2PAWw86TqXalM9l3FqgqOCy58eeaow0PTb44Ese1YbiEQuahWbxjX1taW3HlUnHaGzjTVPNhN0+gdANiuzSuTp8m/3rxqE9V4rxFcLheqKSpU11U7vT56eTII9RczC3lc7i8bNWpBMudB4vxqD+Pc6wzU/lql/wRAPwA3AWCpD8z7KGuG4rOyVWUs3T0dgsEgc3ZCoZCB0NZVuz0e7xufr2+9EZ8T71VOWyQSCS9ryjfykjkPkTO/SsLug8saONJ4XL8PgJmIAwgTAO7aPXO8RSUL2Dw+d1DO/Q2h9Xg89LIYxLr9kxdLpKKLmvKNKcM5v3WNOPfB0Ufvv1ZjqIyKe4h4rA+IVu5WOlMzxHi9OAcpXE5SiIMnD9IWi70o6IFUouDXl2/SUMM5j4qHbb30vqZaw2EAFgDemHgMQLqiYsYdNps1IRkETdMMlEqlgvarY8x7teZ9DOf89nUDcR4wG7x7mk8bT0TFyUaM89giRzBOWagoUC6U1LApVkY8BMkFp9M5UE4CgQA8Ho+5J1CJdU42JQlHxJ0Wn69f7/m49YfHpwFYo87/6kYJACTmMuUCaa7yFcVxNoWJ8nQx5hdNRwThQbUc39ES65yI32kywmHxefu6XLvafjL9GBUnzgeJx8+CFADSaSrZyzNfTdVSHNZUyXgBcpdMBcVhP9VGE0VjQIzza0zYHcZO1472c08uArAB8CUTTxxGBEIyZZ54zqylaccoDmu6OJWPnMUEgjUIItbXCQDj/LqR1Ln5UYdr++3LfVei4v7hxBMByD0DMWm2OHtukUJLpbCz5ZnjMHfRJGZuJoaf/CEcCuNucy+sjz2m7pu28u7rlpsA7ABGFB8KIAYhzsyWvJSzXHGa4rCyCMTsggkDwzt2DJFwBJ0tvTAbPA/vN5k3d9+0t0fFAyM5j6+CQXUPgCSmVPV2+soMpegQi82SyDOFyF6YOQBBnHe1mmDucXfebejfor/l/CNOfKg9h/xsuOcB0hZls15TLJqqkhwmJSrLEGJmfjqzUVeLCf097vaOS+atvZ2ObgAOAMT5qNZwAEybJjkxea549pyl46vYKZRSmiZgBPofuVta6598YDO4HwJwkhYwKuXoj0d6IiLfk+OQyCYKp+SvzjyawmMt8HtCDTfOGCvcJn/P84gnS8JkOSEWjedm5r6Vrmn/+YnWafb3RsVDz+J8pCQcak+KTGgAvGhzIRPtucRHE4EYEBsAuchAeWqoPGsU/gRqpflck8YtYwAAAABJRU5ErkJggg==);
-    background-position: right top;
-    background-repeat: no-repeat;
-}
+    html,
+    body {
+        font-size: 100%;
+    }
+    
+    @font-face {
+        font-family: HKGrotesk;
+        src: url("fonts/HKGrotesk-Light.otf");
+        font-weight: 100;
+    }
+    
+    @font-face {
+        font-family: HKGrotesk;
+        src: url("fonts/HKGrotesk-Regular.otf");
+        font-weight: 300;
+    }
+    
+    @font-face {
+        font-family: HKGrotesk;
+        src: url("fonts/HKGrotesk-Medium.otf");
+        font-weight: 500;
+    }
+    
+    @font-face {
+        font-family: HKGrotesk;
+        src: url("fonts/HKGrotesk-SemiBold.otf");
+        font-weight: 700;
+    }
+    
+    @font-face {
+        font-family: HKGrotesk;
+        src: url("fonts/HKGrotesk-Bold.otf");
+        font-weight: 900;
+    }
+    
+    body {
+        color: #0f7a86;
+        font-family: HKGrotesk, sans-serif;
+        margin: 0;
+    }
+    
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+    }
+    /*
+         * The container is required as there needs to be something full-width for the links to
+         * sit behind when the menu is collapsed.
+         */
+    
+    .nav__container {
+        background-color: white;
+        box-shadow: 0 1px 5px #999;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        height: 4rem;
+    }
+    
+    .nav__brand {
+        margin-right: auto;
+        z-index: 2;
+    }
+    
+    .nav__menu-mobile {
+        font-weight: 100;
+    }
+    
+    .nav__menu-mobile__text {
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 0.5rem;
+    }
+    
+    .nav__menu-mobile__icon {
+        font-size: 1.75rem;
+        margin-left: 0.75rem;
+    }
+    /*
+         * This prevents the MENU [burger] element being the default link colour
+         */
+    
+    .nav__menu-mobile a {
+        color: #0f7a86;
+        text-decoration: none;
+    }
+    
+    @media (min-width: 800px) {
+        .nav__menu-mobile {
+            display: none;
+        }
+    }
+    
+    .nav__links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        text-align: center;
+        transform: translate3d(0, -100%, 0);
+        /* hide the links by default */
+        z-index: -1;
+        /* this puts it behind the nav__container */
+    }
+    /*
+         * This class holds the transition property.
+         * It is added to the link container when the burger is clicked.
+         * If the transition property were always present, strange animations would appear
+         * when the window is re-sized. (They do still happen if the user resizes the window after clicking
+         * the toggle, but I think this is unlikely. That can be fixed with a bit more javascript...)
+         */
+    
+    .nav__links--toggled {
+        transition: transform 0.5s;
+        /* animate when the transform property changes */
+    }
+    
+    .nav__links--open {
+        transform: translate3d(0, 0, 0);
+        box-shadow: 0 3px 2px -2px #999;
+    }
+    
+    .nav__link {
+        border-bottom: 1px solid #999;
+        padding: 1rem;
+    }
+    
+    @media (min-width: 800px) {
+        .nav__links {
+            top: 0.5rem;
+            right: 0;
+            flex-direction: row;
+            background-color: transparent;
+            box-shadow: none;
+            transform: translate3d(0, 0, 0);
+            /* the links are hidden by default on mobile - this undoes that */
+            z-index: 1;
+            /* the links are also behind the container by default - this undoes that */
+        }
+        .nav__link {
+            margin-right: 2rem;
+            border: 0;
+        }
+        .nav__link:first-child {
+            margin-left: auto;
+            /* this pushes all the links to the right */
+        }
+        .nav__link:last-child {
+            margin-right: 2rem;
+        }
+    }
+    /*
+    .nav__link a,
+    .nav__brand a {
+        color: #0f7a86;
+        text-decoration: none !important;
+        color: #0f7a86;
+    }
 */
-
-
-
+    
+    .nav__link a:hover,
+    .nav__brand a:hover {
+        color: black;
+    }
+    
+    main {
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .splash {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4rem;
+        background: url("/assets/background.png") no-repeat;
+        background-size: 100%;
+        background-position: 0 2rem;
+    }
+    
+    .splash__no-background {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-top: 4rem;
+        background-size: 100%;
+        background-position: 0 2rem;
+    }
+    
+    @media (min-height: 800px) {
+        .splash {
+            justify-content: center;
+            background-position: 0 10rem;
+        }
+    }
+    
+    @media (min-width: 600px) {
+        .splash {
+/*            justify-content: center;*/
+            background-position: center;
+        }
+    }
+    /*
+         * This container is here to allow the text to have 'display: inline-block', which doesn't work within flex.
+         * This makes the text element shrink to match the content, instead of being full-width.
+         * This is necessary, as the text has a translucent background to still be readable if it overlaps
+         * with the background image.
+         */
+    
+    .introduction__container {
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin: 0 auto;
+        padding: 0 2rem;
+        max-width: 500px;
+    }
+    
+    @media (min-width: 1450px) {
+        .introduction__container {
+            max-width: 100%;
+        }
+    }
+    
+    .introduction__text {
+        display: inline-block;
+        /*        background-color: rgba(255, 255, 255, 0.5);*/
+    }
+    
+    .signup__blocks {
+        margin: auto;
+        /*        margin-top: 20px;*/
+        padding: 1rem;
+        display: flex;
+        flex-grow: 1;
+        width: 400px;
+        flex-direction: column;
+        background-size: 100%;
+    }
+    
+    @media screen and (max-width:410px) {
+        .signup__blocks {
+            width: 320px;
+        }
+    }
+    
+    .signup__block {
+        text-align: left;
+        padding: 20px;
+        background-color: #eee;
+    }
+    
+    .signup__block-spacer {
+        text-align: center;
+        padding: 2rem;
+    }
+    /*
+    @media screen and (max-width:600px) {
+        .signup__block-spacer {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            width: 5rem;
+            flex-grow: 1;
+        }
+    }
+*/
+    
+    .copy__aligned-left {
+        text-align: left;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    
+    .account-buttons {
+        margin: 1rem;
+        text-align: left;
+        /*        align-self: center;*/
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media (min-width: 600px) {
+        .account-buttons {
+            flex-direction: row;
+            margin-top: 2rem;
+            /*            width: 320px;*/
+        }
+        .account-button:first-child {
+            margin-right: 2rem;
+            width: 320px;
+        }
+        .account-button:last-child {
+            margin-left: 2rem;
+            width: 320px;
+        }
+    }
+    
+    .account-button {
+        margin-bottom: 1rem;
+    }
+    
+    .account-button__label {
+        text-align: left;
+        color: black;
+        font-size: 0.9rem;
+    }
+    
+    .account-button__button {
+        display: block;
+        width: 100%;
+        background-color: white;
+        color: #0f7a86;
+        border: 2px solid #0f7a86;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        font-family: HKGrotesk, sans-serif;
+    }
+    
+    .account-button__button-dark {
+        display: block;
+        width: 100%;
+        background-color: white;
+        color: #0f7a86;
+        border: 2px solid #0f525e;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        font-family: HKGrotesk, sans-serif;
+    }
+    
+    .account-button__button:hover,
+    .account-button__button:focus,
+    .account-button__button-dark:hover,
+    .account-button__button-dark:focus {
+        background-color: #0f7a86;
+        color: white;
+    }
+    
+    .account-button__button-dark:hover,
+    .account-button__button-dark:focus {
+        border: 2px solid white;
+    }
+    
+    .account-button__button:active {
+        background-color: #0f525e;
+    }
+    
+    .copy__block-inverted {
+        background-color: #0f525e;
+        /*    width: 100%;*/
+        color: white;
+        padding: 1rem;
+    }
+    
+    .copy__block-inverted-medium {
+        background-color: #0f7a86;
+        /*    width: 100%;*/
+        color: white;
+        padding: 1rem;
+    }
+    
+    .copy__block-inverted-light {
+        background-color: #eee;
+        /*    width: 100%;*/
+        color: #0f7a86;
+        /*    padding: 1rem;*/
+    }
+    
+    .footer {
+        background-color: #eee;
+        padding: 1rem 1.5rem;
+        align-items: flex-end;
+    }
+    
+    .footer__header {
+        font-weight: 900;
+        margin-top: 0;
+    }
+    
+    .footer__body {
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+    
+    @media (min-width: 600px) {
+        .footer__header {
+            margin-top: 2.5rem;
+        }
+        .footer__body {
+            margin-bottom: 3rem;
+        }
+    }
+    
+    a {
+        text-decoration: none !important;
+        color: #0f7a86;
+    }
+    
+    .black__font {
+        color: black;
+    }
+    
+    .italicised__font {
+        font-style: italic;
+        text-align: left;
+        margin: auto;
+    }
+    
+    .font__resize {
+        font-size: 100%;
+    }
+    
+    .wallet__introduction {
+        position: relative;
+        z-index: -1;
+    }
+    
+    .wallet__text-balance {
+        position: absolute;
+        color: white;
+        left: 50%;
+        /* horizontal alignment */
+        top: 50%;
+        /* vertical alignment */
+        transform: translate(-50%, -50%);
+    }
+    
+    .center-aligned {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .copy__center-block {
+        /*    max-width: 22rem;*/
+        margin: 2rem;
+        justify-content: center;
+        margin: auto;
+    }
+    
+    .grey__font {
+        color: darkgrey;
+    }
+    
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+    
+    th,
+    td,
+    tr {
+        text-align: center;
+    }
+    
+    tr:hover,
+    th:hover {
+        color: black;
+        text-decoration: underline;
+    }
+    
+    p {
+        margin: 5px 10px 5px 10px;
+    }
+    
+    .pagination>.active>a,
+    .pagination>.active>span,
+    .pagination>.active>a:hover,
+    .pagination>.active>span:hover,
+    .pagination>.active>a:focus,
+    .pagination>.active>span:focus {
+        z-index: 2;
+        color: #eee;
+        cursor: default;
+        background-color: #0f525e;
+        border-color: #0f525e;
+    }
+    
+    .light__background {
+        background-color: #eee;
+    }
+    
+    .table__header {
+        background-color: #0f525e;
+        color: white;
+    }
+    
+    .table__header:hover,
+    .table__header>td:hover,
+    .table__header>th:hover {
+        color: white;
+        text-decoration: none !important;
+    }
+    
+    ul#flex__container {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    ul#flex__container li {
+        flex-grow: 1;
+        width: 250px;
+        padding-top: 45px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        margin: 0
+    }
+    
+    ul#flex__container li img {
+        width: 100%;
+        height: 100%;
+    }
+    
+    ul#flex__container li a span {
+        position: absolute;
+        color: white;
+        bottom: 7px;
+        left: 15px;
+        font-size: .9rem;
+        z-index: 3;
+    }
+    
+    ul#flex__container li:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        cursor: pointer;
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.65) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.65) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.65) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000', GradientType=0);
+        /* IE6-9 */
+    }
+    
+    .focus__image {
+        position: absolute;
+        z-index: 5;
+        width: 250px;
+        height: 175px;
+        left: 0;
+        right: 0;
+    }
+    
+    ul#flex__container li:hover {
+        opacity: .8;
+    }
+    
+    #boxshadow img {
+        /*        position: relative;*/
+        box-shadow: 1px 4px 7px rgba(0, 0, 0, .5);
+        padding: 2px;
+        background: lightgrey;
+    }
+    
+    .copy__block-center-small {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+    }
+    
+    .copy__block-center-medium {
+        font-size: 90%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 480px;
+    }
+    
+    .loader__first {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('/img/tx-1.png') 50% 50% no-repeat rgb(249, 249, 249);
+    }
+    
+    .loader__second {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9998;
+        background: url('/img/tx-2.png') 50% 50% no-repeat rgb(249, 249, 249);
+    }
+    
+    .loader__third {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9996;
+        background: url('/img/tx-3.png') 50% 50% no-repeat rgb(249, 249, 249);
+    }
+    
+    .loader__fourth {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9995;
+        background: url('/img/tx-4.png') 50% 50% no-repeat rgb(249, 249, 249);
+    }
+    
+    .loader__fifth {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9994;
+        background: url('/img/tx-5.png') 50% 50% no-repeat rgb(249, 249, 249);
+    }

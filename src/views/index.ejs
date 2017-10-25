@@ -6,67 +6,149 @@
 		<title>KPcoin</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+        <link rel="icon" href="assets/favicon.png">
+              <link rel="stylesheet" href="css/bootstrap.min.css">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+           <link href="css/styles.css" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+        <script>
+            window.addEventListener("load", function(){
+            window.cookieconsent.initialise({
+            "palette": {
+            "popup": {
+            "background": "black"
+            },
+            "button": {
+            "background": "#0f7a86"
+            }
+            },
+            "content": {
+            "href": "/privacy-cookie-policy"
+            }
+            })});
+        </script>
         
 	</head>
 	<body>
+    <nav>
+    <div class="nav__container">
+        <div class="nav__brand">
+            <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+           
+        </div>
+        <div class="nav__menu-mobile">
+            <a href="#" onclick="toggleNavbarLinks()">
+                <span class="nav__menu-mobile__text"></span>
+                <span class="nav__menu-mobile__icon fa fa-bars"></span>
+            </a>
+        </div>
+        
+        
     
-<div class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
-        <a class="navbar-brand" href="<%=navSignedOut[0].Link%>"><%=navSignedOut[0].Title%></a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav__links">
         <% if (!user) {
           for(var i=2; i<navSignedOut.length;i++){%>
-                    <li><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
+                    <li class="nav__link"><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
                         <%}
             } else {
-          for(var i=2; i<navSignedIn.length;i++){%>
-                <li><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
+          for(var i=1; i<navSignedIn.length;i++){%>
+                <li class="nav__link"><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
                 <%}
                 }%>
-          
-          
-      <!--    <li><a href="#">Blog</a></li>
-        <li><a href="#contact">Contact</a></li> -->
-          
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if (!user) {%>
-        <li><a href="<%=navSignedOut[1].Link%>"><%=navSignedOut[1].Title%></a></li>  
-           <%} else {%>
-                <li><a href="<%=navSignedIn[1].Link%>"><%=navSignedIn[1].Title%></a></li>  
-                <%}%>
-          
-        <!-- <li><a href="#about">Sign in</a></li> -->
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
+    </ul>
 </div>
+</nav>
+        
+        
+<main>     
+<div class="splash">
+  
+    <div class="light__background">
+        <div class="logo">
+            <br>
+            <img class="logo__image" src="assets/logo_primary@2x.png" style="max-width:100px;height:100px">
+        </div>
+        <br>
+        <div class="introduction__container">
+            <p class="introduction__text">
+                <b>Welcome to the KPcoin website!</b> </p> <br>
+            <small>KPcoin lets you learn about cryptocurrencies in a risk-free and fun way</small>   
+        </div>
+      <br>
+</div>
+    <div style="padding:0 0 20px 0;"><h3><span>How it works</span></h3>
+        <br>
+        <img src="assets/wallet_primary.png">
+         <br>  
+        <br>
+        <span class="black__font">First sign up to create a Web Wallet</span>
+        <br>
+        <br>
+         &nbsp;&nbsp;&nbsp;<img src="assets/kp-coins.png">
+        <br>  
+        <br>
+        <span class="black__font">Log in and receive free KPcoins</span>
+        <br>
+        <br>
+         <img src="assets/basket_primary.png">
+        <br>  
+        <br>
+        <span class="black__font">Exchange coins for digital goods at the KPcoin Marketplace</span>
+        <br>
+        <br>
+         <img src="assets/padlock_primary.png">
+        <br>  
+        <br>
+        <span class="black__font">Learn more about how your KPcoins and other cryptocurrencies work</span>   
+        <br>      
+    </div>
+    
+      <div class="account-buttons center-aligned">
+            <div class="account-button">
+                <button class="account-button__button" type="button" onclick="location.href='/login'";>Sign Up | Log In</button>
+            </div>
+        </div>
+    
+    <div class="copy__block-inverted-medium">
+          <br>
+        Why KPcoin?
+         <br>
+         <br>
+       KPcoin is a working demonstration of a cryptocurrency based on the core Bitcoin software. 
+        <br>
+        It aims to introduce you to the ideas and principles that underpin some of the most common digital currencies. 
+        <br>
+           <div class="account-buttons center-aligned">
+            <div class="account-button">
+                <button class="account-button__button-dark" type="button" onclick="location.href='/about'";>Click here for more info</button>
+            </div>
+        </div>
+        
+    </div>
+    </div>  
+    <div class="footer">
+        <p class="footer__body">KPcoin is powered by <a href="http://bcoin.io/"><img src="./img/bcoin-logo-s.png" ></a></p>
+        <small class="footer__body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+    </div>
+</main>
 
-<div class="container">
-  
-  <div class="text-center">
-    <h1>Welcome to KPcoin</h1>
-      <p class="lead" align="left">I created this website to learn more about crypto-currencies.  What better way than to create your own?</br></br>Check out the "About" link on the menu for a full explanation on the whys, the hows and the whatnots - or click "Sign in" to start spending!</br></br></br>(Please note that this is <b>NOT REAL MONEY</b> just a test website for you to play with).</br></p>
-  </div>
-  
-</div><!-- /.container -->
 	<!-- script references -->
+        <script src="js/script.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+        
 
 	</body>
 </html>

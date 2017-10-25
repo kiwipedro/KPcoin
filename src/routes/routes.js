@@ -22,6 +22,7 @@ const viewTxDetail = require('../controllers/txdetail');
 const addToTxHistory = require('../services/txhistory-add');
 const generateBlock = require('../services/generateblock');
 const moment = require('moment');
+const querystring = require('querystring');
 
 
 
@@ -54,46 +55,58 @@ module.exports = function (app, passport) {
 
 
     app.use('/login', function (req, res, next) {
-        //        if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
-        //            req.flash('captchaNotClicked', 'Please click the \"I\'m not a robot\" reCatptcha box');
-        //            return res.redirect('/login');
-        //
-        //        }
-        //
-        //        var secretKey = '6LeMaywUAAAAAGnPxL-ns89I3WNlXDh8JVCdbsdS';
-        //
-        //        var verificationUrl = 'https://www.google.com/recaptcha/api/siteverify?secret=' + secretKey + '&response=' + req.body['g-recaptcha-response'] + '&remoteip=' + req.connection.remoteAddress;
-        //
-        //        request(verificationUrl, function (error, response, body) {
-        //            body = JSON.parse(body);
-        //
-        //            if (body.success !== undefined && !body.success) {
-        //                return res.json({
-        //                    'responseCode': 1,
-        //                    'responseDesc': 'Failed captcha verification'
-        //                });
-        //            } else {
+        if (req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null) {
+            req.flash('captchaNotClicked', 'Please click the \"I\'m not a robot\" reCatptcha box');
+            return res.redirect('/login?#login__form');
 
-        return next();
+        }
+
+        var secretKey = '6LeMaywUAAAAAGnPxL-ns89I3WNlXDh8JVCdbsdS';
+
+        var verificationUrl = 'https://www.google.com/recaptcha/api/siteverify?secret=' + secretKey + '&response=' + req.body['g-recaptcha-response'] + '&remoteip=' + req.connection.remoteAddress;
+
+        request(verificationUrl, function (error, response, body) {
+            body = JSON.parse(body);
+
+            if (body.success !== undefined && !body.success) {
+                return res.json({
+                    'responseCode': 1,
+                    'responseDesc': 'Failed captcha verification'
+                });
+            } else {
+
+                return next();
+            }
+
+        });
     });
-
-    //        });
-    //    }
-    //);
 
 
     // process the login form
     app.post('/login',
         passport.authenticate('local', {
             successRedirect: '/mywallet',
-            failureRedirect: '/login',
+            failureRedirect: '/login?#login__form',
             failureFlash: true
         }));
 
 
 
-
-
+    app.get('/about', function (req, res) {
+        res.render('about', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
+    
+    app.get('/discover-more', function (req, res){
+       res.render('discover-more', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
 
     // process the signup form
     app.post('/signup', function (req, res) {
@@ -378,7 +391,7 @@ module.exports = function (app, passport) {
 
     //marketplace
 
-    app.get('/market', function (req, res) {
+    app.get('/marketplace', function (req, res) {
 
         if (req.user) {
             var id = req.user.id;
@@ -469,63 +482,80 @@ module.exports = function (app, passport) {
     });
 
     app.post('/transaction-result', function (req, res) {
-        var balance = parseInt(req.query.balance);
+        var balance = req.query.balance;
         var assetid = req.query.assetid;
         var assetprice = parseInt(req.query.price);
         var assetname = req.query.assetname;
         var assettb = req.query.assettb;
         var str = '';
-        console.log('asset info: ' + assetname + ' ' + assetid + ' balance is ' + balance + ' assetprice is ' + assetprice + ' ' + assettb);
-        if (balance < assetprice) {
-            res.render('transaction-result', {
-                user: req.user,
-                balancemessage: 'Funding error',
-                navSignedOut: navOptions.navSignedOut,
-                navSignedIn: navOptions.navSignedIn
-            });
-        } else {
-            if (req.user) {
+        console.log('asset info: ' + assetname + ' ' + assetid + ' assetprice is ' + assetprice + ' ' + assettb);
 
-                var options = {
-                    method: 'POST',
-                    url: config.vURL + '/wallet/' + req.user.id + '/send',
-                    body: {
-                        'outputs': [{
-                            'value': assetprice,
-                            'address': config.vendorAddress
+        if (req.user) {
+            var options = {
+                method: 'POST',
+                url: config.vURL + '/wallet/' + req.user.id + '/send',
+                body: {
+                    'outputs': [{
+                        'value': assetprice,
+                        'address': config.vendorAddress
                                             }]
-                    },
-                    json: true
-                };
+                },
+                json: true
+            };
 
-                request(options, function check(err, res, body) {
-                        if (err) {
-                            console.log(err);
-                            return (err);
-                        }
-                    })
-                    .on('data', function (chunk) {
-                        str += chunk;
-                    })
-                    .on('end', function () {
-                    var debitOrCreditFlag = 1; //1 for debit, 0 for credit
-                    addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
-                    generateBlock();
-                    
-                        res.render('transaction-result', {
-                            assetname: assetname,
-                            assettb: assettb,
-                            user: req.user,
-                            tx: str,
-                            balancemessage: '',
-                            navSignedOut: navOptions.navSignedOut,
-                            navSignedIn: navOptions.navSignedIn
-                        });
+            request(options, function check(err, res, body) {
+                    if (err) {
+                        console.log(err);
+                        return (err);
+                    }
+                })
+                .on('data', function (chunk) {
+                    str += chunk;
+                })
+                .on('end', function () {
+                    var txObj = JSON.parse(str);
+                    var txhash = txObj.hash;
+                    if (txhash === undefined) {
+                        res.redirect('/asset/' + assetid + '?#funding-problem');
+                    } else {
+                        var debitOrCreditFlag = 1; //1 for debit, 0 for credit
+                        var qstring = 'assetid=' + assetid + '&price=' + assetprice + '&assetname=' + assetname + '&assettb=' + assettb + '&txhash=' + txhash;
+                        res.redirect('/transaction-result/?' + qstring);
+                        addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
+                        generateBlock();
                         sendAsset(assetid, assetname, req.user.email);
-                    });
-            }
+                    }
+                });
         }
+
+
     });
+
+    app.get('/transaction-result', function (req, res) {
+        var assetid = req.query.assetid;
+        var assetprice = parseInt(req.query.price);
+        var assetname = req.query.assetname;
+        var assettb = req.query.assettb;
+        var txhash = req.query.txhash;
+        var id = req.user.id;
+
+
+        viewTxDetail(id, txhash, function (err, detailArray) {
+            detailArray = detailArray.substr(9, detailArray.length);
+
+            res.render('transaction-result', {
+                assetname: assetname,
+                assettb: assettb,
+                user: req.user,
+                tx: detailArray,
+                navSignedOut: navOptions.navSignedOut,
+                navSignedIn: navOptions.navSignedIn,
+                myval: 1
+            });
+        });
+    });
+
+
 
 
     // =====================================
