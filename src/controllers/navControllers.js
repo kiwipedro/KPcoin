@@ -3,17 +3,14 @@ var navSignedOut = [
     Link: '/',
     Title: 'KPcoin (Home)'
     }, {
-    Link: '/login',
-    Title: 'Log In'
-    }, {
-    Link: '/blog',
-    Title: 'Blog'
-    }, {
-    Link: '/techie-corner',
-    Title: 'Techie Corner'
+    Link: '/discover-more',
+    Title: 'Discover More'
     }, {
     Link: '/about',
     Title: 'About'
+    }, {
+    Link: '/login',
+    Title: 'Sign Up | Log In'
     }];
 
 var navSignedIn = [
@@ -21,23 +18,20 @@ var navSignedIn = [
     Link: '/',
     Title: 'KPcoin (Home)'
     }, {
-    Link: '/logout',
-    Title: 'Log Out'
-    }, {
     Link: '/mywallet',
     Title: 'My Wallet'
     }, {
-    Link: '/market',
-    Title: 'KPcoin Market'
+    Link: '/marketplace',
+    Title: 'Marketplace'
     }, {
-    Link: '/blog',
-    Title: 'Blog'
-          }, {
-    Link: '/techie-corner',
-    Title: 'Techie Corner'
-          }, {
+    Link: '/discover-more',
+    Title: 'Discover More'
+    }, {
     Link: '/about',
     Title: 'About'
+    }, {
+    Link: '/logout',
+    Title: 'Log Out'
           }];
 
 module.exports.navSignedOut = navSignedOut;

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav__container">
+            <div class="nav__brand">
+                <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+
+            </div>
+            <div class="nav__menu-mobile">
+                <a href="#" onclick="toggleNavbarLinks()">
+                    <span class="nav__menu-mobile__text"></span>
+                    <span class="nav__menu-mobile__icon fa fa-bars"></span>
+                </a>
+            </div>
+
+
+
+            <ul class="nav__links">
+                <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li class="nav__link">
+                        <a href="<%=navSignedOut[i].Link%>">
+                            <%=navSignedOut[i].Title%>
+                        </a>
+                    </li>
+                    <%}
+            } else {
+          for(var i=1; i<navSignedIn.length;i++){%>
+                        <li class="nav__link">
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}
+                }%>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="splash">
+            <br>
+            <h4>About</h4>
+            <p>A Kiwipedro Project</p>
+
+
+
+
+            <span><img src="./img/kp-pic-small.png" style="height:95px;width:100px"class="img-circle"></span>
+            <p class="copy__aligned-left copy__block-center-medium">
+                Lorem ipsum dolor sit amet, has ut stet atqui, vim ei exerci eripuit interesset. Te cum idque accumsan instructior, cu quando alienum mandamus vel, at vix percipit constituam. Quo legere percipit an. Magna accumsan recteque pri at, vim ne possit regione denique. Populo adversarium ne eum. Et aeque ignota suscipiantur pri. Case putant fierent sed et. Dolore option mediocritatem ius ea, ut homero gloriatur nam. Volutpat petentium maluisset usu et. Iusto omnium ne est. Eam tritani bonorum accumsan te. Ad cum eripuit indoctum, vis cu voluptua convenire accusamus. Altera impedit hendrerit vis no. Vide expetenda ut mea. An qualisque comprehensam quo, ei mundi adolescens definiebas sed. Sed diceret oporteat at. Has sint modus ea. In cum vitae legere persecuti, mundi fierent salutandi ea vis. Noster corpora theophrastus cu vix. Cum possim fabellas honestatis cu, mea an ullum alienum, ne eos vocent consetetur. Simul detraxit facilisi ad eam, has fabulas maluisset ne. Cu oblique delicata eam, te sed adhuc ullamcorper deterruisset. Laboramus prodesset at pro, agam lorem in ius, iusto constituam liberavisse in eam. Atqui iusto pro eu. Nec congue recusabo euripidis et, esse adhuc sed cu, nibh oblique has et. Wisi vocent vel an, agam inermis per et, ut esse ancillae quo. Ei habeo postea consetetur mei.
+            </p>
+
+        </div>
+        <div class="footer">
+
+            <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+        </div>
+    </main>
+    <!-- /.container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        toggleNavbarLinks = function() {
+            var navbarLinks = document.getElementsByClassName('nav__links')[0];
+            navbarLinks.classList.add('nav__links--toggled');
+            if (navbarLinks.classList.contains('nav__links--open')) {
+                navbarLinks.classList.remove('nav__links--open');
+            } else {
+                navbarLinks.classList.add('nav__links--open');
+            }
+        }
+
+    </script>
+</body>
+
+</html>

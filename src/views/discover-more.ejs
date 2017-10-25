@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+
+</head>
+
+ <body>
+    <nav>
+        <div class="nav__container">
+            <div class="nav__brand">
+                <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+
+            </div>
+            <div class="nav__menu-mobile">
+                <a href="#" onclick="toggleNavbarLinks()">
+                    <span class="nav__menu-mobile__text"></span>
+                    <span class="nav__menu-mobile__icon fa fa-bars"></span>
+                </a>
+            </div>
+
+
+
+            <ul class="nav__links">
+                <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li class="nav__link">
+                        <a href="<%=navSignedOut[i].Link%>">
+                            <%=navSignedOut[i].Title%>
+                        </a>
+                    </li>
+                    <%}
+            } else {
+          for(var i=1; i<navSignedIn.length;i++){%>
+                        <li class="nav__link">
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}
+                }%>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="splash__no-background">
+
+            <div class="introduction__container">
+                <br>
+                <h4>Discover More</h4>
+            </div>    
+                <p class="copy__aligned-left">
+
+In this section we will discuss as much to do with cryptocurrencies as possible without breaking your brain - and if your brain survives intact, then there will be suggestions for further reading or watching or listening. 
+            <br>
+            <br>
+
+What is money?
+Cash, dosh, mulah, cheese, paper, the filthy lucre, wedge, and of course the root of all evil: there are plenty of pseudonyms for money, which is invariably a sign of something’s importance and ubiquity. Money however, for all its pervasiveness is not that easy to define.
+   <br>
+
+Is it the coins in your pocket?  Is it the balance figure on your bank statement? Is the $US1.5 trillion that was created by a few keystrokes on a computer at the Federal Reserve Bank of America in 2008 to bailout the banking system?  These are certainly examples, but for a definition it might be better to say that is simply a way of ascribing value to items so they can be exchanged between people.
+                    <br>
+
+You can exchange the coins in your pocket for a lollipop.  You look at your bank balance and think about how many more zeroes you need on the end of that figure to exchange it for a horse/car/can of baked beans. And the officer at the Fed who was in charge of adding over a trillion dollars to the bank accounts of America’s largest financial institutions was hoping that in exchange they would avoid the collapse of the world’s economy. Bargain!
+                    <br>
+
+There is an interesting fiction in the concept of money:  it only works if we all believe it works. In Yuval Noah Harahi’s excellent book “Sapiens” he calls the development of money a “purely mental revolution. It involved the creation of a new inter-subjective reality that exists solely in the people’s shared imagination”. In other words, if you believe a pint of Guinness can be exchanged for a €5 note and the bartender believes it as well, then sláinte, the system works!
+<br>
+More on this subject:  listen to this podcast https://www.thisamericanlife.org/radio-archives/episode/423/the-invention-of-money
+                    <br>
+
+Enter the Cryptocurrency
+                    <br>
+                    <br>
+In 2008 a mysterious whitepaper appeared on The Cryptography Mailing list at metzdowd.com.  Nothing mysterious about the content of the article, but with the person (or persons) who wrote it. Its author was Satoshi Nakamoto: an unfamiliar name in a community where unfamiliarity was unusual, particularly as the titular “Bitcoin: A Peer-to-Peer Electronic Cash System” paper seemed to arrive as a fully-formed and thoroughly tested solution for something that many in the community had tried to build before and had failed: a robust, cryptographic, trustless, decentralised electronic money system.
+                    <br>
+
+The whitepaper outlined how transactions could be clumped into a block, which was then stamped with a hashed cryptographic identification and placed at the end of chain of previously created blocks, with the prior block’s id baked into its own. This would ensure that transactions of a certain “depth” would be practically impossible to alter: so everyone could trust that the transactions were accurate, irrefutable and immutable.  Or more exactly everyone could believe it.  And belief is all we humans need for a system to work.
+<br>
+                    
+And so was born bitcoin, the blockchain and an overnight sensation a decade in the making.  This whitepaper has spawned a whole new industry, inspired huge innovation in areas completely unrelated to currency and may just have sown the seeds for the next global financial crises.
+                    <br>
+
+Further reading: you can actually read the whitepaper here: https://bitcoin.org/bitcoin.pdf
+Or for a good historical account of how bitcoin developed there is an excellent Netflix documentary called “Banking on Bitcoin” 
+https://www.netflix.com/gb/title/80154500
+                    <br>
+
+How does Bitcoin work?
+                    <br>
+                Blah
+                    <br>
+
+How does KPcoin differ from Bitcoin?
+                    <br>
+                    <br>
+There are not many differences between KPcoin and Bitcoin, given that they are based off the same core software code. There is the same limit of supply (21,000,000) and the same denomination: the smallest unit is 100 millionth of a full coin, the way transactions are signed and the fact that you can exchange coins for assets is also consistent, however there are some important differences:
+                    <br>
+
+Bitcoin is called Bitcoin and KPcoin is called KPcoin:  Obvious, but worth pointing out given one of the most important steps in creating a cryptocurrency is to brand it.
+                    <br>
+
+Getting Bitcoin costs money, KPcoin is free: Unless you have a generous donor, bitcoins cost money and are usually purchased at an online exchange.  KPcoin is free and you receive them simply by logging into the website.
+                    <br>
+
+Bitcoin is decentralised. KPcoin is centralised: Where anyone can download the core bitcoin software, obtain a copy of the full ledger of transactions and become a “miner”. KPcoin is wholly controlled by me, Peter Thompson aka KiwiPedro and I act like a central bank.  A very generous (irresponsible?) central bank it has to be said.
+                    <br>
+
+You can transfer Bitcoins to other Bitcoin users. You cannot transfer KPcoins.  You can buy digital assets with both versions, but I’ve decided, for privacy reasons, not allow users to transfer coins
+                    <br>
+
+Bitcoin has many types of Wallets. KPcoin only has a Web Wallet:   With bitcoin you can effectively have a wallet in your brain:  if you memorise the pass phrases which derive your private key, then you could at any time install some software and enter those phrases and get access to your unspent outputs.  There are paper wallets, USB wallets and online web wallets available for bitcoin.  For simplicity, KPcoin just has the latter.
+                    <br>
+                    <br>
+                    <br>
+
+
+
+</p>
+            </div>
+        <div class="footer">
+
+            <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+        </div>
+    </main>
+    <!-- /.container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        toggleNavbarLinks = function() {
+            var navbarLinks = document.getElementsByClassName('nav__links')[0];
+            navbarLinks.classList.add('nav__links--toggled');
+            if (navbarLinks.classList.contains('nav__links--open')) {
+                navbarLinks.classList.remove('nav__links--open');
+            } else {
+                navbarLinks.classList.add('nav__links--open');
+            }
+        }
+
+    </script>
+ </body>
+</html>

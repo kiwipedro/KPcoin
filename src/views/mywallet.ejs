@@ -1,105 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>KPcoin</title>
-    <meta name="generator" content="Bootply" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!--[if lt IE 9]>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>KPcoin</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-    <link href="css/styles.css" rel="stylesheet">
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript">
-        var socket;
+        <link rel="icon" href="assets/favicon.png">
+          <link rel="stylesheet" href="css/bootstrap.min.css">           
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+           <link href="css/styles.css" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />   
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>        
+	</head>
 
-        function onload() {
-            socket = io.connect();
-            socket.on('broadcast', function(data) {
-                document.getElementById("broadcast").innerHTML = data;
-            });
-        };
-
-    </script>
-
-
-    <style>
-        th,
-        td {
-            text-align: center;
-        }
-
-    </style>
-
-</head>
-
-<body onload="onload()">
-
-
-    <div class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-                <a class="navbar-brand" href="<%=navSignedIn[0].Link%>">
-                    <%=navSignedIn[0].Title%>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <% for(var i=2; i<navSignedIn.length;i++){%>
-                        <li>
-                            <a href="<%=navSignedIn[i].Link%>">
-                                <%=navSignedIn[i].Title%>
-                            </a>
-                        </li>
-                        <%}%>
-
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="<%=navSignedIn[1].Link%>">
-                            <%=navSignedIn[1].Title%>
-                                </br>
-                        </a>
-                    </li>
-                    <!-- <li><a href="#about">Sign in</a></li> -->
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+<body class="font__resize">
+<nav>
+    <div class="nav__container">
+        <div class="nav__brand">
+            <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+           
         </div>
-    </div>
-
-    <div class="container">
+        <div class="nav__menu-mobile">
+            <a href="#" onclick="toggleNavbarLinks()">
+                <span class="nav__menu-mobile__text"></span>
+                <span class="nav__menu-mobile__icon fa fa-bars"></span>
+            </a>
+        </div>     
+    
+    <ul class="nav__links">
+        <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li class="nav__link"><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
+                        <%}
+            } else {
+          for(var i=1; i<navSignedIn.length;i++){%>
+                <li class="nav__link"><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
+                <%}
+                }%>
+    </ul>
+</div>
+</nav>
+<main>
         <% var walletObj = JSON.parse(wallet) %>
-            <% var receiveAddress = walletObj.account.receiveAddress %>
-                <% var balance = walletObj.state.confirmed %>
-                    <% var numberOfTx = walletObj.state.tx %>
+        <% var receiveAddress = walletObj.account.receiveAddress %>
+        <% var balance = walletObj.state.confirmed %>
+        <% var numberOfTx = walletObj.state.tx %>
 
-                        <div class="text-center">
-                            <h3>Wallet page for
-                                <%=user.email%>
-                            </h3>
+    <div class="splash__no-background">
+        
+                        <div>
+                            <div>
+                                <br>
+                            <h2>My Wallet</h2>
+                            <span class="black__font"><p>Check your balance and transaction history</p></span>
+                            
+                           <div class="wallet__introduction center-aligned">
+                            <img src="assets/circle_primary.png" style="max-height:20rem;max-width:20rem;">
+                            <div class="wallet__text-balance">
+                                <h4 style="font-weight:normal;margin:0">Balance </h4>
+                                <h1> <%=balance/100000000%> KPc</h1>
+                                <p>(<%=balance%> Pedros)</p>
+                               </div>
+                            </div>
+                                <br>
+                            <div class="copy__center-block" style="background-color: #eee;padding:1rem;">                              
+                                <h4><b>Denomination</b></h4>                               
+                            <span class="black__font"> <p> In bitcoin the smallest denomination is a "Satoshi" (1 bitcoin divided by 100 million).
+                                <br>
+                                <br>
+                                In KPcoin the smallest denomination is a "Pedro" (1 KPcoin divided by 100 million).
+                                <br>
+                                <br>
+                                Everytime you log in the KPcoin website you get a gift of 0.005 KPcoins or 500,000 Pedros!
+                                 </p>
+                                 </span>
+                               
+                            </div>   
+                                
+                            </div>
+                
                             <br>
-                            <h4> Your balance is:
-                                <%=balance/100000000%> KPcoins
-                            </h4>
-                            <br>
-                            <h4 style="text-align: left">Wallet Details:</h4>
-
-                            <pre style="word-wrap: break-word; white-space: pre-wrap;text-align: left">
-                                <%=wallet%>
-                                </pre>
-
-
-                            <h2 id=tables-hover-rows>Transaction History:</h2>
+                            <span class="black__font">Want to spend some KPc?</span>
+                             <div class="account-buttons center-aligned">
+                                 <div class="account-button">
+                            <button class="account-button__button" type="button" onclick="location.href='/marketplace'";>Visit the Marketplace</button>
+                                </div>
+                            </div>
+                            
+        <div id="txhistory">
+         <h2 id=tables-hover-rows>Transaction History</h2>
+            <span class="black__font"><p>Click on a row to view a detailed breakdown</p></span>
+            <br>
 
                             <!--
 <ul class="list-group">  
@@ -109,39 +107,40 @@
 </ul>
 -->
 
-
+                            
                             <div class=bs-example data-example-id=hoverable-table>
-
-                                <table class="table table-hover">
+                                <div class="copy__block-inverted-light">
+                                <table class="table table-hover table-responsive link__visited">
                                     <thead>
-                                        <tr>
-                                            <th>Ref</th>
-                                            <th>Digital Asset Name</th>
-                                            <th>Date/Time Purchased</th>
-                                            <th>Amount</th>
-                                            <th>Details</th>
+                                        <tr class="table__header">
+                                            <th>Date/Time of TX</th>
+                                            <th>Name</th>
+                                            <th>Amount (in Pedros)</th>
+                                            
                                         </tr>
                                     </thead>
                                     <% currList.forEach(function(currList){%>
                                         <tbody>
-                                            <tr>
+                                            <tr class="clickable-row" data-href="/transaction-detail?txhash=<%=currList.txhash%>">
                                                 <th scope="row">
-                                                    <%=currList.id%>
+<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
+                                                   <%=moment(currList.txdate).format('YYYY-MM-DD, HH:mm');%>
+<!--                                                    </a>-->
                                                 </th>
                                                 <td>
+<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
                                                     <%=currList.assetname%>
-                                                </td>
-                                                <td>    
-                                                    <%=moment(currList.txdate).format('YYYY-MM-DD, HH:mm');%>
+<!--                                                    </a>-->
                                                 </td>
                                                 <td>
+<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
                                                      <% if (currList.txflag === false) { %>
-                                                    <%=currList.txprice%>
+                                                    <%=currList.txprice%>P
                                                     <%} else {%>
-                                                    <%=currList.txprice * -1 %>
+                                                    <%=currList.txprice * -1 %>P
                                                     <%}%>
+<!--                                                    </a>-->
                                                 </td>
-                                                <td><a href="/transaction-detail?txhash=<%=currList.txhash%>">Transaction Detail</a></td>
                                             </tr>
                                         </tbody>
                                         <% }); %>
@@ -152,14 +151,14 @@
                             <% if (pageCount > 1) { %>
                                 <ul class="pagination">
                                     <% if (currentPage > 1) { %>
-                                        <li><a href="/mywallet?page=1">&laquo;</a></li>
+                                        <li><a href="/mywallet?page=1#txhistory">&laquo;</a></li>
                                         <% } %>
                                             <% var i = 1;
                                   if (currentPage > 5) {
                                   i = +currentPage - 4;
                                   } %>
                                     <% if (i !== 1) { %>
-                                    <li class="disabled"><a href="#">...</a></li>
+                                    <li class="disabled"><a href="#txhistory">...</a></li>
                                     <% } %>
                                     <% for (i; i<=pageCount; i++) { %>
                                     <% if (currentPage == i) { %>
@@ -167,26 +166,47 @@
                                     </li>
                                     <% } else { %>
                                         <li>
-                                    <a href="/mywallet?page=<%= i %>"><%= i %></a>
+                                    <a href="/mywallet?&page=<%= i %>#txhistory"><%= i %></a>
                                     </li>
                                     <% } %>
                                     <% if (i == (+currentPage + 4)) { %>
-                                    <li class="disabled"><a href="#">...</a></li>
+                                    <li class="disabled"><a href="#txhistory">...</a></li>
                                     <% break; } %>
                                     <% } %>
                                     <% if (currentPage != pageCount) { %>
-                                    <li><a href="/mywallet?page=<%= pageCount %>">&raquo;</a></li>
+                                    <li><a href="/mywallet?page=<%= pageCount %>#txhistory">&raquo;</a></li>
                                         <% } %>
                                     </ul>
                                     <% } %>
-                        </div>
+                          </div>
+                            </div>
 
     </div>
-    <!-- /.container -->
+    </div>
+  <br>
+    <br>
+  
+ <div class="footer">
+        <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+    </div>    
+    </main>
+</body>
+        <!-- /.container -->
     <!-- script references -->
+    <script src="js/script.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
-</body>
+    <script>
+      jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+      });
+    </script>
 
 </html>

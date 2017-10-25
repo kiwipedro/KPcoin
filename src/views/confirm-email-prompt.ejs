@@ -6,64 +6,76 @@
 		<title>KPcoin</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
-        
-     <!--   <script src="/socket.io/socket.io.js"></script>
-        <script>
-          var socket = io.connect();
-          socket.on('news', function (data) {
-            console.log(data);
-            socket.emit('my other event', { my: 'data' });
-          });
-        </script> -->
-        
+        <link rel="icon" href="assets/favicon.png">
+              <link rel="stylesheet" href="css/bootstrap.min.css">  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+           <link href="css/styles.css" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>        
 	</head>
-	<body>
+<body>
+ <nav>
+    <div class="nav__container">
+        <div class="nav__brand">
+            <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+           
+        </div>
+        <div class="nav__menu-mobile">
+            <a href="#" onclick="toggleNavbarLinks()">
+                <span class="nav__menu-mobile__text"></span>
+                <span class="nav__menu-mobile__icon fa fa-bars"></span>
+            </a>
+        </div>
+        
+        
     
-<div class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
-        <a class="navbar-brand" href="<%=navSignedOut[0].Link%>"><%=navSignedOut[0].Title%></a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav__links">
         <% for(var i=2; i<navSignedOut.length;i++){%>
-  <li><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
-                        <%}%>
-          
-      <!--    <li><a href="#">Blog</a></li>
-        <li><a href="#contact">Contact</a></li> -->
-          
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="<%=navSignedOut[1].Link%>"><%=navSignedOut[1].Title%></a></li>  
-        <!-- <li><a href="#about">Sign in</a></li> -->
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
+                <li class="nav__link"><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>  
+                <%}%>
+    </ul>
 </div>
+</nav>
+<main>     
+<div class="splash__no-background">
+    <div class="introduction__container">
+    <div class="introduction__text">
+        <br>
+    <h3>Thanks for signing up!</h3>
+        <br>
+        
+        <img src="assets/envelope_alternate.png">
+        <br>
+        <br>
+      <small class="black__font">To complete registration, please check your email and click on the confirmation link</small>
+    </div>
+    </div>
+</div>
+    <div class="footer">
+        <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+    </div>
+    
+</main><!-- /.container -->
+    
 
-<div class="container">
-  
-  <div class="text-center">
-    <h1>Thanks for signing up!</h1>
-      <p class="lead" align="left"> Please check your email and click on the link sent through to complete registration</p>
-  </div>
-  
-</div><!-- /.container -->
+
 	<!-- script references -->
+        <script src="js/script.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+        
 
+    
 	</body>
 </html>

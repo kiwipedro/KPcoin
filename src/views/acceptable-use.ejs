@@ -6,70 +6,78 @@
 		<title>KPcoin</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+        <link rel="icon" href="assets/favicon.png">
+              <link rel="stylesheet" href="css/bootstrap.min.css">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+           <link href="css/styles.css" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
         
 	</head>
 	<body>
+    <nav>
+    <div class="nav__container">
+        <div class="nav__brand">
+            <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+           
+        </div>
+        <div class="nav__menu-mobile">
+            <a href="#" onclick="toggleNavbarLinks()">
+                <span class="nav__menu-mobile__text"></span>
+                <span class="nav__menu-mobile__icon fa fa-bars"></span>
+            </a>
+        </div>
+        
+        
     
-<div class="navbar navbar-default navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
-        <a class="navbar-brand" href="<%=navSignedOut[0].Link%>"><%=navSignedOut[0].Title%></a>
-    </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
+    <ul class="nav__links">
         <% if (!user) {
           for(var i=2; i<navSignedOut.length;i++){%>
-                    <li><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
+                    <li class="nav__link"><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
                         <%}
             } else {
-          for(var i=2; i<navSignedIn.length;i++){%>
-                <li><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
+          for(var i=1; i<navSignedIn.length;i++){%>
+                <li class="nav__link"><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
                 <%}
                 }%>
-          
-          
-      <!--    <li><a href="#">Blog</a></li>
-        <li><a href="#contact">Contact</a></li> -->
-          
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if (!user) {%>
-        <li><a href="<%=navSignedOut[1].Link%>"><%=navSignedOut[1].Title%></a></li>  
-           <%} else {%>
-                <li><a href="<%=navSignedIn[1].Link%>"><%=navSignedIn[1].Title%></a></li>  
-                <%}%>
-          
-        <!-- <li><a href="#about">Sign in</a></li> -->
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
+    </ul>
 </div>
+</nav>
 
-<div class="container">
+<main>
+<div class="splash__no-background">
   
-  <div class="text-center">
-    <h1>Website Acceptable Use Policy</h1>
-      <div class="text-left">
-          <p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">This acceptable use policy sets out the terms between you and us under which you may access myAxis Ltd's ("our", "us", "we") website ("our site"). This acceptable use policy applies to all users of, and visitors to, our site.</span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">Your use of our site means that you accept, and agree to abide by, all the policies in this acceptable use policy, which supplement our <a href="/terms-of-use">terms of use.</a></span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">You may use our site only for lawful purposes.&nbsp; You may not use our site:</span></p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">In any way that breaches any applicable local, national or international law or regulation.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">In any way that is unlawful or fraudulent, or has any unlawful or fraudulent purpose or effect.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">For the purpose of harming or attempting to harm minors in any way.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To send, knowingly receive, upload, download, use or re-use any material which does not comply with our content standards below.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To transmit, or procure the sending of, any unsolicited or unauthorised advertising or promotional material or any other form of similar solicitation (spam).</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To knowingly transmit any data, send or upload any material that contains viruses, Trojan horses, worms, time-bombs, keystroke loggers, spyware, adware or any other harmful programs or similar computer code designed to adversely affect the operation of any computer software or hardware.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">You also agree:</font></p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Not to reproduce, duplicate, copy or re-sell any part of our site in contravention of the provisions of our <a href="/terms-of-use">terms of use.</a></font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Not to access without authority, interfere with, damage or disrupt:</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any part of our site;</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any equipment or network on which our site is stored;</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any software used in the provision of our site; or</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any equipment or network or software owned or used by any third party.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">We provide a simulated crypto-currency web wallet and marketplace where you can simulate exchanging value for digital assets.&nbsp; While this has the appearance of a real commercial website, KPcoin is only used as a simulation for users of our site to educate themselves in some of the possible uses of crypto currencies.&nbsp; All intellectual property of the digital assets that are available in the marketplace are owned by the original creators, and permission has been granted to myAxis Ltd for them to be used for the purposes of demonstration on this website.&nbsp; All copyrights, IP and trademarks are retained by the original creators and may not be republished, or re-used on any medium, including websites, emails, presentations, television, radio, virtual reality applications, mobile applications or other technological devices without their express and separate permission.</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">If you are found to contravene the acceptable uses of our site we reserve the right to:</p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Immediate, temporary or permanent withdrawal of your right to use our site</font><span style="font-family: Arial;">.</span></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Issue of a warning to you.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Legal proceedings against you for reimbursement of all costs on an indemnity basis (including, but not limited to, reasonable administrative and legal costs) resulting from the breach.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Further legal action against you.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Disclosure of such information to law enforcement authorities as we reasonably feel is necessary.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">We exclude liability for actions taken in response to breaches of this acceptable use policy.&nbsp; The responses described in this policy are not limited, and we may take any other action we reasonably deem appropriate.</font></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">We may revise this acceptable use policy at any time by amending this page. You are expected to check this page from time to time to take notice of any changes we make, as they are legally binding on you. Some of the provisions contained in this acceptable use policy may also be superseded by provisions or notices published elsewhere on our site.</span><br></p>
+  <div class="introduction__container">
+      <br>
+    <h4>Website Acceptable Use Policy</h4>
+    </div>
+      <div class="copy__aligned-left">
+          <p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">This acceptable use policy sets out the terms between you and us under which you may access myAxis Ltd's ("our", "us", "we") website ("our site"). This acceptable use policy applies to all users of, and visitors to, our site.</span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">Your use of our site means that you accept, and agree to abide by, all the policies in this acceptable use policy, which supplement our <a href="/terms-of-use"><u>terms of use</u>.</a></span></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">You may use our site only for lawful purposes.&nbsp; You may not use our site:</span></p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">In any way that breaches any applicable local, national or international law or regulation.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">In any way that is unlawful or fraudulent, or has any unlawful or fraudulent purpose or effect.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">For the purpose of harming or attempting to harm minors in any way.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To send, knowingly receive, upload, download, use or re-use any material which does not comply with our content standards below.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To transmit, or procure the sending of, any unsolicited or unauthorised advertising or promotional material or any other form of similar solicitation (spam).</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">To knowingly transmit any data, send or upload any material that contains viruses, Trojan horses, worms, time-bombs, keystroke loggers, spyware, adware or any other harmful programs or similar computer code designed to adversely affect the operation of any computer software or hardware.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">You also agree:</font></p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Not to reproduce, duplicate, copy or re-sell any part of our site in contravention of the provisions of our <a href="/terms-of-use">terms of use.</a></font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Not to access without authority, interfere with, damage or disrupt:</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any part of our site;</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any equipment or network on which our site is stored;</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any software used in the provision of our site; or</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">any equipment or network or software owned or used by any third party.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">We provide a simulated crypto-currency web wallet and marketplace where you can simulate exchanging value for digital assets.&nbsp; While this has the appearance of a real commercial website, KPcoin is only used as a simulation for users of our site to educate themselves in some of the possible uses of crypto currencies.&nbsp; All intellectual property of the digital assets that are available in the marketplace are owned by the original creators, and permission has been granted to myAxis Ltd for them to be used for the purposes of demonstration on this website.&nbsp; All copyrights, IP and trademarks are retained by the original creators and may not be republished, or re-used on any medium, including websites, emails, presentations, television, radio, virtual reality applications, mobile applications or other technological devices without their express and separate permission.</p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;">If you are found to contravene the acceptable uses of our site we reserve the right to:</p><ul><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Immediate, temporary or permanent withdrawal of your right to use our site</font><span style="font-family: Arial;">.</span></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Issue of a warning to you.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Legal proceedings against you for reimbursement of all costs on an indemnity basis (including, but not limited to, reasonable administrative and legal costs) resulting from the breach.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Further legal action against you.</font></li><li style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">Disclosure of such information to law enforcement authorities as we reasonably feel is necessary.</font></li></ul><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><font face="Arial">We exclude liability for actions taken in response to breaches of this acceptable use policy.&nbsp; The responses described in this policy are not limited, and we may take any other action we reasonably deem appropriate.</font></p><p style="margin-bottom: 16px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-stretch: inherit; line-height: normal; vertical-align: baseline;"><span style="font-family: Arial;">We may revise this acceptable use policy at any time by amending this page. You are expected to check this page from time to time to take notice of any changes we make, as they are legally binding on you. Some of the provisions contained in this acceptable use policy may also be superseded by provisions or notices published elsewhere on our site.</span><br></p>
 
       </div>
   </div>
-  
-</div><!-- /.container -->
+     </main>
+<!-- /.container -->
 	<!-- script references -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+     <script>
+  toggleNavbarLinks = function () {
+    var navbarLinks = document.getElementsByClassName('nav__links')[0];
+    navbarLinks.classList.add('nav__links--toggled');
+    if (navbarLinks.classList.contains('nav__links--open')) {
+      navbarLinks.classList.remove('nav__links--open');
+    } else {
+      navbarLinks.classList.add('nav__links--open');
+    }
+  }
+</script>
 
 	</body>
 </html>
