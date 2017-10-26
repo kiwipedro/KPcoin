@@ -52,6 +52,7 @@
         <% var receiveAddress = walletObj.account.receiveAddress %>
         <% var balance = walletObj.state.confirmed %>
         <% var numberOfTx = walletObj.state.tx %>
+        <% var commabalance = balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
 
     <div class="splash__no-background">
         
@@ -66,7 +67,7 @@
                             <div class="wallet__text-balance">
                                 <h4 style="font-weight:normal;margin:0">Balance </h4>
                                 <h1> <%=balance/100000000%> KPc</h1>
-                                <p>(<%=balance%> Pedros)</p>
+                                <p>(<%=commabalance%> Pedros)</p>
                                </div>
                             </div>
                                 <br>
