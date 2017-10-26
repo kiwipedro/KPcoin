@@ -51,6 +51,8 @@
 <div class="splash__no-background">
 <% var walletObj = JSON.parse(wallet) %>
 <% var balance = walletObj.state.confirmed %>
+<% var commaprice = assets[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+    
   <div class="introduction__container">
     <h2>Welcome to the Marketplace!</h2>
     </div> 
@@ -62,14 +64,11 @@
             <div class="image__container">
                 <ul id="flex__container">     
                     <% for(var i=0; i<assets.length;i++){%>
-                            <li><a href="/asset/<%=assets[i].id%>"><div class="focus__image"></div><span><%=assets[i].name%> : <%=assets[i].price%>P</span><img src="<%=assets[i].thumbpath%>"></a></li>
-<!--                                        <h4><span class="label label-default"><%=assets[i].shortdesc%></span></h4>-->
-<!--
-                                        <h4>                                            
-                                            <small style="font-family:courier,'new courier';" class="text-muted"><a href="/asset/<%=assets[i].id%>" class="text-muted">Buy here</a></small>
-                                        </h4>
-
--->                  <%}%>
+                            <li><a href="/asset/<%=assets[i].id%>">
+                                <div class="focus__image"></div> 
+                                <span><%=assets[i].name%> : <%=commaprice%>P</span>
+                                <img src="<%=assets[i].thumbpath%>"></a></li>
+                            <%}%>
                 </ul>
             </div>
       </div>  
