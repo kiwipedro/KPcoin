@@ -51,7 +51,7 @@
 <div class="splash__no-background">
 <% var walletObj = JSON.parse(wallet) %>
 <% var balance = walletObj.state.confirmed %>
-<% var commaprice = assets[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+
     
   <div class="introduction__container">
     <h2>Welcome to the Marketplace!</h2>
@@ -66,6 +66,7 @@
                     <% for(var i=0; i<assets.length;i++){%>
                             <li><a href="/asset/<%=assets[i].id%>">
                                 <div class="focus__image"></div> 
+                                <% var commaprice = assets[i].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
                                 <span><%=assets[i].name%> : <%=commaprice%>P</span>
                                 <img src="<%=assets[i].thumbpath%>"></a></li>
                             <%}%>

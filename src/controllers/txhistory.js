@@ -20,7 +20,7 @@ var getTxHistory = function (id, page, cb) {
     });
 
     request.on('done', result => {
-        var pageCount = Math.ceil(JSON.stringify(result.rowsAffected[0])/5);
+        var pageCount = Math.ceil(JSON.stringify(result.rowsAffected[0])/9);
         console.log('pageCount is ' + pageCount);
         return cb(null, resultsArray, pageCount);
 

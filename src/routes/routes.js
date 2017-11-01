@@ -29,11 +29,15 @@ const querystring = require('querystring');
 module.exports = function (app, passport) {
 
     app.get('/', function (req, res) {
-        res.render('index.ejs', {
-            user: req.user,
-            navSignedOut: navOptions.navSignedOut,
-            navSignedIn: navOptions.navSignedIn
-        });
+        if (req.headers['user-agent'].indexOf('MSIE') >= 0) {
+            res.redirect('http://outdatedbrowser.com/en');
+            } else {
+            res.render('index.ejs', {
+                user: req.user,
+                navSignedOut: navOptions.navSignedOut,
+                navSignedIn: navOptions.navSignedIn
+            });
+        }
     });
 
 
@@ -99,9 +103,9 @@ module.exports = function (app, passport) {
             navSignedIn: navOptions.navSignedIn
         });
     });
-    
-    app.get('/discover-more', function (req, res){
-       res.render('discover-more', {
+
+    app.get('/discover-more', function (req, res) {
+        res.render('discover-more', {
             user: req.user,
             navSignedOut: navOptions.navSignedOut,
             navSignedIn: navOptions.navSignedIn
@@ -350,7 +354,7 @@ module.exports = function (app, passport) {
                         var currList = [];
                         //split list into groups
                         while (txHistArray.length > 0) {
-                            txHistArrays.push(txHistArray.splice(0, 5));
+                            txHistArrays.push(txHistArray.splice(0, 9));
                             currList = txHistArrays[+currentPage - 1];
 
                         }
@@ -482,53 +486,54 @@ module.exports = function (app, passport) {
     });
 
     app.post('/transaction-result', function (req, res) {
-        var balance = req.query.balance;
-        var assetid = req.query.assetid;
-        var assetprice = parseInt(req.query.price);
-        var assetname = req.query.assetname;
-        var assettb = req.query.assettb;
-        var str = '';
-        console.log('asset info: ' + assetname + ' ' + assetid + ' assetprice is ' + assetprice + ' ' + assettb);
+        setTimeout(function () {
+            var balance = req.query.balance;
+            var assetid = req.query.assetid;
+            var assetprice = parseInt(req.query.price);
+            var assetname = req.query.assetname;
+            var assettb = req.query.assettb;
+            var str = '';
+            console.log('asset info: ' + assetname + ' ' + assetid + ' assetprice is ' + assetprice + ' ' + assettb);
 
-        if (req.user) {
-            var options = {
-                method: 'POST',
-                url: config.vURL + '/wallet/' + req.user.id + '/send',
-                body: {
-                    'outputs': [{
-                        'value': assetprice,
-                        'address': config.vendorAddress
+            if (req.user) {
+                var options = {
+                    method: 'POST',
+                    url: config.vURL + '/wallet/' + req.user.id + '/send',
+                    body: {
+                        'outputs': [{
+                            'value': assetprice,
+                            'address': config.vendorAddress
                                             }]
-                },
-                json: true
-            };
+                    },
+                    json: true
+                };
 
-            request(options, function check(err, res, body) {
-                    if (err) {
-                        console.log(err);
-                        return (err);
-                    }
-                })
-                .on('data', function (chunk) {
-                    str += chunk;
-                })
-                .on('end', function () {
-                    var txObj = JSON.parse(str);
-                    var txhash = txObj.hash;
-                    if (txhash === undefined) {
-                        res.redirect('/asset/' + assetid + '?#funding-problem');
-                    } else {
-                        var debitOrCreditFlag = 1; //1 for debit, 0 for credit
-                        var qstring = 'assetid=' + assetid + '&price=' + assetprice + '&assetname=' + assetname + '&assettb=' + assettb + '&txhash=' + txhash;
-                        res.redirect('/transaction-result/?' + qstring);
-                        addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
-                        generateBlock();
-                        sendAsset(assetid, assetname, req.user.email);
-                    }
-                });
-        }
+                request(options, function check(err, res, body) {
+                        if (err) {
+                            console.log(err);
+                            return (err);
+                        }
+                    })
+                    .on('data', function (chunk) {
+                        str += chunk;
+                    })
+                    .on('end', function () {
+                        var txObj = JSON.parse(str);
+                        var txhash = txObj.hash;
+                        if (txhash === undefined) {
+                            res.redirect('/asset/' + assetid + '?#funding-problem');
+                        } else {
+                            var debitOrCreditFlag = 1; //1 for debit, 0 for credit
+                            var qstring = 'assetid=' + assetid + '&price=' + assetprice + '&assetname=' + assetname + '&assettb=' + assettb + '&txhash=' + txhash;
+                            res.redirect('/transaction-result/?' + qstring);
+                            addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
+                            generateBlock();
+                            sendAsset(assetid, assetname, req.user.email);
+                        }
+                    });
+            }
 
-
+        }, 400);
     });
 
     app.get('/transaction-result', function (req, res) {
