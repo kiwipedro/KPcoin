@@ -209,7 +209,7 @@
     
     @media (min-width: 600px) {
         .splash {
-            /*            justify-content: center;*/
+                        justify-content: center;
             background-position: center;
         }
     }
@@ -473,6 +473,7 @@
     th:hover {
         color: black;
         text-decoration: underline;
+        cursor: pointer;
     }
     
     p {
