@@ -275,8 +275,22 @@ module.exports = function (app, passport) {
 
 
     app.post('/password-reset', function (req, res) {
-        sendResetToken(req.body.email);
-        res.redirect('/password-reset-sent');
+        sendResetToken(req.body.email, function (result){
+            if (result === 'ok') {
+                res.redirect('/password-reset-sent');
+            } else {
+                res.redirect('/password-reset-not-confirmed');
+            }
+        });
+       
+    });
+    
+    app.get('/password-reset-not-confirmed', function (req, res){
+        res.render('password-reset-not-confirmed', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
     });
 
     app.get('/new-password-confirmed', function (req, res) {
