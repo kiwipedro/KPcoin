@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/sha256.js"></script>	
+    <script>
+     $(window).load(function() {
+        document.getElementById("txtA").defaultValue = "000...000";
+    });
+    </script>
+    <script language="javascript" type="text/javascript">
+            function clearFields() {	
+                document.getElementById('txtA').value = "";
+                document.getElementById('txtB').value = "";
+                document.getElementById('txtC').value = "";
+                document.getElementById("txtA").focus();
+            }
+
+            function nextRound() {
+                document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+               var strHash = document.getElementById('txtC').value;
+                if (strHash.length === 0) {
+                     document.getElementById('txtB').focus();
+                    return;
+                }
+                document.getElementById('txtA').value = strHash.slice(0,3) + '...' + strHash.slice(61,64);
+                document.getElementById('txtB').value = "";
+                document.getElementById('txtC').value = "";
+                document.getElementById('txtC2').value = '';
+                document.getElementById('txtB').focus();
+                var modal = document.getElementById('dialog-confirm');
+                modal.style.display = "none";
+                
+            }
+            
+            function replaceAll(find, replace, str) {
+              return str.replace(new RegExp(find, 'g'), replace);
+            }
+
+            function calcHash() {
+                var strTxtA = document.getElementById('txtA').value
+                var strTxtB = document.getElementById('txtB').value;
+                strTxt = strTxtA + strTxtB;
+                if( strTxtB.length == 0 ) {
+                    document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+                    document.getElementById('txtC').value = "";
+                    document.getElementById('txtC2').value = ""
+                    return;
+                }
+                    if( strTxt.search("\r")>0 ) strTxt=replaceAll( "\r", "", strTxt );
+                    var strHash = hex_sha256( strTxt );
+                    document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+                    document.getElementById('txtC').value = strHash;
+                    document.getElementById('txtC2').value = strHash.slice(0,3) + '...' + strHash.slice(61,64);
+                    if (strHash.slice(0,1) === '0') {
+                        document.getElementById('txtC').style.backgroundColor = 'red';
+                    }                   
+            }
+                
+            function promptConfirm () {    
+ 
+                var strHashCheck = document.getElementById('txtC').value;
+                if (strHashCheck.slice(0,1) != 0){
+                       var modal = document.getElementById('dialog-denied');
+                        modal.style.display = "block";
+                        return;
+                }
+                
+                if (strHashCheck.length === 0){
+                    document.getElementById("txtB").focus();
+                    var modal = document.getElementById('new-round-not-valid');
+                    modal.style.display = "block";
+                    return;
+                }
+                var modal = document.getElementById('dialog-confirm');
+                var span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+                
+                window.onclick = function(event) {
+                if (event.target == modal) {
+                modal.style.display = "none";
+                document.getElementById("txtB").focus();
+                return;
+                }
+            }
+        }
+
+        function clearPrompt() {
+         var modal = document.getElementById('dialog-confirm');
+         modal.style.display = "none";
+         document.getElementById("txtA").focus();
+        }
+        
+    function clearDenied(){
+     var modal = document.getElementById('dialog-denied');
+        modal.style.display = "none";
+         document.getElementById("txtB").focus();
+        }
+
+    function clearDeniedNewRound() {
+         var modal = document.getElementById('new-round-not-valid');
+        modal.style.display = "none";
+         document.getElementById("txtB").focus();
+        
+    }
+        
+</script>
+
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav__container">
+            <div class="nav__brand">
+                <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+
+            </div>
+            <div class="nav__menu-mobile">
+                <a href="#" onclick="toggleNavbarLinks()">
+                    <span class="nav__menu-mobile__text"></span>
+                    <span class="nav__menu-mobile__icon fa fa-bars"></span>
+                </a>
+            </div>
+
+
+
+            <ul class="nav__links">
+                <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li class="nav__link">
+                        <a href="<%=navSignedOut[i].Link%>">
+                            <%=navSignedOut[i].Title%>
+                        </a>
+                    </li>
+                    <%}
+            } else {
+          for(var i=1; i<navSignedIn.length;i++){%>
+                        <li class="nav__link">
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}
+                }%>
+            </ul>
+        </div>
+    </nav>
+    
+<div id="dialog-confirm" class="modal" title="Confirm Action">  
+<div class="modal-content">
+<!--    <span class="close">&times;</span>-->
+    <p>Are you sure you want to start the next round?</p>
+        <br>
+        <button type="button" class="account-button__button account-button__button-narrow" onclick="nextRound()">Yes</button>
+        <br>
+        <button type="button" class="account-button__button-dark"onclick="clearPrompt()">Cancel</button>
+  </div>
+</div>
+    
+<div id="dialog-denied" class="modal" title="Confirm Action">  
+<div class="modal-content">
+<!--    <span class="close">&times;</span>-->
+    <p>The Result doesn't start with the target number of zeroes. <br><br>
+        Check and edit your previous block hash id and/or nonce and try again.</p>
+        <br>
+        <button type="button" class="account-button__button-dark" onclick="clearDenied()">OK</button>
+  </div>
+</div>
+    
+<div id="new-round-not-valid" class="modal" title="Confirm Action">  
+<div class="modal-content">
+<!--    <span class="close">&times;</span>-->
+    <p>No result from previous round<br>
+        <br>
+        <button type="button" class="account-button__button-dark" onclick="clearDeniedNewRound()">OK</button>
+  </div>
+</div>
+
+<main>
+ <div class="splash__no-background">
+
+        <div class="light__background">    
+            <div class="copy__block-center-medium-large">
+                <h3>Blockchain Bingo!</h3>
+                <p>Use this page to create a winning number</p>
+            </div>
+        </div>
+      
+     
+    <div class="splash__no-background-no-top-margin copy__block-center-medium-large">
+        <br>
+
+	Previous block hash id:
+        <br>
+        (Shortened)
+        <br>	 
+    <input type="text" class="texts" rows="1" maxlength="9" id="txtA">
+        <br>
+        <br>
+    
+    Enter the nonce (0-999,999):
+        <br>
+	<input type="text" id="txtB" class="texts" rows="1" maxlength="6" onkeyup="calcHash();" autofocus/>
+
+        <br>
+        <br>
+	
+	Result:	
+        <br>
+	<textarea id="txtC" class="bb__result" disabled></textarea>
+        <br>
+          <br>
+    Shortened result:
+      <br>
+        <input id="txtC2" style="height: 2rem;" class="bb__result" disabled/>
+        
+        
+        <div class="account-buttons center-aligned">
+            <div class="account-button">
+                <button id="btn-next-round"class="account-button__button" type="button" onclick="promptConfirm()";>Start next round</button>
+<!--                 <button class="account-button__button" type="button" onclick="promptConfirm()";>Go Back One Block Id</button>-->
+            </div>
+        </div>
+    
+        </div>
+          </div>
+
+        <div class="footer">
+
+            <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+        </div>
+    </main>
+    <!-- /.container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        toggleNavbarLinks = function() {
+            var navbarLinks = document.getElementsByClassName('nav__links')[0];
+            navbarLinks.classList.add('nav__links--toggled');
+            if (navbarLinks.classList.contains('nav__links--open')) {
+                navbarLinks.classList.remove('nav__links--open');
+            } else {
+                navbarLinks.classList.add('nav__links--open');
+            }
+        }
+
+    </script>
+</body>
+
+</html>
