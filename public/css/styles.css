@@ -45,6 +45,7 @@
         left: 0;
         width: 100%;
         background-color: white;
+        z-index: 1;
     }
     /*
          * The container is required as there needs to be something full-width for the links to
@@ -60,6 +61,7 @@
         padding: 1rem;
         box-sizing: border-box;
         height: 4rem;
+        
     }
     
     .nav__brand {
@@ -209,7 +211,7 @@
     
     @media (min-width: 600px) {
         .splash {
-                        justify-content: center;
+            justify-content: center;
             background-position: center;
         }
     }
@@ -592,16 +594,30 @@
     }
     
     .copy__block-center-medium {
-        font-size: 90%;
+        /*        font-size: 90%;*/
         text-align: center;
         margin-left: auto;
         margin-right: auto;
         width: 480px;
     }
     
-    @media (max-width: 490px) {
+    @media (max-width: 480px) {
         .copy__block-center-medium {
-            width: 320px;
+            width: 300px;
+        }
+    }
+    
+    .copy__block-center-medium-large {
+        /*        font-size: 90%;*/
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 767px;
+    }
+    
+    @media (max-width: 767px) {
+        .copy__block-center-medium-large {
+            width: 300px;
         }
     }
     
@@ -654,3 +670,98 @@
         z-index: 9994;
         background: url('/img/tx-5.png') 50% 50% no-repeat rgb(249, 249, 249);
     }
+    
+    .thin__padding {
+        padding: 1px 1px 1px 1px;
+        margin: 0.5rem;
+    }
+    
+    pre {
+        margin: 0.5rem;
+    }
+    
+    .texts {
+        flex: auto;
+        width: 300px;
+        height: 2rem;
+        line-height: 18px;
+        resize: vertical;
+        position: relative;
+        resize: none;
+       
+    }
+
+    
+    .bb__result {
+        flex: auto;
+        color:white;
+        background-color:#0f7a86;
+        width: 300px;
+        height: 2.5rem;
+        resize: vertical;
+        position: relative;
+        resize: none;
+          text-align: center;
+    }
+ 
+    .bb__result-dimmed {
+        flex: auto;
+        color:darkgray;
+        background-color:beige;
+        width: 300px;
+        height: 3rem;
+        resize: vertical;
+        position: relative;
+        resize: none;
+        text-align: center;
+    }
+    
+    #txtA,
+    #txtB {
+        font-size: 14px;
+    }
+    
+    #txtC {
+        font-size: 14px;
+    }
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+    text-align: center;
+    
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -66,48 +66,138 @@
                 <br>
                 <h4>Discover More</h4>
             </div>    
-                <p class="copy__aligned-left">
+                <p class="copy__aligned-left black__font">
 
 In this section we will discuss as much to do with cryptocurrencies as possible without breaking your brain - and if your brain survives intact, then there will be suggestions for further reading or watching or listening. 
             <br>
             <br>
 
 What is money?
-Cash, dosh, mulah, cheese, paper, the filthy lucre, wedge, and of course the root of all evil: there are plenty of pseudonyms for money, which is invariably a sign of something’s importance and ubiquity. Money however, for all its pervasiveness is not that easy to define.
-   <br>
-
-Is it the coins in your pocket?  Is it the balance figure on your bank statement? Is the $US1.5 trillion that was created by a few keystrokes on a computer at the Federal Reserve Bank of America in 2008 to bailout the banking system?  These are certainly examples, but for a definition it might be better to say that is simply a way of ascribing value to items so they can be exchanged between people.
+Cash, dosh, mulah, cheese, paper, the filthy lucre, wedge, and of course the root of all evil: there are plenty of pseudonyms for money, but when defining in exact terms, it's meaning is a little more elusive.
+                    <br>
                     <br>
 
-You can exchange the coins in your pocket for a lollipop.  You look at your bank balance and think about how many more zeroes you need on the end of that figure to exchange it for a horse/car/can of baked beans. And the officer at the Fed who was in charge of adding over a trillion dollars to the bank accounts of America’s largest financial institutions was hoping that in exchange they would avoid the collapse of the world’s economy. Bargain!
+Is it the coins in your pocket?  Is it the balance figure on your bank statement? Is the $US1.5 trillion that was created by a few keystrokes on a computer at the Federal Reserve Bank of America in 2008 to bailout the banking system?  These differing examples seem right, so a proper definition must be broad enough to capture them as well as all of the other practical examples you might think of. So let's simply define money as a way of assigning an agreed value to goods and services so that they can be exchanged between people.
+ <br>
+<br>
+
+You can exchange the coins in your pocket for a lollipop.  You look at your bank balance and judge whether you have enough to exchange it for a horse or car or a can of baked beans. And the officer at the Fed who placed over a trillion dollars in the bank accounts of America’s largest financial institutions was expecting that in exchange they would avoid the collapse of the world’s economy. Bargain!
+                    <br>
                     <br>
 
 There is an interesting fiction in the concept of money:  it only works if we all believe it works. In Yuval Noah Harahi’s excellent book “Sapiens” he calls the development of money a “purely mental revolution. It involved the creation of a new inter-subjective reality that exists solely in the people’s shared imagination”. In other words, if you believe a pint of Guinness can be exchanged for a €5 note and the bartender believes it as well, then sláinte, the system works!
 <br>
+<br>
 More on this subject:  listen to this podcast https://www.thisamericanlife.org/radio-archives/episode/423/the-invention-of-money
                     <br>
+                    <br>
 
-Enter the Cryptocurrency
+Enter the cryptocurrency
                     <br>
                     <br>
 In 2008 a mysterious whitepaper appeared on The Cryptography Mailing list at metzdowd.com.  Nothing mysterious about the content of the article, but with the person (or persons) who wrote it. Its author was Satoshi Nakamoto: an unfamiliar name in a community where unfamiliarity was unusual, particularly as the titular “Bitcoin: A Peer-to-Peer Electronic Cash System” paper seemed to arrive as a fully-formed and thoroughly tested solution for something that many in the community had tried to build before and had failed: a robust, cryptographic, trustless, decentralised electronic money system.
                     <br>
+                    <br>
 
-The whitepaper outlined how transactions could be clumped into a block, which was then stamped with a hashed cryptographic identification and placed at the end of chain of previously created blocks, with the prior block’s id baked into its own. This would ensure that transactions of a certain “depth” would be practically impossible to alter: so everyone could trust that the transactions were accurate, irrefutable and immutable.  Or more exactly everyone could believe it.  And belief is all we humans need for a system to work.
+The whitepaper outlined how transactions could be clumped into a block, which was then stamped with a hashed cryptographic identification and placed at the end of chain of previously created blocks, with the prior block’s id baked into its own. This would ensure that transactions of a certain “depth” would be practically impossible to alter: so everyone could trust that the transactions were accurate, irrefutable and immutable.
 <br>
-                    
-And so was born bitcoin, the blockchain and an overnight sensation a decade in the making.  This whitepaper has spawned a whole new industry, inspired huge innovation in areas completely unrelated to currency and may just have sown the seeds for the next global financial crises.
+<br>
+And so was born bitcoin and the "blockchain" and an overnight sensation a decade in the making.  The whitepaper spawned whole new industries, billions of dollars of investment and inspired innovation in diverse and hitherto unrelated fields.  It has also, inevitably, inspired fraudsters, charlatans and hackers to steal huge amounts from naive and badly advised citizens.
+                    <br>
                     <br>
 
 Further reading: you can actually read the whitepaper here: https://bitcoin.org/bitcoin.pdf
 Or for a good historical account of how bitcoin developed there is an excellent Netflix documentary called “Banking on Bitcoin” 
 https://www.netflix.com/gb/title/80154500
                     <br>
+                    <br>
+                    
+How does KPcoin work?
+                <br>
+                <br>
+KPcoin is essentially the same as bitcoin: it uses a library attached to the core bitcoin software designed to work with Node.JS, which is language that the website is written in. This library is known as bcoin (LINK).  Bcoin in its turn uses the the core bitcoin software as its base - so there is a direct technical link between KPcoin and the bitcoin software. See the below for a deeper analysis of bitcoin and the key differences between bitcoin and KPcoin. In this section we'll go through what is happening when you log into the KPcoin website, view your wallet, make a transactions, and the steps the KPcoin network takes to validate that transaction.
+        <br>
+        <br>
+Primer:
+       <br>
+Public key cryptography (LINK) is the foundation of ownership on the bitcoin and KPcoin network. As it applies here, and in very basic terms, you have two keys: a private key and a public key. An amount of value being sent to you is "locked" by the sender by tagging it with your public key, and can only be "unlocked" (i.e. spent) by the person who holds the private key. Your public key is public and private key should be...well...you guessed it: private. Your balance is simply the total of unspent transactions you have associated with your . 
+      <br>
+        <br>
+                    
+The most important part of the bitcoin protocol is the transaction (which you will sometimes see referred to as TX): they track and store the value of currency that belongs to the private key's owner, they are the basis of blocks in the block chain and they generate a reward to a "miner" who confirms the transaction on behalf of the network.
+        <br>
+        <br>
+In order to initiate or receive a transaction you need to have an application called a "wallet".  These can be thought of the digital equivalent of a real-world wallet (or purse), but this is only really for convenience - most wallet applications can and do perform many more tasks. Probably the most odd thing about a cryptocurrency wallet is that is really is just an abstraction of your private key.  You can have as many wallets as you want, but the amount of money is linked to your private key. If you set up 10 different wallets with the same private key you don't get 10x your balance!  All you're doing is making your wallet link with your transaction history which is stored on the blockchain. 
+                    
+<br>
+    <br> 
+When receiving money, the sender will simply tag the output of the transaction with your public key, which everyone on the network has can see and has access to. However if you want to go on and spend the proceeds of that transaction, only the person who has access to the associated private key can do so. When sending money, or making a purchase you will have to find a transaction (or multiple transactions) that add up to more than than the purchase price, tag it with the recipient's public key and "unlock" the previous transaction/s with your private key. Luckily a wallet will scan your available unspent outputs and form a transaction in accordance with the rules of the protocol: you don't have to do any clever programming, the wallet does it all for you!
+<br>
+    <br>
+You could build your own wallet software, but in order to successfully transact you'd have to make sure it can construct transations properly. If you are using bitcoin it is far easier (and safer) just to download a reputable wallet - the bitcoin.org website is excellent starting place when choosing one(LINK). 
+<br> 
+        <br> 
+KPcoin comes with a web wallet hosted on the website for you - in fact that's the only type of wallet you can use with KPcoin as it is a closed system (see the differences between bitcoin and KPcoin below).  This is normally not recommended as it means your private key is stored on someone else's system. On the plus side it usually means that you don't have to worry about losing your private key - as the website will usually keep back ups, but it does mean you have to trust that the website company will be able to keep your data safe. On the personal side you can have a wallet on your phone, on a USB stick, a piece of paper or even in your brain (by memorising a pass phrase). Although technically the last two are just examples of storing your private key offline: in order to transact you will still need some sort of wallet software connected to the network.  With a personal wallet the safekeeping of your private key is entirely your responsbility.
+    <br>
+    <br>    
+A "full node" is a computer that runs a full version of the bitcoin or KPcoin protocol, keeps a copy of the history of all transactions and connects to other nodes in the network to inform them of transactions and validate other node's blocks. 
+      <br>
+    <br>                
+"Miners", who are also known as bookkeepers, usually run a full node as they need the most comprehensive and up-to-date version of the transaction history so the can build new unconfirmed transactions into blocks. After assembling a candidate block, the miner enters a race with other miners to find a number lower than than that of the network's target. This target is aquired through repeated attempts at hashing the block's header (which includes the previous block's hash number), which produces a random number and by adding and iterating a variable number (called a nonce) trillions of times a second, new attempts at reaching the target are made. They repeat until they're lucky enough to get under the target, or if they get notification from another miner that they've been successful (at which point they give up on this race, and move on to the next). If they win the race they announce it to all other miners, who validate the result and the block is then placed at the tip of the blockchain. The miner can now include a special transaction (called a coinbase transaction) in the block where they reward themselves with bitcoin (essentially creating money). The randomness of the target number means the miners have to do work to find it, and since it is performed according to the rules of the network and is validated by the other miners, it can be proved.  This is why it is called "Proof-of-Work".
+<br>
+<br>
+Since the winning hash number includes the previous block's hash number, blocks can only ever be in sequence. Given the difficulty and work that goes into finding the target number, the sequence is impossible to break or forge. If two miners happen to find hash number at the same time, then there will temporarily be a fork in the chain. However whoever wins the next block will chose the spur of the fork that they will build on (by choosing one of the forked block's hash number to include in their candidate block header) and the other block will be orphaned.  Any non-duplicated transactions from this orphaned block go back into the unconfirmed transaction pot and will be picked up again in the next round. 
+<br>
+<br>                 
+                    
+Logging in:
+As soon as you log into the site a transaction is created to send 500,000 pedros from a miner's address to your address.  
+  
+                    
+                    
+                    
+Bitcoin analysed:
+                     <br>
+                    <br>
+There are four main elements to bitcoin: the software - known as the bitcoin protocol.  The blockchain - which is the public ledger which the network uses to log all transactions. The consensus rules - the way which independent members of the network agree on the validity of transactions and issuance of coins and the Proof-of-Work alogrithm - a way of ensuring the integrity of the blockchain.
+                     <br>
+                    <br>
+                    
+The software:<br>
+The bitcoin protocol was defined initially by Satoshi Nakamoto in the original bitcoin whitepaper, but the ongoing stewardship is performed by group of volunteers.  It is an open-source software hosted on GitHub (LINK!!), which means anyone can download the software and play with it, but the master version is controlled by a core development team. Anyone can suggest changes, which are vetted by the core team and if the changes are "sensible" they are proposed to the network as Bitcoin Improvement Proposal (BIPS). "The network" in the case is everybody who uses bitcoin, but to think that this is a completely egalitarian situation where every one has the same amount of influence is euphemistic: those companies who run big exchanges or mining pools have more of a say in the implemenation of any BIPS.   
+<br><br>
+                    
+As with most human endeavours that involve large groups, there are differences of opinion. Probably the most famous example is the problem of the block size on the bitcoin blockchain, where lines are drawn between those who believe a larger block size is essential for speeding up transaction confirmations, and those who reject it on the grounds that this would cause extra storage costs and goes against some of the core principals that Satoshi outlined in her whitepaper. There have already been two bitcoin-based cryptocurrencies with their own blockchains (bitgold and bitcash) that have gone off on their own "forks" to solve the dispute, but in BIP141 - "Segregated Witness" there has been a proposal to change the native bitcoin blockchain to allow a larger block size, and separate out the digital signature part of the transaction to free up even more space. As at the time of writing it is not clear that all of the miners on the bitcoin network would accept this change, which would lead to dangerous split, which at the least would cause confusion and at worst lead to a full abandonment of the protocol.                  
+ <br>
+<br>
+To learn more about bitcoin and the some of the wrangling that has been taking place over block size click here:
+<br>
+<br>
+The bitcoin software is, in comparison to most widespread applications, very simple: this is deliberate to make it more resistant to hacking. In fact some of the architecture date back to the 1970s, and while this reduced complexity reduces the number of possible applications that can be built on the system, it increases it's robustness.  Ethereum conversely allows entire software applications to be built on its blockchain by anyone, which gives it much more flexibility, but introduces many more points of attack by malicious actors.  Given that bitcoin is a store of value (and for some lucky early adopters, quite a large store!), compulsorily peer-to-peer, open to all, it's resistance to attack is of huge importance.
+        
+  
+ <br>
+<br>
+The blockchain:<br>
+Distributed databases and distributed ledger technology is not new. Anytime you've shared a spreadsheet via email you say that you have created you're own distributed database, although a fairly clunky one that is difficult govern and control (if you have ever done this in real life you'll know what I mean). One of the great innovations in the whitepaper was to clump transactions into blocks of data, sign those blocks with a hashed id, and then use that id as part the hashed id of the next block: creating a sequence that cannot be refuted or broken. Creating discrete blocks of data like this is certainly not the best way to design a database, but the genius of this invention is  gives you the *possibility* of protecting the data in the blocks, and *possibility* of full integrity over the full sequence of blocks. 
+                    
+However on its own a blockchain doesn't ensure immutability and integrity - for that you need a little more cryptography thrown in.
+<br>
+<br>
+                    
+Consensus rules: <br>
+The validity of the blocks being created is of primary concern to the network.  No-one wants to be diddled, but at the same time they want to be able to play the game.  With that in mind the code that bitcoin is based on is actually very simple With the introduction of cryptography into the bitcoin protocol we have a way of making it impossible to cheat (ok, ok - properly speaking "improbable", but the chances of you breaking the cryptography in bitcoin makes your chances of winning all of the lotteries in the world, on the same day, while wearing a pink fedora, a shoo-in).
+ <br>
+<br>
+Proof-of-Work: <br>
+The central characteristic of cryptography is the trapdoor: it's very easy to turn a dial one way, but impossible to turn it the other. With the hashing alogrithims used in bitcoin (SHA-256 for the most part), this is very much the ratchet affect in action.  When creating a the hashed id for a block, the miner will use the data in the block's header (which includes the version of software, the previous block id, a timestamp and a variable number) to create the hash (a hexadecimal number with 256-bits in length). In order to the win the block prize, the miner must plug in a different number to the variable number field over and over again until they "happen" upon the number below the network target.  Once this number is found, it is very easy to prove that its correct (just tell the other miners what variable number you used), but impossible to predict a number that would work.
 
-How does Bitcoin work?
-                    <br>
-                Blah
-                    <br>
+
+                    
+                    
+To learn more about blockchain tech - go here:
+
+
 
 How does KPcoin differ from Bitcoin?
                     <br>

@@ -50,15 +50,87 @@
     </nav>
 <main>
 <div class="splash__no-background">
- <% var txDetailsObj = JSON.parse(txdetails) %>
+   <% var txObj = JSON.parse(tx) %>
+          <% var txHashStr = JSON.stringify(txObj.hash) %>
+          <% var txHashStrFirstPart = txHashStr.slice(1,32) %>
+          <% var txHashStrSecondPart = txHashStr.slice(32,txHashStr.length -1) %>
+        <div class="copy__block-inverted">
+          <h3>Transaction Details - The Important Bits</h3>
+            </div>
+             <span class="copy__block-center-medium">
+                 <br>
+           <b> <p>Hash:</p></b>
+           <div class="copy__block-center-medium"><pre><%=txObj.hash%></pre></div>
+           
+            <small class="black__font" style="font-style: italic;text-align:left;">This unique identifier is used by your wallet and the miners on the network to lookup and check spent and unspent transactions.</small>
+            <br>    
+            <br>
+        
+                 <b><p>Height:</p></b>
+                 <div class="copy__block-center-medium"><pre><%=txObj.height%></pre></div>
      
-    <h4><span>Transaction details </span></h4>
-        <br>
-         <div class="copy__aligned-left">  
-         <pre align="left" style="word-wrap: break-word; white-space: pre-wrap;"> <%=txdetails%></pre>
-             </div>
+            <small class="black__font" style="font-style: italic">This is the number of blocks in the chain at the time the transaction was confirmed. If this reads "-1" it means the node in the network you're attached to has not updated yet - just refresh this page and it will be up-to-date.</small>
+            <br>    
+            <br>
+    
+                 <b><p>Fee:</p></b>
+                 <div class="copy__block-center-medium"><pre><%=txObj.fee%>P</pre></div>
+     
+            <small class="black__font" style="font-style: italic">KPcoin uses the same logic as bitcoin to calculate a fee per transaction. This figure is calculated by the size of the data used to form the transaction and not the amount being paid/received.  This is because the size of a block is limited, so transactions made up of lots of smaller inputs will use up valuable block size. Once all of the bitcoin (and KPcoin) has been mined, then the main way miners will make money is via transaction fees like this.</small>
+            <br>    
+            <br>
+                 
+             <b><p>Confirmations: </p></b>
+                 <div class="copy__block-center-medium"><pre><%=txObj.confirmations%></pre></div>
+     
+            <small class="black__font" style="font-style: italic">This is the "depth" of the block that holds the transaction. If this says "1" the transaction is in the block at the end of the chain. For larger transactions it's recommended to wait for 6 confirmations before taking action (e.g. sending goods to a customer). This is because at depth of 6 you can be sure that it's logically impossible to reverse or "double spend" the outputs.</small>
+            <br>    
+            <br>
+                 
+            <b><p>Input Values:  </p></b>
+                <% for(var i=0; i<txObj.inputs.length;i++){%>
+                 <% var commaval = txObj.inputs[i].value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+              <div class="copy__block-center-medium"><pre><%=commaval%>P</pre></div>
+                 <%}%>
+               
+     
+            <small class="black__font" style="font-style: italic">This is the value of an output of a previous transaction (or multiple transactions) that will be used to pay for the goods or services provided. Outputs cannot be subdivided, so the input will reference outputs that total more than that purchase price, with any left over being paid back to the purchaser in a "change" output (see outputs below). The input also includes an "unlocking" script (aka a digital signature) which proves that the payer is allowed to authorised to transfer the previously unspent transaction. If this value is "0", the input has come from a special transaction called a "coinbase" - which is the reward paid to a miner when they win the block race. The current reward is 50Kpc or 5,000,000,000P.</small>
+            <br>    
+            <br>
+                 
+            <b><p>Output Values:     </p></b>
+                <% for(var i=0; i<txObj.outputs.length;i++){%>
+                <% var commaval = txObj.outputs[i].value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+                 <div class="copy__block-center-medium"><pre><%=commaval%>P</pre></div>
+                 <%}%>
+            
+     
+            <small class="black__font" style="font-style: italic">There will be at least two values here, one will be the purchase price, the other/s will be the change given back to the purchaser (minus the fee taken). The change becomes an unspent transaction output (UTXO) which can be used as an input for another transaction.</small>
+            <br>    
+            <br>
+    
+                 
+                  <b><p>Raw Transaction Details</p></b> 
+                  <small class="black__font" style="font-style: italic">If you want to geek out, here is a list of all of the transaction details.</small>
+            <br>    
+            <br>
+                 
+      
+         <pre align="left" style="word-wrap: break-word; white-space: pre-wrap;"><%=tx%></pre>
+          </span>
 
     </div>
+    
+    <div class="footer">
+      
+        <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+    </div>    
+
     
 
 </main>
@@ -67,7 +139,17 @@
     <script src="../js/script.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-
+    <script>
+             function showAnimation() {
+            $(window).load(function() {
+                $( ".loader__first" ).fadeIn(1000).delay( 5000 ).fadeOut(100);
+                $( ".loader__second" ).delay( 12000 ).fadeOut(100);
+                $( ".loader__third").delay( 18000 ).fadeOut(100);
+                $( ".loader__fourth").delay( 22000 ).fadeOut(100);
+                $( ".loader__fifth").delay( 28000 ).fadeOut(1000);
+            });
+        }
+    </script>
 </body>
 
 </html>

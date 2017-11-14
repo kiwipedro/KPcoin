@@ -398,7 +398,7 @@ module.exports = function (app, passport) {
         viewTxDetail(id, hash, function (err, detailArray) {
             detailArray = detailArray.substr(9, detailArray.length);
             res.render('transaction-detail.ejs', {
-                txdetails: detailArray,
+                tx: detailArray,
                 navSignedIn: navOptions.navSignedIn
             });
 
@@ -500,7 +500,6 @@ module.exports = function (app, passport) {
     });
 
     app.post('/transaction-result', function (req, res) {
-        setTimeout(function () {
             var balance = req.query.balance;
             var assetid = req.query.assetid;
             var assetprice = parseInt(req.query.price);
@@ -546,8 +545,6 @@ module.exports = function (app, passport) {
                         }
                     });
             }
-
-        }, 400);
     });
 
     app.get('/transaction-result', function (req, res) {
@@ -561,7 +558,7 @@ module.exports = function (app, passport) {
 
         viewTxDetail(id, txhash, function (err, detailArray) {
             detailArray = detailArray.substr(9, detailArray.length);
-
+        setTimeout(function () {
             res.render('transaction-result', {
                 assetname: assetname,
                 assettb: assettb,
@@ -571,6 +568,7 @@ module.exports = function (app, passport) {
                 navSignedIn: navOptions.navSignedIn,
                 myval: 1
             });
+           }, 500);
         });
     });
 
@@ -606,6 +604,14 @@ module.exports = function (app, passport) {
 
     app.get('/acceptable-use', function (req, res) {
         res.render('acceptable-use.ejs', {
+            user: req.user,
+            navSignedOut: navOptions.navSignedOut,
+            navSignedIn: navOptions.navSignedIn
+        });
+    });
+    
+       app.get('/blockchain-bingo', function (req, res) {
+        res.render('blockchain-bingo', {
             user: req.user,
             navSignedOut: navOptions.navSignedOut,
             navSignedIn: navOptions.navSignedIn
