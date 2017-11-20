@@ -65,12 +65,14 @@
                     return;
                 }
                     if( strTxt.search("\r")>0 ) strTxt=replaceAll( "\r", "", strTxt );
+//                    var isnum = /^\d+$/.test(strTxtB);
+//                    console.info('isnum is '+ isnum);
                     var strHash = hex_sha256( strTxt );
                     document.getElementById('txtC').style.backgroundColor = '#0f7a86';
                     document.getElementById('txtC').value = strHash;
                     document.getElementById('txtC2').value = strHash.slice(0,3) + '...' + strHash.slice(61,64);
                     if (strHash.slice(0,1) === '0') {
-                        document.getElementById('txtC').style.backgroundColor = 'red';
+                        document.getElementById('txtC').style.backgroundColor = 'green';
                     }                   
             }
                 
@@ -216,9 +218,9 @@
         <br>
         <br>
     
-    Enter the nonce (0-999,999):
+    Enter the nonce (0-9999):
         <br>
-	<input type="text" id="txtB" class="texts" rows="1" maxlength="6" onkeyup="calcHash();" autofocus/>
+	<input type="text" id="txtB" class="texts" rows="1" maxlength="4" onkeyup="calcHash();" autofocus/>
 
         <br>
         <br>
