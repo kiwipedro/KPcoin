@@ -71,15 +71,15 @@
                     document.getElementById('txtC').style.backgroundColor = '#0f7a86';
                     document.getElementById('txtC').value = strHash;
                     document.getElementById('txtC2').value = strHash.slice(0,3) + '...' + strHash.slice(61,64);
-                    if (strHash.slice(0,1) === '0') {
-                        document.getElementById('txtC').style.backgroundColor = 'green';
+                    if (strHash.slice(0,2) === '00') {
+                        document.getElementById('txtC').style.backgroundColor = 'red';
                     }                   
             }
                 
             function promptConfirm () {    
  
                 var strHashCheck = document.getElementById('txtC').value;
-                if (strHashCheck.slice(0,1) != 0){
+                if (strHashCheck.slice(0,2) != 00){
                        var modal = document.getElementById('dialog-denied');
                         modal.style.display = "block";
                         return;
