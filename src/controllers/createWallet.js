@@ -6,7 +6,6 @@ function createWalletifEmailConfirmed(email) {
     var ps = new sql.PreparedStatement();
     ps.input('email', sql.VarChar(50));
     ps.input('confirmedlogin', sql.Bit());
-    console.log('running first SQL call');
     ps.prepare('select id, email, confirmedlogin, haswallet from kpcusers where email = @email', function (err) {
         ps.execute({
             email: email

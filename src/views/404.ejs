@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav__container">
+            <div class="nav__brand">
+                <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+
+            </div>
+            <div class="nav__menu-mobile">
+                <a href="#" onclick="toggleNavbarLinks()">
+                    <span class="nav__menu-mobile__text"></span>
+                    <span class="nav__menu-mobile__icon fa fa-bars"></span>
+                </a>
+            </div>
+
+
+
+            <ul class="nav__links">
+                <% if (!user) {
+          for(var i=2; i<navSignedOut.length;i++){%>
+                    <li class="nav__link">
+                        <a href="<%=navSignedOut[i].Link%>">
+                            <%=navSignedOut[i].Title%>
+                        </a>
+                    </li>
+                    <%}
+            } else {
+          for(var i=1; i<navSignedIn.length;i++){%>
+                        <li class="nav__link">
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}
+                }%>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="splash__no-background">
+            
+        <div class="thick__padding">
+            <h4>Sorry, that page doesn't exist.  <a href="/"><u>Click here</u></a> to return to the homepage.</h4>
+            </div>
+
+
+          </div>
+
+        <div class="footer">
+
+            <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+            <a href="acceptable-use">Acceptable-use policy </a>&ndash;
+           <a href="privacy-cookie-policy">Privacy and cookie policy</a>
+            <br>
+            &copy;myAxis Ltd (2017)        
+        </small>
+        </div>
+    </main>
+    <!-- /.container -->
+    <!-- script references -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        toggleNavbarLinks = function() {
+            var navbarLinks = document.getElementsByClassName('nav__links')[0];
+            navbarLinks.classList.add('nav__links--toggled');
+            if (navbarLinks.classList.contains('nav__links--open')) {
+                navbarLinks.classList.remove('nav__links--open');
+            } else {
+                navbarLinks.classList.add('nav__links--open');
+            }
+        }
+
+    </script>
+</body>
+
+</html>

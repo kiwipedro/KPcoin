@@ -1,89 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>KPcoin</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-        <link rel="icon" href="assets/favicon.png">
-          <link rel="stylesheet" href="css/bootstrap.min.css">           
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"/>
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <link href="css/styles.css" rel="stylesheet"> 
-        <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" /> 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/css/tabulator.min.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/js/tabulator.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script> 
-        
-	</head>
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/css/tabulator.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/3.3.1/js/tabulator.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+// window.onload = function(){
+//      hideKey()
+//  };
+
+    function showKey (){
+       var x = document.getElementById("showkey");
+         var y = document.getElementById("hidekey");
+        var z = document.getElementById("keyshown");
+            
+        $(document).ready(function(){
+                 $(z).fadeIn(1200);
+                x.style.display = "none";
+                y.style.display = "flex";
+        });
+    }
+
+
+function hideKey(){
+         var x = document.getElementById("showkey");
+         var y = document.getElementById("hidekey");
+        var z = document.getElementById("keyshown");
+            
+       $(document).ready(function(){
+                $(z).fadeOut(400);
+                x.style.display = "flex";
+                y.style.display = "none";
+        });
+}
+ 
+    </script>
+</head>
 
 <body class="font__resize">
-<nav>
-    <div class="nav__container">
-        <div class="nav__brand">
-            <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
-           
-        </div>
-        <div class="nav__menu-mobile">
-            <a href="#" onclick="toggleNavbarLinks()">
-                <span class="nav__menu-mobile__text"></span>
-                <span class="nav__menu-mobile__icon fa fa-bars"></span>
-            </a>
-        </div>     
-    
-    <ul class="nav__links">
-        <% if (!user) {
+    <nav>
+        <div class="nav__container">
+            <div class="nav__brand">
+                <a href="/"> <img alt="" ; src="assets/logo_primary.png" style="max-width:50px;height:50px;"></a>
+
+            </div>
+            <div class="nav__menu-mobile">
+                <a href="#" onclick="toggleNavbarLinks()">
+                    <span class="nav__menu-mobile__text"></span>
+                    <span class="nav__menu-mobile__icon fa fa-bars"></span>
+                </a>
+            </div>
+
+            <ul class="nav__links">
+                <% if (!user) {
           for(var i=2; i<navSignedOut.length;i++){%>
-                    <li class="nav__link"><a href="<%=navSignedOut[i].Link%>"><%=navSignedOut[i].Title%></a></li>
-                        <%}
+                    <li class="nav__link">
+                        <a href="<%=navSignedOut[i].Link%>">
+                            <%=navSignedOut[i].Title%>
+                        </a>
+                    </li>
+                    <%}
             } else {
           for(var i=1; i<navSignedIn.length;i++){%>
-                <li class="nav__link"><a href="<%=navSignedIn[i].Link%>"><%=navSignedIn[i].Title%></a></li>  
-                <%}
+                        <li class="nav__link">
+                            <a href="<%=navSignedIn[i].Link%>">
+                                <%=navSignedIn[i].Title%>
+                            </a>
+                        </li>
+                        <%}
                 }%>
-    </ul>
-</div>
-</nav>
-<main>
+            </ul>
+        </div>
+    </nav>
+    <main>
         <% var walletObj = JSON.parse(wallet) %>
         <% var receiveAddress = walletObj.account.receiveAddress %>
         <% var balance = walletObj.state.confirmed %>
         <% var numberOfTx = walletObj.state.tx %>
         <% var commabalance = balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
 
-    <div class="splash__no-background">
-        
-                        <div>
-                            <div>
-                                <br>
-                            <h2>My Wallet</h2>
-                            <span class="black__font"><p>Check your balance and transaction history</p></span>
-                            
-                           <div class="wallet__introduction center-aligned">
-                            <img src="assets/circle_primary.png" style="max-height:20rem;max-width:20rem;">
-                            <div class="wallet__text-balance">
-                                <h4 style="font-weight:normal;margin:0">Balance </h4>
-                                <h1> <%=balance/100000000%> KPc</h1>
-                                <p>(<%=commabalance%> Pedros)</p>
-                               </div>
-                            </div>
-                                <br>
-                                <b><p>Your current wallet address:</p></b>
-                              <div class="copy__block-center-medium"><pre> <%=receiveAddress%></pre> </div> 
-                                <small class="black__font" style="font-style:italic;">This address is where gift coins and change will be sent. <br> It is in the <a href="https://en.bitcoin.it/wiki/Wallet_import_format" target="_blank"><u>wallet import format</u></a> which makes your public key more lightweight and easier to copy and paste. <br> Your wallet automatically changes this address after every transaction to make it harder (but not impossible) to track your activity.</small>
-                                <br>
-                                <br>
-                            <div class="copy__center-block" style="background-color: #eee;padding:1rem;">                              
-                                <h4><b>Denomination</b></h4>                               
-                            <span class="black__font"> <p> In bitcoin the smallest denomination is a "Satoshi" (1 bitcoin divided by 100 million).
+                            <div class="splash__no-background">
+
+                                <div>
+                                    <div>
+                                        <br>
+                                        <h2>My Wallet</h2>
+                                        <span class="black__font"><p>Check your balance and transaction history</p></span>
+
+                                        <div class="wallet__introduction center-aligned">
+                                            <img src="assets/circle_primary.png" style="max-height:20rem;max-width:20rem;">
+                                            <div class="wallet__text-balance">
+                                                <h4 style="font-weight:normal;margin:0">Balance </h4>
+                                                <h1>
+                                                    <%=balance/100000000%> KPc</h1>
+                                                <p>(
+                                                    <%=commabalance%> Pedros)</p>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <b><p>Your current wallet address:</p></b>
+                                        <div class="copy__block-center-medium">
+                                            <pre id="receiveAddress"> <%=receiveAddress%></pre> </div>
+                                        <form action="/priv-key?receiveaddress=<%=receiveAddress%>" method="post" target="pk-frame">
+                                            <div class="account-buttons center-aligned" id="showkey">
+                                                <div class="account-button">
+                                                    <button type="submit" onclick="showKey()"class="account-button__button">Show Private Key</button>
+                                                </div>
+                                            </div>
+                                             <div class="account-buttons center-aligned" id="hidekey" style="display:none">
+                                                <div class="account-button">
+                                                    <button type="submit" onclick="hideKey()"class="account-button__button">Hide Private Key</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                         <div id="keyshown" class="copy__block-center-medium" style="display:none">
+                                            <iframe src="priv-key" name="pk-frame" id="pk-frame"> </iframe>
+                                        </div>
+
+                                        <br>
+                                        <br>
+                                        <div class="copy__center-block" style="background-color: #eee;padding:1rem;">
+                                            <h4><b>Denomination</b></h4>
+                                            <span class="black__font"> <p> In bitcoin the smallest denomination is a "Satoshi" (1 bitcoin divided by 100 million).
                                 <br>
                                 <br>
                                 In KPcoin the smallest denomination is a "Pedro" (1 KPcoin divided by 100 million).
@@ -92,25 +148,25 @@
                                 Everytime you log in the KPcoin website you get a gift of 0.005 KPcoins or 500,000 Pedros!
                                  </p>
                                  </span>
-                               
-                            </div>   
-                                
-                            </div>
-                
-                            <br>
-                            <span class="black__font">Want to spend some KPc?</span>
-                             <div class="account-buttons center-aligned">
-                                 <div class="account-button">
-                            <button class="account-button__button" type="button" onclick="location.href='/marketplace'";>Visit the Marketplace</button>
-                                </div>
-                            </div>
-                            
-        <div id="txhistory">
-         <h2 id=tables-hover-rows>Transaction History</h2>
-            <span class="black__font"><p>Click on a row to view a detailed breakdown</p></span>
-            <br>
 
-                            <!--
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+                                    <span class="black__font">Want to spend some KPc?</span>
+                                    <div class="account-buttons center-aligned">
+                                        <div class="account-button">
+                                            <button class="account-button__button" type="button" onclick="location.href='/marketplace'" ;>Visit the Marketplace</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="txhistory">
+                                        <h2 id=tables-hover-rows>Transaction History</h2>
+                                        <span class="black__font"><p>Click on a row to view a detailed breakdown</p></span>
+                                        <br>
+
+                                        <!--
 <ul class="list-group">  
   <% currList.forEach( function(currList) { %>
       <li class="list-group-item"><%= currList %></li>
@@ -118,115 +174,131 @@
 </ul>
 -->
 
-                            
-                            <div class=bs-example data-example-id=hoverable-table>
-                                <div id="txtable" class="copy__block-inverted-light">
-                                <table class="table table-hover table-responsive link__visited">
-                                    <thead>
-                                        <tr class="table__header">
-                                            <th>Date/Time of TX</th>
-                                            <th>Name</th>
-                                            <th>Amount (in Pedros)</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <% currList.forEach(function(currList){%>
-                                        <tbody>
-                                            <tr class="clickable-row" data-href="/transaction-detail?txhash=<%=currList.txhash%>">
-                                                <th scope="row">
-<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
-                                                   <%=moment(currList.txdate).format('YYYY-MM-DD, HH:mm');%>
-<!--                                                    </a>-->
-                                                </th>
-                                                <td>
-<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
-                                                    <%=currList.assetname%>
-<!--                                                    </a>-->
-                                                </td>
-                                                <td>
-<!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
-                                                     <% if (currList.txflag === false) { %>
-                                                    <%=currList.txprice%>P
-                                                    <%} else {%>
-                                                    <%=currList.txprice * -1 %>P
-                                                    <%}%>
-<!--                                                    </a>-->
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <% }); %>
-                                </table>
 
-                            </div>
+                                        <div class=bs-example data-example-id=hoverable-table>
+                                            <div id="txtable" class="copy__block-inverted-light">
+                                                <table class="table table-hover table-responsive link__visited">
+                                                    <thead>
+                                                        <tr class="table__header">
+                                                            <th>Date/Time of TX</th>
+                                                            <th>Name</th>
+                                                            <th>Amount (in Pedros)</th>
 
-                            <% if (pageCount > 1) { %>
-                                <ul class="pagination">
-                                    <% if (currentPage > 1) { %>
-                                        <li><a href="/mywallet?page=1#txhistory">&laquo;</a></li>
-                                        <% } %>
-                                            <% var i = 1;
+                                                        </tr>
+                                                    </thead>
+                                                    <% currList.forEach(function(currList){%>
+                                                        <tbody>
+                                                            <tr class="clickable-row" data-href="/transaction-detail?txhash=<%=currList.txhash%>">
+                                                                <th scope="row">
+                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
+                                                                    <%=moment(currList.txdate).format('YYYY-MM-DD, HH:mm');%>
+                                                                        <!--                                                    </a>-->
+                                                                </th>
+                                                                <td>
+                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
+                                                                    <%=currList.assetname%>
+                                                                        <!--                                                    </a>-->
+                                                                </td>
+                                                                <td>
+                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
+                                                                    <% if (currList.txflag === false) { %>
+                                                                        <%=currList.txprice%>P
+                                                                            <%} else {%>
+                                                                                <%=currList.txprice * -1 %>P
+                                                                                    <%}%>
+                                                                                        <!--                                                    </a>-->
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <% }); %>
+                                                </table>
+
+                                            </div>
+
+                                            <% if (pageCount > 1) { %>
+                                                <ul class="pagination">
+                                                    <% if (currentPage > 1) { %>
+                                                        <li><a href="/mywallet?page=1#txhistory">&laquo;</a></li>
+                                                        <% } %>
+                                                            <% var i = 1;
                                   if (currentPage > 5) {
                                   i = +currentPage - 4;
                                   } %>
-                                    <% if (i !== 1) { %>
-                                    <li class="disabled"><a href="#txhistory">...</a></li>
-                                    <% } %>
-                                    <% for (i; i<=pageCount; i++) { %>
-                                    <% if (currentPage == i) { %>
-                                    <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span>
-                                    </li>
-                                    <% } else { %>
-                                        <li>
-                                    <a href="/mywallet?&page=<%= i %>#txhistory"><%= i %></a>
-                                    </li>
-                                    <% } %>
-                                    <% if (i == (+currentPage + 4)) { %>
-                                    <li class="disabled"><a href="#txhistory">...</a></li>
-                                    <% break; } %>
-                                    <% } %>
-                                    <% if (currentPage != pageCount) { %>
-                                    <li><a href="/mywallet?page=<%= pageCount %>#txhistory">&raquo;</a></li>
-                                        <% } %>
-                                    </ul>
-                                    <% } %>
-                          </div>
-             <script>
-            $('#txable').tabulator({
-            columns:[
-            {title:"Date/Time of TX", field:"Date/Time of TX",  sortable:true},
-            {title:"Name", field:"Name", sortable:true},
-            {title:"Amount (in Pedros)", field: "Amount (in Pedros)", sortable:true}
-                  ],
-                });
-          </script>
-                         </div>
+                                                                <% if (i !== 1) { %>
+                                                                    <li class="disabled"><a href="#txhistory">...</a></li>
+                                                                    <% } %>
+                                                                        <% for (i; i<=pageCount; i++) { %>
+                                                                            <% if (currentPage == i) { %>
+                                                                                <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span>
+                                                                                </li>
+                                                                                <% } else { %>
+                                                                                    <li>
+                                                                                        <a href="/mywallet?&page=<%= i %>#txhistory">
+                                                                                            <%= i %>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                    <% } %>
+                                                                                        <% if (i == (+currentPage + 4)) { %>
+                                                                                            <li class="disabled"><a href="#txhistory">...</a></li>
+                                                                                            <% break; } %>
+                                                                                                <% } %>
+                                                                                                    <% if (currentPage != pageCount) { %>
+                                                                                                        <li><a href="/mywallet?page=<%= pageCount %>#txhistory">&raquo;</a></li>
+                                                                                                        <% } %>
+                                                </ul>
+                                                <% } %>
+                                        </div>
+                                        <script>
+                                            $('#txable').tabulator({
+                                                columns: [{
+                                                        title: "Date/Time of TX",
+                                                        field: "Date/Time of TX",
+                                                        sortable: true
+                                                    },
+                                                    {
+                                                        title: "Name",
+                                                        field: "Name",
+                                                        sortable: true
+                                                    },
+                                                    {
+                                                        title: "Amount (in Pedros)",
+                                                        field: "Amount (in Pedros)",
+                                                        sortable: true
+                                                    }
+                                                ],
+                                            });
 
-    </div>
-    </div>
-  <br>
-    <br>
-  
- <div class="footer">
-        <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+
+                            <div class="footer">
+                                <small class="footer_body"><a href="terms-of-use">Terms of use </a>&ndash;
             <a href="acceptable-use">Acceptable-use policy </a>&ndash;
            <a href="privacy-cookie-policy">Privacy and cookie policy</a>
             <br>
             &copy;myAxis Ltd (2017)        
         </small>
-    </div>    
+                            </div>
     </main>
 </body>
-        <!-- /.container -->
-    <!-- script references -->
-    <script src="js/script.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-      jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
+<!-- /.container -->
+<!-- script references -->
+<script src="js/script.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+        });
     });
-      });
-    </script>
+
+</script>
 
 </html>

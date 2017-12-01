@@ -5,7 +5,7 @@ const {
 const request = require('request');
 const addToTxHistory = require('./txhistory-add');
 const generateBlock = require('./generateblock');
-
+const logger = require('./logger');
 
 
 
@@ -20,7 +20,7 @@ function getReceiveAddress(id) {
         };
         request(options, (err, res, body) => {
                 if (err) {
-                    console.log('error viewing wallet' + err);
+                    logger.info('getreceive address err viewing wallet, user id = ' + id + ' err: ' + err);
                     return (err);
                 }
             })
@@ -28,20 +28,18 @@ function getReceiveAddress(id) {
                 str += chunk;
             })
             .on('end', () => {
-                 console.log('getReceiveAddress: is' + str);
                 var toJSONObj = JSON.parse(str);
                 var toStr = JSON.stringify(toJSONObj.account.receiveAddress);
                 var receiveAddress = toStr.replace(/['"]+/g, '');
                 sendGiftCoins(id,receiveAddress);
             });
     } catch(err) {
-        console.log('getting address error' + err);
+        logger.info('getreceiveaddress error = ' + err);
     }
 }
 
 
 function sendGiftCoins(id,receiveAddress) {
-    console.log('^*^*^ receiveaddress is ' + receiveAddress);
     try {
         var giftamount = '500000';
         var assetname = 'Gift Coins';
@@ -57,13 +55,12 @@ function sendGiftCoins(id,receiveAddress) {
             },
             json: true
         };
-        console.log('receive add is ' + receiveAddress);
 
         request(options, (err, res, body) => {
                 if (err) {
-                    console.log('error sending tx ' + err);
-                    console.log('response on tx err was ' + res);
-                    console.log('body on tx err was ' + body);
+                    logger.info('error sending tx for userid = ' + id + ' err: ' + err);
+                    logger.info('response on tx err for userid = ' + id + ' err: '  + res);
+                    logger.info('body on tx err was for userid = ' + id + ' err: ' + body);
 
                     //return (err);
                 }
@@ -72,8 +69,6 @@ function sendGiftCoins(id,receiveAddress) {
                 str += chunk;
             })
             .on('end', (res) => {
-                console.log('response was ' + res);
-                console.log('bdoy was ' + str);
                 var debitOrCreditFlag = 0;
                 addToTxHistory(str, id, assetname, giftamount, debitOrCreditFlag);
                 generateBlock();
@@ -81,7 +76,7 @@ function sendGiftCoins(id,receiveAddress) {
                     });
 
     } catch (err) {
-        console.log('gifting coins function error: ' + err);
+        logger.info('gifting coins function error, userid ' + id + ' err: ' + err);
     }
 
 }

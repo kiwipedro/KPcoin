@@ -145,7 +145,7 @@
                  <%}%>
                
      
-            <small class="black__font" style="font-style: italic">This is the value of an output of a previous transaction (or multiple transactions) that will be used to pay for the goods or services provided. Outputs cannot be subdivided, so the input will reference outputs that total more than that purchase price, with any left over being paid back to the purchaser in a "change" output (see outputs below). The input also includes an "unlocking" script (aka a digital signature) which proves that the payer is allowed to authorised to transfer the previously unspent transaction.</small>
+            <small class="black__font" style="font-style: italic">This is the value of an output of a previous transaction (or multiple transactions) that will be used to pay for the goods or services provided. Outputs cannot be subdivided, so the input will reference outputs that total more than that purchase price, with any left over being paid back to the purchaser in a "change" output (see outputs below). The input also includes an "unlocking" script (aka a digital signature) which proves that the sender is authorised to transfer the previously unspent transaction.</small>
             <br>    
             <br>
                  
@@ -167,7 +167,7 @@
             <br>
                  
       
-         <pre align="left" style="word-wrap: break-word; white-space: pre-wrap;"><%=tx%></pre>
+         <pre style="text-align:left;word-wrap: break-word; white-space: pre-wrap;"><%=tx%></pre>
           </span>
 
     </div>
@@ -191,11 +191,12 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.13.0/bodymovin.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
     
 <script>
 
   var copy = [
-    ['Validating transaction...', 'Transaction valid!'],
+    ['Checking for unpsent outputs (UTXOs) that you can unlock...', 'UTXOs found and new transaction created!'],
     ['Miners on the network are looking for new transactions...', 'Your transaction has been found by several miners!'],
     ['Miners are adding your transaction to their candidate block...', 'Candidate block created!'],
     ['Miners are racing to find a valid block hash id...', 'Winner found!'],

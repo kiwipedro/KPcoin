@@ -6,6 +6,8 @@ const ejs = require('ejs');
 const {
     config
 } = require('../../util');
+const logger = require('../services/logger');
+
 
 
 var clearPreviousResetTokens = function (email) {
@@ -15,8 +17,12 @@ var clearPreviousResetTokens = function (email) {
         ps.execute({
             email: email,
         }, function (err, result) {
+            if (err) {
+                logger.info('error clearing previous reset token for ' + email + ' err: ' + err);
+            } else {
             ps.unprepare();
-            console.log('delete pwreset result is ' + err);
+            }
+          
         });
     });
 };
@@ -29,7 +35,6 @@ var checkIfAccountConfirmed= function (email, cb) {
                     email: email
                 }, function (err, result) {
                     ps.unprepare();
-                     console.log(JSON.stringify(result.recordset[0]));
                     if (result.recordset[0].confirmedlogin === false) {
                         return cb('not confirmed');
                     } else {
@@ -42,7 +47,6 @@ var checkIfAccountConfirmed= function (email, cb) {
 
 var sendResetToken = function (email, cb) {
     checkIfAccountConfirmed(email, function (result) {
-        console.log("result = " + result)
         if (result === 'ok') {    
             clearPreviousResetTokens(email);
             require('crypto').randomBytes(26, function (err, buffer) {
@@ -51,14 +55,13 @@ var sendResetToken = function (email, cb) {
                 ps.input('email', sql.VarChar(50));
                 ps.input('resettoken', sql.VarChar('max'));
                 ps.prepare('insert into pwreset (email, resettoken) values (@email, @resettoken)', function (err) {
-                    console.log('pw sql insert err: ' + err);
                     ps.execute({
                         email: email,
                         resettoken: resettoken
                     }, function (err, result) {
                         ps.unprepare();
                         if (err) {
-                            console.log('err on pw reset sql execute ' + err);
+                            logger.info('err on pw reset sql execute ' + email + ' err: ' + err);
                         } else {
                             var webaddress = config.siteaddress + '/new-password?email=';
                             readHTMLFile('src/templates/password-reset.ejs', function (err, html) {

@@ -94,7 +94,7 @@
                  <%}%>
                
      
-            <small class="black__font" style="font-style: italic">This is the value of an output of a previous transaction (or multiple transactions) that will be used to pay for the goods or services provided. Outputs cannot be subdivided, so the input will reference outputs that total more than that purchase price, with any left over being paid back to the purchaser in a "change" output (see outputs below). The input also includes an "unlocking" script (aka a digital signature) which proves that the payer is allowed to authorised to transfer the previously unspent transaction. If this value is "0", the input has come from a special transaction called a "coinbase" - which is the reward paid to a miner when they win the block race. The current reward is 50Kpc or 5,000,000,000P.</small>
+            <small class="black__font" style="font-style: italic">This is the value of an output of a previous transaction (or multiple transactions) that will be used to pay for the goods or services provided. Outputs cannot be subdivided, so the input will reference outputs that total more than that purchase price, with any left over being paid back to the purchaser in a "change" output (see outputs below). The input also includes an "unlocking" script (aka a digital signature) which proves that the sender is authorised to transfer the previously unspent transaction. If this value is "0", the input has come from a special transaction called a "coinbase" - which is the reward paid to a miner when they win the block race. The current reward is 50Kpc or 5,000,000,000P.</small>
             <br>    
             <br>
                  
@@ -116,7 +116,7 @@
             <br>
                  
       
-         <pre align="left" style="word-wrap: break-word; white-space: pre-wrap;"><%=tx%></pre>
+         <pre style="text-align:left;word-wrap: break-word; white-space: pre-wrap;"><%=tx%></pre>
           </span>
 
     </div>

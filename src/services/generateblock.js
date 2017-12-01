@@ -1,5 +1,7 @@
 const request = require('request');
 const { config } = require('../../util');
+const logger = require('./logger');
+
 
 
 function generateBlock() {
@@ -15,9 +17,9 @@ function generateBlock() {
                 };
                 request(genopts, (err, res, body) => {
                         if (err) {
-                            console.log('error generating ' + err);
-                            console.log('response on generate err was ' + res);
-                            console.log('body on generate err was ' + body);
+                            logger.info('error generating ' + err);
+                            logger.info('response on generate err was ' + res);
+                            logger.info('body on generate err was ' + body);
                         }
                     })
                     .on('data', (chunk) => {

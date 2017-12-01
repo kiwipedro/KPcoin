@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>KPcoin</title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="../css/styles.css" rel="stylesheet">
+    <style>
+        pre{
+            text-align: center;
+            font-size: .8rem;
+        }
+    @media (max-width: 200px) {
+            pre {
+        font-size:0.6rem;
+        }
+    }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    
+    <script>
+//        function getPrivKey() {
+//            var x = parent.document.getElementById("receiveAddress").innerHTML;
+//            console.info("rec address is " + x);
+//            document.getElementById('privKey').value = x;
+//        };
+
+    </script>
+</head>
+
+<body>
+    
+<% if (!privkey) {%>
+    <div class="copy__block-center-medium">
+        <pre></pre> 
+    <%} else { %> 
+    
+    <% var privKeyObj = JSON.parse(privkey) %>
+    <% var stringIt = JSON.stringify(privKeyObj)%>
+    <% var firstPart= stringIt.slice(15,46)%>
+    <% var secondPart = stringIt.slice(46,67)%>
+      <pre>  <%=privKeyObj.privateKey%></pre>
+<!--        <pre><%=firstPart%><br><%=secondPart%></pre>-->
+      </div>
+        <%}%>
+    
+<!--    <button onclick="getPrivKey()">Show Priv Key</button>-->
+</body>
+
+</html>
