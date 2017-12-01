@@ -1,12 +1,12 @@
 
 const sql = require('mssql');
 const getReceiveAddress = require('../services/gift.js').getReceiveAddress;
-
+const logger = require('../services/logger');
 
 
 
 function giftnewKPcoins(email) {
-    console.log('starting gift assessment');
+    logger.info('starting gift assessment for ' + email);
     var ps = new sql.PreparedStatement();
     ps.input('email', sql.VarChar(50));
     ps.prepare('select id, email, lastlogin, nooflogins from kpcusers where email = @email', function (err) {
@@ -15,24 +15,13 @@ function giftnewKPcoins(email) {
         }, function (err, result) {
             if (err) {
                 ps.unprepare();
-                console.log('cannot retrieve lastlogin info for new kpcoins');
+                logger.info('cannot retrieve lastlogin info for new kpcoins for ' + email + ' err: ' + err);
             } else {
                 ps.unprepare();
-                var lastloginDf = new Date(result.recordset[0].lastlogin);
-                var now = Date.now();
-                var ONE_DAY = 86400000; //milliseconds in a day
                 var nooflogins = result.recordset[0].nooflogins;
                 var id = result.recordset[0].id;
-                console.log('doing the date compare now');
-                if (nooflogins === 0 || (now - lastloginDf) < ONE_DAY) {
-                    console.log('GIVE COINS!!!');
                     getReceiveAddress(id);  //runs the gifting process
-                } else if ((now - lastloginDf) < ONE_DAY) {
-                    console.log('TOO SOON BRO');
-                } else {
-                    console.log('GIVE COINS ANYWAY!!!');
-                }
-            updateLoginDetails(email, nooflogins);
+                    updateLoginDetails(email, nooflogins);
             }
         });
     });
@@ -54,11 +43,9 @@ function giftnewKPcoins(email) {
                     }, function (err, result) {
                         if (err) {
                             ps.unprepare();
-                            console.log('error writing lastlogin and nooflogin data: ' + err);
-                          
+                            logger.info('error writing lastlogin and nooflogin data: ' + email + ' err: ' + err);                          
                         }
                         ps.unprepare();
-                        console.log('end of last login check');
 
                     });
                 }); 

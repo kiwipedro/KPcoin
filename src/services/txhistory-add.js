@@ -2,9 +2,9 @@ const {
     config
 } = require('../../util');
 const sql = require('mssql');
+const logger = require('./logger');
 
 function addToTxHistory(str, id, assetname, txprice, txflag) {
-    console.log('what are txprice/flag' + txprice + ' ' + txflag);
     var txObj = JSON.parse(str);
     var txhash = txObj.hash;
     var txdate = txObj.date;
@@ -26,9 +26,9 @@ function addToTxHistory(str, id, assetname, txprice, txflag) {
         }, function (err, result) {
             ps.unprepare();
             if (err) {
-                console.log('error loading into txhistory ' + err);
+                logger.info('error loading into txhistory user id = ' + id + ' err: ' + err);
             } else {
-                console.log('loaded into tx history ' + JSON.stringify(result));
+                return;
             }
         });
     });

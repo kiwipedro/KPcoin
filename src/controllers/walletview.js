@@ -1,5 +1,6 @@
 const request = require('request');
 const {config} = require('../../util');
+const logger = require('../services/logger');
 
 
 var viewWalletDetails = function (id, cb) {
@@ -12,7 +13,7 @@ var viewWalletDetails = function (id, cb) {
 
         request.get(options, function (err, res, body) {
                 if (err) {
-                    console.log('error viewing wallet' + err);
+                    logger.info('error viewing wallet for user id = '  + id + ' err: ' + err);
                     return (err);
                 }
             })
@@ -20,11 +21,12 @@ var viewWalletDetails = function (id, cb) {
                 str += chunk;
             })
             .on('end', function () {
-                    cb(null, str);
-                });
+             cb(null, str);
+        });
 
     };
 
 
+module.exports = viewWalletDetails;
 
-        module.exports = viewWalletDetails;
+

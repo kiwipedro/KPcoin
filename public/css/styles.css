@@ -65,7 +65,7 @@
     
     .nav__brand {
         margin-right: auto;
-        z-index: 2;
+        z-index: 9;
     }
     
     .nav__menu-mobile {
@@ -726,6 +726,12 @@
         padding: 1px 1px 1px 1px;
         margin: 0.5rem;
     }
+    .medium__padding {
+        padding: 5px 5px 5px 5px;
+    }
+   .thick__padding {
+        padding: 15px 15px 15px 15px;
+    }
     
     pre {
         margin: 0.5rem;
@@ -739,6 +745,14 @@
         resize: vertical;
         position: relative;
         resize: none;
+    }
+    .texts-area {
+        flex: auto;
+        width: 300px;
+        height: 8rem;
+        line-height: 18px;
+        resize: vertical;
+        position: relative;
     }
     
     .bb__result {
@@ -822,3 +836,32 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+.sub__menu {
+   text-align: center;
+    top: 50%;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.image_shadow img {
+/*
+  margin-right: 14px;
+  display: block;
+  float: left;
+*/
+  box-shadow: 3px 3px 1px #ccc;
+  -webkit-box-shadow: 3px 3px 1px #ccc;
+  -moz-box-shadow: 3px 3px 1px #ccc;
+}
+
+
+iframe {
+    display:block;
+    height: 5rem;
+    border: none;
+/*    overflow:hidden;*/
+    width: 100%;
+}
+

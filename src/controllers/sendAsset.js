@@ -6,6 +6,8 @@ const {
     config
 } = require('../../util');
 const ejs = require('ejs');
+const logger = require('../services/logger');
+
 
 function sendAsset (assetid, assetname, email) {
                     var ps = new sql.PreparedStatement();
@@ -15,7 +17,6 @@ function sendAsset (assetid, assetname, email) {
                             id: assetid
                         }, function (err, result) {
                             ps.unprepare();
-                            console.log('asset send sql result is: ' + result);
                             var assetpath = result.recordset[0].assetpath;              
 
                             readHTMLFile('src/templates/sendDA.ejs', function (err, html) {
@@ -32,7 +33,6 @@ function sendAsset (assetid, assetname, email) {
                                     html: htmlToSend
                                 };
                                 mailshot(mailOptions);
-                                console.log(err);
                             });
                         });
                     });

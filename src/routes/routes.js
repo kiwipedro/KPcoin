@@ -11,7 +11,6 @@ const wallet = require('../services/wallet');
 const {
     config
 } = require('../../util');
-var getReceiveAddress = require('../services/gift').getReceiveAddress;
 const sendAsset = require('../controllers/sendAsset');
 const sendEmailConfirm = require('../controllers/sendEmailConfirm');
 const sendResetToken = require('../controllers/pwReset');
@@ -23,15 +22,20 @@ const addToTxHistory = require('../services/txhistory-add');
 const generateBlock = require('../services/generateblock');
 const moment = require('moment');
 const querystring = require('querystring');
+const showPrivKey = require('../controllers/showPrivKey');
+const logger = require('../services/logger');
+
 
 
 
 module.exports = function (app, passport) {
 
     app.get('/', function (req, res) {
+//        const IP_ADDRESS = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+//        logger.info('Request from' + IP_ADDRESS);
         if (req.headers['user-agent'].indexOf('MSIE') >= 0) {
             res.redirect('http://outdatedbrowser.com/en');
-            } else {
+        } else {
             res.render('index.ejs', {
                 user: req.user,
                 navSignedOut: navOptions.navSignedOut,
@@ -226,7 +230,6 @@ module.exports = function (app, passport) {
                                 confirmedlogin: confirmedlogin
                             }, function (err, result) {
                                 ps.unprepare();
-                                console.log(err);
                             });
                         });
                         ps.unprepare();
@@ -275,17 +278,17 @@ module.exports = function (app, passport) {
 
 
     app.post('/password-reset', function (req, res) {
-        sendResetToken(req.body.email, function (result){
+        sendResetToken(req.body.email, function (result) {
             if (result === 'ok') {
                 res.redirect('/password-reset-sent');
             } else {
                 res.redirect('/password-reset-not-confirmed');
             }
         });
-       
+
     });
-    
-    app.get('/password-reset-not-confirmed', function (req, res){
+
+    app.get('/password-reset-not-confirmed', function (req, res) {
         res.render('password-reset-not-confirmed', {
             user: req.user,
             navSignedOut: navOptions.navSignedOut,
@@ -303,7 +306,6 @@ module.exports = function (app, passport) {
 
 
     app.post('/new-password', function (req, res) {
-        console.log('req body is ' + JSON.stringify(req.body));
         var email = req.body.email;
         var resettoken = req.body.resettoken;
         var newpass = req.body.password;
@@ -314,7 +316,6 @@ module.exports = function (app, passport) {
                 res.redirect('/new-password');
             } else {
                 res.redirect('/new-password-confirmed');
-                console.log('password update ok:' + result);
             }
         });
 
@@ -353,17 +354,16 @@ module.exports = function (app, passport) {
 
             viewWalletDetails(id, function (err, walletArray) {
                 if (err) {
-                    console.log('err in getTxHistory');
+                    logger.info('mywallet err in wallet viewing user id: ' + id + ' err: ' + err);
                 } else {
                     var wallet = walletArray;
                 }
 
                 getTxHistory(id, currentPage, function (err, txHistArray, pageCount) {
                     if (err) {
-                        console.log('err in getTxHistory');
+                        logger.info('mywallet err in getTxHistory ' + id + ' err: ' + err);
                     } else {
                         var transactions = txHistArray;
-                        console.log(txHistArray);
                         var txHistArrays = [];
                         var currList = [];
                         //split list into groups
@@ -388,7 +388,7 @@ module.exports = function (app, passport) {
 
                 });
             });
-        }, 400);
+        }, 500);
     });
 
 
@@ -422,7 +422,7 @@ module.exports = function (app, passport) {
 
             request.get(options, function (err, res, body) {
                     if (err) {
-                        console.log('error viewing wallet' + err);
+                        logger.info('market place err getting wallet info = ' + err);
                         return (err);
                     }
                 })
@@ -455,7 +455,6 @@ module.exports = function (app, passport) {
 
     app.get('/asset/:id', function (req, res) {
         var id = req.params.id;
-        console.log('id is ' + id);
         if (req.user) {
             var userid = req.user.id;
             var str = '';
@@ -467,7 +466,7 @@ module.exports = function (app, passport) {
 
             request.get(options, function (err, res, body) {
                     if (err) {
-                        console.log('error viewing wallet' + err);
+                        logger.info('Asset id page error viewing wallet, userid = ' + userid + ' err: ' + err);
                         return (err);
                     }
                 })
@@ -500,51 +499,50 @@ module.exports = function (app, passport) {
     });
 
     app.post('/transaction-result', function (req, res) {
-            var balance = req.query.balance;
-            var assetid = req.query.assetid;
-            var assetprice = parseInt(req.query.price);
-            var assetname = req.query.assetname;
-            var assettb = req.query.assettb;
-            var str = '';
-            console.log('asset info: ' + assetname + ' ' + assetid + ' assetprice is ' + assetprice + ' ' + assettb);
+        var balance = req.query.balance;
+        var assetid = req.query.assetid;
+        var assetprice = parseInt(req.query.price);
+        var assetname = req.query.assetname;
+        var assettb = req.query.assettb;
+        var str = '';
 
-            if (req.user) {
-                var options = {
-                    method: 'POST',
-                    url: config.vURL + '/wallet/' + req.user.id + '/send',
-                    body: {
-                        'outputs': [{
-                            'value': assetprice,
-                            'address': config.vendorAddress
+        if (req.user) {
+            var options = {
+                method: 'POST',
+                url: config.vURL + '/wallet/' + req.user.id + '/send',
+                body: {
+                    'outputs': [{
+                        'value': assetprice,
+                        'address': config.vendorAddress
                                             }]
-                    },
-                    json: true
-                };
+                },
+                json: true
+            };
 
-                request(options, function check(err, res, body) {
-                        if (err) {
-                            console.log(err);
-                            return (err);
-                        }
-                    })
-                    .on('data', function (chunk) {
-                        str += chunk;
-                    })
-                    .on('end', function () {
-                        var txObj = JSON.parse(str);
-                        var txhash = txObj.hash;
-                        if (txhash === undefined) {
-                            res.redirect('/asset/' + assetid + '?#funding-problem');
-                        } else {
-                            var debitOrCreditFlag = 1; //1 for debit, 0 for credit
-                            var qstring = 'assetid=' + assetid + '&price=' + assetprice + '&assetname=' + assetname + '&assettb=' + assettb + '&txhash=' + txhash;
-                            res.redirect('/transaction-result/?' + qstring);
-                            addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag);
-                            generateBlock();
-                            sendAsset(assetid, assetname, req.user.email);
-                        }
-                    });
-            }
+            request(options, function check(err, res, body) {
+                    if (err) {
+                        logger.info('tx result error sending funds user id =  '  + req.user.id + ' err: ' + err);
+                        return (err);
+                    }
+                })
+                .on('data', function (chunk) {
+                    str += chunk;
+                })
+                .on('end', function () {
+                    var txObj = JSON.parse(str);
+                    var txhash = txObj.hash;
+                    if (txhash === undefined) {
+                        res.redirect('/asset/' + assetid + '?#funding-problem');
+                    } else {
+                        var debitOrCreditFlag = 1; //1 for debit, 0 for credit
+                        var qstring = 'assetid=' + assetid + '&price=' + assetprice + '&assetname=' + assetname + '&assettb=' + assettb + '&txhash=' + txhash;
+                        Promise.all([ addToTxHistory(str, req.user.id, assetname, assetprice, debitOrCreditFlag), 
+                                     generateBlock(),
+                                     sendAsset(assetid, assetname, req.user.email) ])
+                                    .then(res.redirect('/transaction-result/?' + qstring));
+                    }
+                });
+        }
     });
 
     app.get('/transaction-result', function (req, res) {
@@ -558,17 +556,17 @@ module.exports = function (app, passport) {
 
         viewTxDetail(id, txhash, function (err, detailArray) {
             detailArray = detailArray.substr(9, detailArray.length);
-        setTimeout(function () {
-            res.render('transaction-result', {
-                assetname: assetname,
-                assettb: assettb,
-                user: req.user,
-                tx: detailArray,
-                navSignedOut: navOptions.navSignedOut,
-                navSignedIn: navOptions.navSignedIn,
-                myval: 1
-            });
-           }, 500);
+            setTimeout(function () {
+                res.render('transaction-result', {
+                    assetname: assetname,
+                    assettb: assettb,
+                    user: req.user,
+                    tx: detailArray,
+                    navSignedOut: navOptions.navSignedOut,
+                    navSignedIn: navOptions.navSignedIn,
+                    myval: 1
+                });
+            }, 0);
         });
     });
 
@@ -609,14 +607,40 @@ module.exports = function (app, passport) {
             navSignedIn: navOptions.navSignedIn
         });
     });
-    
-       app.get('/blockchain-bingo', function (req, res) {
+
+    app.get('/blockchain-bingo', function (req, res) {
         res.render('blockchain-bingo', {
             user: req.user,
             navSignedOut: navOptions.navSignedOut,
             navSignedIn: navOptions.navSignedIn
         });
     });
+
+
+    app.post('/priv-key', function (req, res) {
+        var recAdd = req.query.receiveaddress;
+        var id = req.user.id;
+        showPrivKey(id, recAdd, function (err, privkey) {
+            if (err) {
+                logger.info('error getting private key user id ' + id + ' err: ' + err);
+            } else {
+                res.redirect('/priv-key/?privkey=' + privkey);
+            }
+
+        });
+
+
+    });
+
+
+
+    app.get('/priv-key', function (req, res) {
+        var privkey = req.query.privkey;
+        res.render('priv-key', {
+            privkey: privkey
+        });
+    });
+
 
 
     // route middleware to make sure a user is logged in
@@ -630,4 +654,20 @@ module.exports = function (app, passport) {
         // if they aren't redirect them to the home page
         res.redirect('/');
     }
+
+    app.use(function (req, res, next) {
+        res.status(404);
+
+        if (req.accepts('html')) {
+            res.render('404', {
+                url: req.url,
+                user: req.user,
+                navSignedOut: navOptions.navSignedOut,
+                navSignedIn: navOptions.navSignedIn
+            });
+            return;
+        }
+    });
+
+
 };

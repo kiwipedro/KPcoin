@@ -2,7 +2,7 @@ const sql = require('mssql');
 const {
     config
 } = require('../../util');
-
+const logger = require('../services/logger');
 
 var getTxHistory = function (id, page, cb) {
     var resultsArray = [];
@@ -15,15 +15,13 @@ var getTxHistory = function (id, page, cb) {
     });
 
     request.on('error', err => {
-        console.log('error = ' + JSON.stringify(err));
+        logger.info('error getting TX history = ' + JSON.stringify(err));
         return cb('err occured on txhistory datastream', null);
     });
 
     request.on('done', result => {
         var pageCount = Math.ceil(JSON.stringify(result.rowsAffected[0])/9);
-        console.log('pageCount is ' + pageCount);
         return cb(null, resultsArray, pageCount);
-
     });
 };
 

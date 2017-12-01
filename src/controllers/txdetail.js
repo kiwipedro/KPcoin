@@ -1,5 +1,6 @@
 const request = require('request');
 const {config} = require('../../util');
+const logger = require('../services/logger');
 
 
 var viewTxDetail = function (id, hash, cb) {
@@ -9,10 +10,9 @@ var viewTxDetail = function (id, hash, cb) {
             url: config.vURL + '/wallet/' + id + '/tx/' + hash,
             json: true
         };
-console.log('url is ' + options.url);
         request.get(options, function (err, res, body) {
                 if (err) {
-                    console.log('error viewing tx detail' + err);
+                    logger.info('error viewing tx detail, user id: '  + id + ' err: ' + err);
                     return cb(err, null);
                 }
             })

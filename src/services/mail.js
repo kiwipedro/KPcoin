@@ -3,7 +3,7 @@ const fs = require('fs');
 const {
     config
 } = require('../../util');
-
+const logger = require('./logger');
 
 
 
@@ -20,7 +20,6 @@ var readHTMLFile = function (path, callback) {
 };
 
 var mailshot = function (mailOptions) {
-    console.log('does mailshot run?');
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -30,9 +29,9 @@ var mailshot = function (mailOptions) {
     });
     var mailsend = transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error);
+            logger.info('Mail sender error = ' + error);
         } else {
-            console.log('Email sent: ' + info.response);
+            logger.info('Email sent: ' + info.response);
         }
     });
 };
@@ -49,9 +48,9 @@ var sendDA = function (mailOptions) {
 
     var mailsend = transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
-            console.log('err sending DA: ' + err);
+            logger.info('err sending DA =  ' + err);
         } else {
-            console.log('DA Email sent: ' + info.repsonse);
+        return;
         }
     });
 };

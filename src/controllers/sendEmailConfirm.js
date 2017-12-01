@@ -6,6 +6,8 @@ const {
     config
 } = require('../../util');
 const ejs = require('ejs');
+const logger = require('../services/logger');
+
 
 var sendEmailConfirm = function (email, emailtoken) {
 
@@ -26,8 +28,6 @@ var sendEmailConfirm = function (email, emailtoken) {
                         html: htmlToSend
                     };
                     mailshot(mailOptions);
-                    console.log(err);
-
                 });
 };
                      

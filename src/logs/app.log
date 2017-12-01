@@ -1,0 +1,34 @@
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T10:27:08.151Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T10:46:45.760Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T10:48:03.555Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T10:57:21.869Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T10:58:50.287Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T11:03:58.258Z"}
+{"level":"info","message":"Request from::1","timestamp":"2017-12-01T11:18:10.483Z"}
+{"level":"info","message":"running local login strategy","timestamp":"2017-12-01T11:18:30.391Z"}
+{"level":"info","message":"login Actions called","timestamp":"2017-12-01T11:18:30.721Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512130042 w21sm4609937wra.30 - gsmtp","timestamp":"2017-12-01T12:07:17.869Z"}
+{"level":"info","message":"running local login strategy","timestamp":"2017-12-01T12:08:05.665Z"}
+{"level":"info","message":"login Actions called","timestamp":"2017-12-01T12:08:05.909Z"}
+{"level":"info","message":"running local login strategy","timestamp":"2017-12-01T12:10:20.371Z"}
+{"level":"info","message":"login Actions called","timestamp":"2017-12-01T12:10:20.650Z"}
+{"level":"info","message":"starting gift assessment","timestamp":"2017-12-01T12:10:20.650Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512130307 i1sm3948555wri.34 - gsmtp","timestamp":"2017-12-01T12:11:43.270Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512130533 r14sm10512257wrb.43 - gsmtp","timestamp":"2017-12-01T12:15:28.879Z"}
+{"level":"info","message":"running local login strategy","timestamp":"2017-12-01T12:21:39.191Z"}
+{"level":"info","message":"login Actions called","timestamp":"2017-12-01T12:21:39.456Z"}
+{"level":"info","message":"starting gift assessment","timestamp":"2017-12-01T12:21:39.457Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512131411 c19sm948728wmd.14 - gsmtp","timestamp":"2017-12-01T12:30:06.932Z"}
+{"level":"info","message":"running local login strategy","timestamp":"2017-12-01T12:30:46.412Z"}
+{"level":"info","message":"login Actions called","timestamp":"2017-12-01T12:30:46.654Z"}
+{"level":"info","message":"starting gift assessment","timestamp":"2017-12-01T12:30:46.654Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-01T12:43:27.673Z"}
+{"level":"info","message":"login Actions called peter@myaxis.co.uk","timestamp":"2017-12-01T12:43:27.937Z"}
+{"level":"info","message":"starting gift assessment","timestamp":"2017-12-01T12:43:27.937Z"}
+{"level":"info","message":"SQL connection error: null","timestamp":"2017-12-01T13:01:36.227Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-01T13:02:36.899Z"}
+{"level":"info","message":"login Actions called peter@myaxis.co.uk","timestamp":"2017-12-01T13:02:37.159Z"}
+{"level":"info","message":"starting gift assessment for peter@myaxis.co.uk","timestamp":"2017-12-01T13:02:37.159Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.029Z"}
+{"level":"info","message":"login Actions called peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.315Z"}
+{"level":"info","message":"starting gift assessment for peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.315Z"}
