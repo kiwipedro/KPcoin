@@ -619,77 +619,23 @@
             width: 300px;
         }
     }
-    /*
-    .loader__first {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-        background: url('/animations/tx-1.png') 50% 50% no-repeat rgb(249, 249, 249);
+
+
+   .copy__block-left-medium-large {
+        /*        font-size: 90%;*/
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+        width: 767px;
     }
     
-    .loader__second {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9998;
-        background: url('/img/tx-2.png') 50% 50% no-repeat rgb(249, 249, 249);
-    }
-    
-    .loader__third {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9996;
-        background: url('/img/tx-3.png') 50% 50% no-repeat rgb(249, 249, 249);
-    }
-    
-    .loader__fourth {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9995;
-        background: url('/img/tx-4.png') 50% 50% no-repeat rgb(249, 249, 249);
-    }
-    
-    .loader__fifth {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9994;
-        background: url('/img/tx-5.png') 50% 50% no-repeat rgb(249, 249, 249);
+    @media (max-width: 767px) {
+        .copy__block-left-medium-large {
+            width: 300px;
+        }
     }
 
-   
-    .loader__sixth {
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        z-index: 9994;
-        background: url('/img/tx-5.png') 50% 50% no-repeat rgb(249, 249, 249);
-    }
-*/
-    /*
-        .animation__body {
-            background-color: #fff;
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-*/
-    
+
     #no-show-on-refresh {
         position: absolute;
         left: 0px;

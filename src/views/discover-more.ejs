@@ -120,12 +120,11 @@
             <br>
             <div id="what-is-money"></div>   
             <br>
-            <br>
-            <br>
+
             
 
-<h3>What is money?</h3>
- <p class="copy__aligned-left black__font">       
+<h3 class="thick__padding">What is money?</h3>
+ <p class="copy__block-left-medium-large black__font">       
 Cash, dosh, mulah, cheese, paper, the filthy lucre, wedge, and of course the root of all evil: there are plenty of pseudonyms for money, but when asking the question "what is money", the answer is more elusive than the simplicity of the question implies.
                     <br>
                     <br>
@@ -149,9 +148,8 @@ More on this subject:  listen to this <a href="https://www.thisamericanlife.org/
             <div id="enter-the-cryptocurrency"></div>   
             <br>
             <br>
-            <br>
-<h3>Enter the cryptocurrency</h3>
-   <p class="copy__aligned-left black__font">             
+<h3 class="thick__padding">Enter the cryptocurrency</h3>
+   <p class="copy__block-left-medium-large black__font">             
 In 2008 a mysterious whitepaper appeared on The Cryptography Mailing list at metzdowd.com.  Nothing mysterious about the content of the article, but with the person (or persons) who wrote it. Its author was Satoshi Nakamoto: an unfamiliar name in a community where unfamiliarity was unusual, particularly as the titular “Bitcoin: A Peer-to-Peer Electronic Cash System” paper seemed to arrive as a fully-formed and thoroughly tested solution for something that many in the community had tried to build before and had failed: a robust, cryptographic, trustless, decentralised electronic money system.
                     <br>
                     <br>
@@ -171,23 +169,22 @@ Or for an excellent overview of the history of bitcoin, watch the Netflix docume
             <div id="how-does-kpcoin-work"></div>   
             <br>
             <br>
-            <br>
                     
-<h3>How does KPcoin Work?</h3>
- <p class="copy__aligned-left black__font">
+<h3 class="thick__padding">How does KPcoin Work?</h3>
+ <p class="copy__block-left-medium-large black__font">
 KPcoin is essentially the same as bitcoin: it uses a library attached to the core bitcoin software designed to work with Node.JS, which is language that the website is written in. This library is known as <a href="http://bcoin.io" target="_blank"><u>bcoin</u></a>.  Bcoin in turn uses the the core bitcoin software as its base - so there is a direct technical link between KPcoin and the bitcoin software. See the below for a deeper analysis of bitcoin and the key differences between bitcoin and KPcoin. In this section we'll introduce the key concepts and functions in play when you send and receive KPcoins.
         <br>
      <br>
            
 <div id="pkc-primer" class="sub__menu"><b>Public Key Cryptography:</b></div>
- <p class="copy__aligned-left black__font">    
+ <p class="copy__block-left-medium-large black__font">    
  <a href="https://en.wikipedia.org/wiki/Public-key_cryptography" target="_blank"><u>Public key cryptography</u></a> is the foundation of ownership on the bitcoin and KPcoin network. As it applies here, and in basic terms, a user of the currency has two keys: a private key and a public key. An amount of value being sent is "locked" by the sender by tagging it with the receiver's public key, and can only be "unlocked" (i.e. spent) by the person (or organisation, or computer program) who owns the private key. A public key is public and a private key should be kept...well...you guessed it: private.     
             </p>
       <br>
         <br>
             
             <div id="transaction-wallet-primer" class="sub__menu"><b>Transactions and Wallets:</b></div>
-             <p class="copy__aligned-left black__font">         
+             <p class="copy__block-left-medium-large black__font">         
 The most important part of the bitcoin protocol is the transaction (commonly abbreviated to "TX"): they track and store the value of currency that belongs to the private key's owner, they are the basis of blocks in the blockchain and they are the method to which a "miner" pays themselves a reward for securing the network. If there are no transactions flowing, then the network effects don't occur and the system seizes up - the are the lifeblood of cryptocurrencies.
         <br>
         <br>
@@ -201,7 +198,7 @@ In their most basic form, transactions are simply references to inputs and outpu
                  <br>
                  <br>
                  
-   <p class="copy__aligned-left black__font">               
+   <p class="copy__block-left-medium-large black__font">               
 In order to send or receive cryptocurrency you need to have an application called a "wallet".  These can be thought of the digital equivalent of a real-world wallet (or purse), but this is only really for convenience - most wallet applications can and do perform many more tasks. The odd thing about a cryptocurrency wallet is that it's just an abstraction of your private key: you can have as many wallets as you want, but the amount of money you own is still linked to your private key. If you set up 10 different wallets with the same private key you don't get 10x your balance! Conversely you can have one wallet with many private keys, so when it comes to your balance, all the wallet is doing is providing a link between your key/s and your transaction history.
                     
 <br>
@@ -221,7 +218,7 @@ KPcoin comes with a web wallet hosted on the website for you - in fact that's th
         <div class="thick__padding">
         <small class="sub__menu black__font">Example of a balance in a KPcoin web wallet. <br>The wallet scans the network and sums up all of the unspent TXs associated with your keys on the network</small>
             </div> 
-      <p class="copy__aligned-left black__font"> 
+      <p class="copy__block-left-medium-large black__font"> 
     <br> 
 <a href="https://www.youtube.com/watch?v=oP4R_fhh0zU" target="_blank"><u>This video</u></a> is a good introduction to the initiating transactions and the different types of wallets.
                  </p>
@@ -229,7 +226,7 @@ KPcoin comes with a web wallet hosted on the website for you - in fact that's th
             <br>
             
        <div id="hashing" class="sub__menu"><b>Hashing:</b></div>
-             <p class="copy__aligned-left black__font">            
+             <p class="copy__block-left-medium-large black__font">            
 
 Hash algorithms are used widely in bitcoin and KPcoin and you could say that hashing puts the "crypto" in "cryptocurrency"!  Hashing has some almost magical properties which make it very useful when trying to secure data - particularly in a situation where that data is available to a network of people who don't know each other, and don't trust each other.
 <br>
@@ -256,7 +253,7 @@ The most important hashing technique used in the bitcoin protocol is SHA256 whic
       
         <br>
                <br>
-      <p class="copy__aligned-left black__font">               
+      <p class="copy__block-left-medium-large black__font">               
 So what is happening here? First you'll notice that no matter how many characters you enter, the hash result is always the same length (64 characters).  Secondly you'll notice if you put the same text in twice, it always produces the same hash result - but even changing one character in the input, the result differs completely. And thirdly, the result seems entirely random - and it is: in other words it's impossible to predict what the outcome will be <span style="font-style:italic">before</span> you enter the text.  All of these attributes are very handy for a cryptocurrency network.
      <br>     
     <br>
@@ -277,7 +274,7 @@ The important point is that the hash result in a pure SHA256 implementation is a
   </p>
           
             <div id="hashing-other" class="sub__menu"><b>Other Types of Hashing:</b></div>
-             <p class="copy__aligned-left black__font">    
+             <p class="copy__block-left-medium-large black__font">    
           
 Hashing is also used to produce your public and private keys. SHA256 is one of the algorithms used in this process, but to make it even more secure, and user friendly other functions and encoders are used. One of Satoshi's pet-likes seems to be sending a resulting hash through another <a href="https://en.bitcoin.it/wiki/Technical_background_of_version_1_Bitcoin_addresses#How_to_create_Bitcoin_Address" target="_blank"><u>hashing algorithm</u></a>! <br>
         <br>            
@@ -285,13 +282,13 @@ On your wallet page you'll see a multi-hashed address that looks like this:
           <br>
     <div class="splash__no-background-no-top-margin copy__block-center-medium-large"><img style="max-width:95%" src="img/wallet-address.png"> 
             </div> 
-      <p class="copy__aligned-left black__font">            
+      <p class="copy__block-left-medium-large black__font">            
 This address is where gift coins and change will be sent. It's in the <a href="https://en.bitcoin.it/wiki/Wallet_import_format" target="_blank"><u>wallet import format</u></a> which makes your public key more lightweight and easier to copy and paste. Your wallet automatically changes this address after every transaction to make it harder (but not impossible) to track your activity.    
             </p>
                <br>
                <br>
     <div id="nodes-and-miners" class="sub__menu"><b>Nodes, Miners and Proof of Work:</b></div>
-             <p class="copy__aligned-left black__font">    
+             <p class="copy__block-left-medium-large black__font">    
                  
 A "full node" is a computer that runs a full version of the bitcoin or KPcoin protocol, keeps a copy of the history of all transactions and connects to other nodes in the network to inform them of transactions and validate other node's blocks. 
       <br>
@@ -312,7 +309,7 @@ A "full node" is a computer that runs a full version of the bitcoin or KPcoin pr
         </div>         
       </div>
         
- <p class="copy__aligned-left black__font">  
+ <p class="copy__block-left-medium-large black__font">  
 Since the winning hash id includes the previous block's hash id, blocks can only ever be in sequence. Given the difficulty and work that goes into finding the target number, the sequence is (almost) impossible to break or forge. If two miners happen to find hash number at the same time, then there'll temporarily be a fork in the chain. However whoever wins the next block will choose the spur of the fork that they will build on (by choosing one of the forked block's hash number to include in their candidate block header) and the other block will be orphaned.  Any non-duplicated transactions from this orphaned block go back into the unconfirmed transaction pot and will be picked up again in the next round. 
       
 <br>
@@ -325,29 +322,29 @@ Since the winning hash id includes the previous block's hash id, blocks can only
             <br>
             <br>
 
-<h3>How does KPcoin Differ from Bitcoin?</h3>
- <p class="copy__aligned-left black__font">  
+<h3 class="thick__padding">How does KPcoin Differ from Bitcoin?</h3>
+ <p class="copy__block-left-medium-large black__font">  
 There are not many differences between KPcoin and Bitcoin, given that they are based off the same core software code. There is the same limit of supply (21,000,000) and the same denomination: the smallest unit is 100 millionth of a full coin, the way transactions are signed and the fact that you can exchange coins for assets is also consistent, however there are some very important distinctions:
      <br>
      <br>
             </p>
 
 <div class="sub__menu">Bitcoin is called Bitcoin and KPcoin is called KPcoin</div>
-     <p class="copy__aligned-left black__font">  
+     <p class="copy__block-left-medium-large black__font">  
 Obvious, but worth pointing out given one of the most important steps in creating a cryptocurrency is to brand it. There a numerous alternative coins based on the bitcoin protocol and these are collectively known as "alt coins".  I'm dubbing KPcoin a "demo-coin".
             <br>
             <br>
             </p>
          
-     <p class="copy__aligned-left black__font">  
+     <p class="copy__block-left-medium-large black__font">  
           <div class="sub__menu">Obtaining Bitcoin costs money, KPcoin is free</div>
-             <p class="copy__aligned-left black__font">  
+             <p class="copy__block-left-medium-large black__font">  
 Unless you have a generous donor, bitcoins cost money and are usually purchased at an online exchange.  KPcoin is free and you receive them simply by logging into the website.
                     <br>
                     <br>
             </p>
  <div class="sub__menu">Bitcoin is decentralised, KPcoin is centralised </div>
-     <p class="copy__aligned-left black__font">      
+     <p class="copy__block-left-medium-large black__font">      
 Where anyone can download the core bitcoin software, obtain a copy of the full ledger of transactions and become a miner, KPcoin is wholly controlled by me, Peter Thompson aka KiwiPedro and I act like a central bank.  A very generous, and never evil, central bank - I promise.
                     <br>
          <br>
@@ -359,13 +356,13 @@ Where anyone can download the core bitcoin software, obtain a copy of the full l
             <br>
             <br>
        <div class="sub__menu">You can transfer Bitcoins to other Bitcoin users, you cannot transfer KPcoins.</div>
-     <p class="copy__aligned-left black__font">          
+     <p class="copy__block-left-medium-large black__font">          
  You can buy digital assets with both but I’ve decided, for privacy reasons, not allow users to transfer coins.
                     <br>
          <br>
             </p>
  <div class="sub__menu">Bitcoin has many types of Wallets, KPcoin only has a Web Wallet</div>
-     <p class="copy__aligned-left black__font"> 
+     <p class="copy__block-left-medium-large black__font"> 
 With bitcoin you can effectively have a wallet in your brain:  if you memorise the pass phrases which derive your private key, then you could at any time install some software and enter those phrases and get access to your unspent outputs.  There are paper wallets, USB wallets and online web wallets available for bitcoin.  For simplicity, KPcoin just has the latter.
                     <br>
                     <br>
@@ -373,23 +370,19 @@ With bitcoin you can effectively have a wallet in your brain:  if you memorise t
       <br>
             <div id="bitcoin-community"></div>   
             <br>
-            <br>
-            <br>          
+            <br>        
                     
-<h3>Who Controls Bitcoin?</h3>
-     <p class="copy__aligned-left black__font"> 
+<h3 class="thick__padding">Who Controls Bitcoin?</h3>
+     <p class="copy__block-left-medium-large black__font"> 
 If you've read all of the "Discover More" section you'll have a good grasp of the mechanics of cryptocurrencies as it applies to bitcoin and its brethren. In summary there are four main elements: the software - known as the bitcoin protocol.  The blockchain - which is the public ledger which the network uses to log all transactions. The consensus rules - the way which independent members of the network agree on the validity of transactions and issuance of coins and the Proof-of-Work algorithm - a way of ensuring the integrity of the blockchain.
                      <br>
                     <br>
 The bitcoin protocol was defined initially by Satoshi Nakamoto in the original bitcoin whitepaper, but the ongoing stewardship is performed by group of volunteers.  It is an open-source software hosted on <a href="https://github.com/bitcoin" target="_blank"><u>GitHub </u></a> which means anyone can download the software and play with it, but the master version is controlled by a core development team. Anyone can suggest changes, which are vetted by the core team and if the changes are "sensible" they are proposed to the network as Bitcoin Improvement Proposal (BIPS). "The network" in the case is everybody who uses bitcoin, but to think that this is a completely egalitarian situation where everyone has the same amount of influence is euphemistic: those companies who run big exchanges or mining pools have more of a say in the implementation of any BIPS.   
 <br><br>
                     
-As with most human endeavours that involve large groups, there are differences of opinion. Probably the most famous example is the problem of the block size on the bitcoin blockchain, where lines are drawn between those who believe a larger block size is essential for speeding up transaction confirmations, and those who reject it on the grounds that this would cause extra storage costs and goes against some of the core principals that Satoshi outlined in her whitepaper. There have already been two bitcoin-based cryptocurrencies with their own blockchains (bitgold and bitcash) that have gone off on their own "forks" to solve the dispute, but in BIP141 - "Segregated Witness" there has been a proposal to change the native bitcoin blockchain to allow a larger block size, and separate out the digital signature part of the transaction to free up even more space. As at the time of writing it is not clear that all of the miners on the bitcoin network would accept this change, which would lead to dangerous split, which at the least would cause confusion and at worst lead to a full abandonment of the protocol.                  
+As with most human endeavours that involve large groups, there are differences of opinion. Probably the most famous example is the problem of the block size on the bitcoin blockchain, where lines are drawn between those who believe a larger block size is essential for speeding up transaction confirmations, and those who reject it on the grounds that this would cause extra storage costs and goes against some of the core principals that Satoshi outlined in her whitepaper. There have already been two bitcoin-based cryptocurrencies with their own blockchains (bitgold and bitcash) that have gone off on their own "forks" to solve the dispute, but in BIP141 - "Segregated Witness" there has been a proposal to change the native bitcoin blockchain to allow a larger block size, and separate out the digital signature part of the transaction to free up even more space. The core developers eventually decided not to implement this change, as the risk an unreconcilable fork in the blockchain which would have had damaged the reputation of the protocol, but which means bitcoin in it's current state will not have the same speed of transaction as traditional payment platforms, and newer, more nimble cryptocurrencies.
  <br>
 <br>
-<b>UPDATE!</b> the community has decided not to implement the change.  This is big news as for now it appears that original spirit behind the invention of bitcoin has won the day, but this means bitcoin in it's current state will not have the same speed of transaction as traditional payment platforms, and newer, more nimble cryptocurrencies.
-<br>
-         <br>
 To learn more about some of the wrangling that has been taking place over block size <a href="https://www.coindesk.com/understanding-segwit2x-bitcoins-next-fork-might-different/" target="_blank"><u>click here</u></a>.
 <br>
 <br>
@@ -400,10 +393,9 @@ The bitcoin software is, in comparison to most widespread applications, very sim
             <div id="resources"></div>   
             <br>
             <br>
-            <br>  
             
-       <h3>Useful Resources</h3>
-     <p class="copy__aligned-left black__font">    
+       <h3 class="thick__padding">Useful Resources</h3>
+     <p class="copy__block-left-medium-large black__font">    
          If you want to track the value of the top cryptocurrencies then you should vist <a href="http://coinmarketcap.com" target="_blank"><u>CoinMarketCap.com</u></a>
          <br>
         <br>
