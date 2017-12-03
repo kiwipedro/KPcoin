@@ -711,6 +711,8 @@
         position: relative;
         resize: none;
         text-align: center;
+         -webkit-text-fill-color: white;
+         -webkit-text-background-color: #0f7a86;
     }
     
     .bb__result-dimmed {
