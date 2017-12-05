@@ -32,3 +32,12 @@
 {"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.029Z"}
 {"level":"info","message":"login Actions called peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.315Z"}
 {"level":"info","message":"starting gift assessment for peter@myaxis.co.uk","timestamp":"2017-12-01T13:04:00.315Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-05T14:34:04.931Z"}
+{"level":"info","message":"running local login strategy for kiwipedro@hotmail.com","timestamp":"2017-12-05T14:34:13.526Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-05T14:34:28.879Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512484566 138sm689721wmf.21 - gsmtp","timestamp":"2017-12-05T14:35:59.629Z"}
+{"level":"info","message":"running local login strategy for peter@myaxis.co.uk","timestamp":"2017-12-05T14:37:01.539Z"}
+{"level":"info","message":"running local login strategy for kiwipedro@gmail.com","timestamp":"2017-12-05T14:37:46.306Z"}
+{"level":"info","message":"login Actions called kiwipedro@gmail.com","timestamp":"2017-12-05T14:37:46.566Z"}
+{"level":"info","message":"starting gift assessment for kiwipedro@gmail.com","timestamp":"2017-12-05T14:37:46.566Z"}
+{"level":"info","message":"Email sent: 250 2.0.0 OK 1512484707 b206sm621358wme.11 - gsmtp","timestamp":"2017-12-05T14:38:21.351Z"}
