@@ -41,3 +41,6 @@
 {"level":"info","message":"login Actions called kiwipedro@gmail.com","timestamp":"2017-12-05T14:37:46.566Z"}
 {"level":"info","message":"starting gift assessment for kiwipedro@gmail.com","timestamp":"2017-12-05T14:37:46.566Z"}
 {"level":"info","message":"Email sent: 250 2.0.0 OK 1512484707 b206sm621358wme.11 - gsmtp","timestamp":"2017-12-05T14:38:21.351Z"}
+{"level":"info","message":"running local login strategy for kiwipedro@gmail.com","timestamp":"2017-12-05T15:04:46.574Z"}
+{"level":"info","message":"login Actions called kiwipedro@gmail.com","timestamp":"2017-12-05T15:04:47.010Z"}
+{"level":"info","message":"starting gift assessment for kiwipedro@gmail.com","timestamp":"2017-12-05T15:04:47.010Z"}
