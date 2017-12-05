@@ -711,6 +711,8 @@
         position: relative;
         resize: none;
         text-align: center;
+        overflow-x: hidden;
+        -webkit-opacity: 1;
          -webkit-text-fill-color: white;
          -webkit-text-background-color: #0f7a86;
     }
