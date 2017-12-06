@@ -26,11 +26,11 @@ function generateBlock() {
                         genstr += chunk;
                     })
                     .on('response', (res) => {
-                        console.log('resp code on coin generate was ' + JSON.stringify(res.statusCode));                    
+                        logger.info('resp code on coin generate was ' + JSON.stringify(res.statusCode));                    
                         })
                        
                     .on('end', (res) => {
-                        console.log('block generated');
+                        logger.info('block generated');
                     
                         
                 });

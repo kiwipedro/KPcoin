@@ -69,7 +69,8 @@ function sendGiftCoins(id,receiveAddress) {
                 str += chunk;
             })
             .on('end', (res) => {
-                var debitOrCreditFlag = 0;
+                var debitOrCreditFlag = 0; //0 is credit
+                  logger.info('str response on gift is ' + str);
                 addToTxHistory(str, id, assetname, giftamount, debitOrCreditFlag);
                 generateBlock();
        

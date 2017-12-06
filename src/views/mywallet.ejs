@@ -192,6 +192,7 @@ function hideKey(){
                                                         <tr class="table__header">
                                                             <th>Date/Time of TX</th>
                                                             <th>Name</th>
+                                                            <th>Fee</th>
                                                             <th>Amount (in Pedros)</th>
 
                                                         </tr>
@@ -200,17 +201,20 @@ function hideKey(){
                                                         <tbody>
                                                             <tr class="clickable-row" data-href="/transaction-detail?txhash=<%=currList.txhash%>">
                                                                 <th scope="row">
-                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
                                                                     <%=moment(currList.txdate).format('YYYY-MM-DD, HH:mm');%>
-                                                                        <!--                                                    </a>-->
                                                                 </th>
                                                                 <td>
-                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
-                                                                    <%=currList.assetname%>
-                                                                        <!--                                                    </a>-->
+                                                                <%=currList.assetname%>
                                                                 </td>
                                                                 <td>
-                                                                    <!--                                                    <a href="/transaction-detail?txhash=<%=currList.txhash%>">-->
+                                                                    <% if (currList.txfee.length === 0) { %>
+                                                                    0
+                                                                    <%} else {%>
+                                                                    <%=currList.txfee * -1 %>P
+                                                                   <% }%>
+                                                                </td>
+                                                                <td>
+                                                                
                                                                     <% if (currList.txflag === false) { %>
                                                                         <%=currList.txprice%>P
                                                                             <%} else {%>
