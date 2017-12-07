@@ -701,6 +701,7 @@
         line-height: 18px;
         resize: vertical;
         position: relative;
+        overflow: hidden;
     }
     
     .bb__result {
