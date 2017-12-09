@@ -15,7 +15,7 @@ module.exports = function () {
             logger.info('running local login strategy for ' + email);
             var ps = new sql.PreparedStatement();
             ps.input('email', sql.VarChar(50));
-            ps.prepare('select id, email, password from kpcusers where email = @email', function (err) {
+            ps.prepare('select id, email, password, confirmedlogin from kpcusers where email = @email', function (err) {
                 ps.execute({
                         email: email
                     },
@@ -28,7 +28,10 @@ module.exports = function () {
                         if (result.recordset.length === 0) {
                             ps.unprepare();
                             return done(null, false, req.flash('loginMessage', 'Incorrect login details, please try again'));
-                          
+                        } else if (result.recordset[0].confirmedlogin === false) { 
+                            ps.unprepare();
+                            return done (null, false, req.flash('emailNotConfirmed', 'Your email has not been confirmed yet - please recheck your inbox and spam folder for the confirmation link - contact kpcoin@myaxis.co.uk for further assistance'));
+                            
                         } else if (bcrypt.compareSync(password, result.recordset[0].password) === true) {
                             ps.unprepare();
                             logger.info('login Actions called ' + email);
