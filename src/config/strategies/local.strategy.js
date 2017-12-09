@@ -28,10 +28,7 @@ module.exports = function () {
                         if (result.recordset.length === 0) {
                             ps.unprepare();
                             return done(null, false, req.flash('loginMessage', 'Incorrect login details, please try again'));
-                        } else if (result.recordset[0].confirmedlogin === undefined) {
-                            
-                            return done (null, false, req.flash('emailNotConfirmed', 'Your email has not been confirmed yet - please recheck your inbox and spam folder for the confirmation link - contact kpcoin@myaxis.co.uk for further assistance'));
-                            
+                          
                         } else if (bcrypt.compareSync(password, result.recordset[0].password) === true) {
                             ps.unprepare();
                             logger.info('login Actions called ' + email);
