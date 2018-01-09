@@ -43,7 +43,7 @@ app.use(session({
     store: new MSSQLStore(configDB), // options are optional 
     secret: 'kpcoiniswonderful',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 
 
