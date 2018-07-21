@@ -44,7 +44,7 @@
             }
 
             function nextRound() {
-                document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+               // document.getElementById('txtC').style.backgroundColor = '#0f7a86';
                var strHash = document.getElementById('txtC').value;
                 if (strHash.length === 0) {
                      document.getElementById('txtB').focus();
@@ -65,11 +65,12 @@
             }
 
             function calcHash() {
+                var $box2blink = $("#txtC"); // Save reference for better performance
                 var strTxtA = document.getElementById('txtA').value
                 var strTxtB = document.getElementById('txtB').value;
                 strTxt = strTxtA + strTxtB;
                 if( strTxtB.length == 0 ) {
-                    document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+                    //document.getElementById('txtC').style.backgroundColor = '#0f7a86';
                     document.getElementById('txtC').value = "";
                     document.getElementById('txtC2').value = ""
                     return;
@@ -78,11 +79,19 @@
 //                    var isnum = /^\d+$/.test(strTxtB);
 //                    console.info('isnum is '+ isnum);
                     var strHash = hex_sha256( strTxt );
-                    document.getElementById('txtC').style.backgroundColor = '#0f7a86';
+                   // document.getElementById('txtC').style.backgroundColor = '#0f7a86';
                     document.getElementById('txtC').value = strHash;
                     document.getElementById('txtC2').value = strHash.slice(0,3) + '...' + strHash.slice(61,64);
-                    if (strHash.slice(0,2) === '00') {
-                        document.getElementById('txtC').style.backgroundColor = 'red';
+                    if (strHash.slice(0,2) === '00') { 
+                        $box2blink.toggleClass("backgroundChange");
+                        var backgroundInterval = setInterval(function(){
+                        $box2blink.toggleClass("backgroundChange");
+                        },900)
+                        setTimeout(function() {
+                            clearInterval(backgroundInterval);
+                            document.getElementById("txtC").className = "bbResultDefault";
+                        }, 4500);
+                       // document.getElementById('txtC').style.backgroundColor = '#00FF00';
                     }                   
             }
                 
@@ -237,7 +246,7 @@
 	
 	Current hash:	
         <br>
-	<textarea id="txtC" class="bb__result" disabled></textarea>
+	<textarea id="txtC" class="bbResultDefault" disabled></textarea>
         <br>
           <br>
     Shortened current hash:
