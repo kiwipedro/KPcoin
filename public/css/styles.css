@@ -818,3 +818,40 @@ iframe {
     width: 100%;
 }
 
+.bbResultDefault {
+   flex: auto;
+        color: white;
+        background-color: #0f7a86;
+        width: 300px;
+        height: 2.5rem;
+        resize: vertical;
+        position: relative;
+        resize: none;
+        text-align: center;
+        overflow-x: hidden;
+        -webkit-opacity: 1;
+         -webkit-text-fill-color: white;
+         -webkit-text-background-color: #0f7a86;
+}
+.backgroundChange{
+    flex: auto;
+        color: black;
+        background-color: mediumspringgreen;
+        width: 300px;
+        height: 2.5rem;
+        resize: vertical;
+        position: relative;
+        resize: none;
+        text-align: center;
+        overflow-x: hidden;
+        -webkit-opacity: 1;
+         -webkit-text-fill-color: white;
+         -webkit-text-background-color: #0f7a86;
+}
+
+#txtC{
+        -webkit-transition: background 0.5s ease-in-out;
+        -ms-transition:     background 0.5s ease-in-out;
+        transition:         background 0.5s ease-in-out;
+    }
+
